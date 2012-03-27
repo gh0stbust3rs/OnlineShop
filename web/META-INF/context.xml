@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context antiJARLocking="true" path="/OnlineShop">
+    <Resource name="jdbc/resOnlineShop"
+    auth="Container"
+    type="javax.sql.DataSource"
+    driverClassName="oracle.jdbc.OracleDriver"
+    url="jdbc:oracle:thin:@172.16.10.129:1521:XE"
+    username="d5b19"
+    password="d5b19"
+    maxActive="20"
+    maxIdle="30"
+    maxWait="-1"
+    />
+</Context>
