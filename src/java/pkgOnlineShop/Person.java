@@ -9,6 +9,7 @@ package pkgOnlineShop;
  * @author Andreas
  */
 public class Person {
+    private int id;
     private String vorname;
     private String nachname;
     private String strasse;
@@ -20,7 +21,8 @@ public class Person {
     private String pass;
     private int anbieter;
 
-    public Person(String vorname, String nachname, String strasse, int hausnr, int plz, String ort, String land, String email, String pass, int anbieter) {
+    public Person(int id,String vorname, String nachname, String strasse, int hausnr, int plz, String ort, String land, String email, String pass, int anbieter) {
+        this.id = id;
         this.vorname = vorname;
         this.nachname = nachname;
         this.strasse = strasse;
@@ -32,6 +34,14 @@ public class Person {
         this.pass = pass;
         this.anbieter = anbieter;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    } 
 
     public int getAnbieter() {
         return anbieter;

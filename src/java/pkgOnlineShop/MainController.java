@@ -30,8 +30,8 @@ public class MainController {
        try{
         db = new Database();
         kategorien = db.getKategorien();
-       }catch(Exception ignore){
-           message=ignore.toString();
+       }catch(Exception ex){
+           message=ex.toString();
        }
     }
     
@@ -61,6 +61,15 @@ public class MainController {
             message=ignore.toString();
             return "index";
         }
+    }
+    
+    public void reload()
+    {
+        try{
+        kategorien = db.getKategorien();
+       }catch(Exception ex){
+           message=ex.toString();
+       }
     }
     
     public String register()
