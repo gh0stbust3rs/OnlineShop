@@ -6,10 +6,9 @@
         Purpose of the stylesheet follows.
 */
 
-
 #head{
     width:100%;
-    height:120px;
+    height:130px;
 }
 
 #seperator{
@@ -35,6 +34,7 @@
 #userSpace{
     width:300px;
     float:right;
+    margin-right:-50px;
 }
 
 #navHead{
@@ -65,6 +65,44 @@
     margin-left:205px;
 }
 
+#loginButton{
+    float:right;
+    color:white;
+    font-size: 15px;
+    line-height: normal;
+    padding: 4px 14px 4px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    background-color: #404040;
+    background-repeat: repeat-x;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);	
+}
+
+#loginButton:hover{
+    box-shadow: 0px 0px 10px gray;
+}
+
+#loginHeadText{
+    font-family:Trebuchet MS;
+    color:#404040;
+    border-bottom:1px solid #404040;
+    margin:0px;
+    font-size:14pt;
+}
+
+#registerText{
+    font-family:Arial;
+    color:#5E61FF;
+    margin:0px;
+    text-decoration:none;
+    margin-left:5px;
+}
+#registerText:hover{
+    text-decoration:underline;
+}
+
 .navMenu{
     width:200px;
     height:40px;
@@ -75,4 +113,10 @@
     width:200px;
     height:40px;
     background:url('./images/navmenuBackgroundHover.png');
+}
+
+.loginText{
+    font-family:Trebuchet MS;
+    color:#404040;
+    margin:0px;
 }

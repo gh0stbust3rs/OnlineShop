@@ -10,9 +10,25 @@
     <h:body style="padding:0px;margin:0px">
         
         <div id="head">
-            <img src="./resources/images/header.png"/>
+            <img src="./resources/images/header.png" style="float:left"/>
             <div id="userSpace">
-              
+                <table>
+                    <tr>
+                        <td colspan="2"><p id="loginHeadText">Login</p></td>
+                    </tr>
+                    <tr>
+                        <td><p class="loginText">Username:</p></td>
+                        <td><h:inputText/></td>
+                    </tr>
+                    <tr>
+                        <td><p class="loginText">Passwort:</p></td>
+                        <td><h:inputText/></td>
+                    </tr>
+                    <tr>
+                        <td><h:commandButton id="loginButton" value="Login"/></td>
+                        <td><a href="http://google.at" id="registerText">Registrieren</a></td>
+                    </tr>
+                </table>
             </div>
         </div>
         
