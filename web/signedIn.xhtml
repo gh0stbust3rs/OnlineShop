@@ -11,6 +11,7 @@
         
         <div id="head">
             <img src="./resources/images/header.png" style="float:left"/>
+
             <h:form>
                 <div id="userSpaceSI">
                     <h:outputText style="font-family:Trebuchet MS;color:#404040;margin-left: 3px" value="Willkommen, #{mainController.user.vorname} #{mainController.user.nachname}"/>
@@ -27,6 +28,33 @@
                     </div>
                 </div>
             </h:form>
+
+            <div id="userSpace">
+                <h:form>
+                    <table>
+                        <tr>
+                            <td colspan="2"><p id="loginHeadText">Login</p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="loginText">Username:</p></td>
+                            <td><h:inputText value="#{mainController.loginName}"/></td>
+                        </tr>
+                        <tr>
+                            <td><p class="loginText">Passwort:</p></td>
+                            <td><h:inputText value="#{mainController.pw}"/></td>
+                        </tr>
+                        <tr>
+                            <td><h:commandButton style="float:right;color:white;font-size: 15px;line-height: normal;
+                                    padding: 4px 14px 4px; -webkit-border-radius: 6px; -moz-border-radius: 6px; 
+                                    border-radius: 6px; background-color: #404040; background-repeat: repeat-x;
+                                    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); border-color: rgba(0, 0, 0, 0.1) 
+                                    rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);	" value="Login" action="#{mainController.login}"/></td>
+                            <td><a href="http://google.at" id="registerText">Registrieren</a></td>
+                        </tr>
+                    </table>
+                </h:form>
+            </div>
+
         </div>
         
         <h:form>
@@ -59,7 +87,7 @@
         </h:form>
         
         <div id="content">
-
+            <h:outputText value="#{mainController.message}"/>
         </div>
         
       
