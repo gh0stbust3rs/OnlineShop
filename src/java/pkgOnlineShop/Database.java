@@ -33,7 +33,7 @@ public class Database {
         con = ds.getConnection();
     }
     
-    public List<String> getKategorien() throws SQLException
+    public List<String> getKategorien() throws Exception
     {
         List<String> kategorien = new ArrayList<String>();
         String sql="select * from kategorie";
@@ -49,9 +49,43 @@ public class Database {
         return kategorien;
     }
     
-    public boolean tryLogin(String login, String pw)
+    public Person tryLogin(String login, String pw) throws Exception
     {
+        Person p = null;
+        String sql="select * from person where email=? and pass=?";
         
-        return true;
+        PreparedStatement pstm = con.prepareStatement(sql);    
+        pstm.setString(1, login);
+        pstm.setString(2, pw);
+        ResultSet rs = pstm.executeQuery();
+        
+        while(rs.next())
+        {
+            p = new Person(rs.getString("vorname"),rs.getString("nachname"),
+                    rs.getString("strasse"),rs.getInt("hausnr"),rs.getInt("plz"),
+                    rs.getString("ort"),rs.getString("land"),rs.getString("email"),
+                    rs.getString("pass"),rs.getInt("anbieter"));
+        }
+        
+        return p;
+    }
+    
+    public void register(String vorname, String nachname, String strasse, int hausnr, int plz, String ort, String land, String email, String pass) throws Exception
+    {
+        String sql="insert into person(p_id,vorname,nachname,strasse,hausnr,plz,ort,land,email,pass,anbieter) values(SEQ_PERSON.nextval,?,?,?,?,?,?,?,?,?,0)";
+        
+        PreparedStatement pstm = con.prepareStatement(sql);   
+        
+        pstm.setString(1,vorname);
+        pstm.setString(2,nachname);
+        pstm.setString(3,strasse);
+        pstm.setInt(4,hausnr);
+        pstm.setInt(5,plz);
+        pstm.setString(6,ort);
+        pstm.setString(7,land);
+        pstm.setString(8,email);
+        pstm.setString(9,pass);
+        
+        pstm.execute();
     }
 }

@@ -5,12 +5,15 @@
 package pkgOnlineShop;
 
 import java.util.List;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-
+import javax.faces.bean.SessionScoped;
 /**
  *
  * @author Andreas
  */
+@ManagedBean
+@SessionScoped
 public class MainController {
     
     private Database db;
@@ -18,6 +21,7 @@ public class MainController {
     private String loginName;    
     private String pw;    
     private String message;
+    private Person user;
     
     private List kategorien;
     
@@ -34,22 +38,34 @@ public class MainController {
     public String login()
     {
         try{
-        boolean ok = db.tryLogin(loginName, pw);
-        
-        if(ok)
-        {
-            return "signedIn";
-        }
-        else
-        {
-            message = "Login Failed";
-            return "index";
-        }
+            user = db.tryLogin(loginName, pw);
+
+            if(user != null)
+            {
+                if(user.getAnbieter() == 1)
+                {
+                    return "adminManageUsers";
+                }
+                else
+                {
+                    return "signedIn";
+                }
+            }
+            else
+            {
+                message = "Login Failed";
+                return "index";
+            }
         }
         catch(Exception ignore){
             message=ignore.toString();
             return "index";
         }
+    }
+    
+    public String register()
+    {
+        return "register";
     }
 
     public List getKategorien() {
@@ -83,6 +99,14 @@ public class MainController {
     public void setMessage(String message) {
         this.message = message;
     }
-    
-    
+
+    public Person getUser() {
+        return user;
+    }
+
+    public void setUser(Person user) {
+        this.user = user;
+    }
+ 
+   
 }

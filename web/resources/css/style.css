@@ -26,13 +26,13 @@
 }
 
 #content{
-    height:600px;
-    margin-left:250px;
-    border:0px solid black;
+    margin-left:230px;
+    margin-top:10px;
 }
 
 #userSpace{
-    float:right;
+    float:left;
+    margin-left:330px;
 }
 
 #navHead{
@@ -71,15 +71,13 @@
     font-size:14pt;
 }
 
-#registerText{
-    font-family:Arial;
-    color:#5E61FF;
-    margin:0px;
-    text-decoration:none;
-    margin-left:5px;
-}
 #registerText:hover{
     text-decoration:underline;
+}
+
+#userSpaceSI{
+    margin-top:80px;
+    float:left;
 }
 
 .navMenu{
@@ -99,3 +97,6 @@
     color:#404040;
     margin:0px;
 }
+
+h1{font-family:Trebuchet MS;color:#404040;margin:0px}
+p{font-family:Trebuchet MS;color:#404040;margin:0px}
