@@ -61,7 +61,7 @@ public class Database {
         
         while(rs.next())
         {
-            p = new Person(rs.getString("vorname"),rs.getString("nachname"),
+            p = new Person(rs.getInt("p_id"),rs.getString("vorname"),rs.getString("nachname"),
                     rs.getString("strasse"),rs.getInt("hausnr"),rs.getInt("plz"),
                     rs.getString("ort"),rs.getString("land"),rs.getString("email"),
                     rs.getString("pass"),rs.getInt("anbieter"));
@@ -86,6 +86,55 @@ public class Database {
         pstm.setString(8,email);
         pstm.setString(9,pass);
         
+        pstm.execute();
+    }
+    
+    public List<Person> getPersonen() throws Exception
+    {
+        List<Person> persons = new ArrayList<Person>();
+        
+        String sql="select * from person where anbieter=0";
+        
+        PreparedStatement pstm = con.prepareStatement(sql);    
+        ResultSet rs = pstm.executeQuery();
+        
+        Person p;
+        while(rs.next())
+        {
+            p = new Person(rs.getInt("p_id"),rs.getString("vorname"),rs.getString("nachname"),
+                    rs.getString("strasse"),rs.getInt("hausnr"),rs.getInt("plz"),
+                    rs.getString("ort"),rs.getString("land"),rs.getString("email"),
+                    rs.getString("pass"),rs.getInt("anbieter"));
+            persons.add(p);
+        }
+        
+        return persons;
+    }
+    
+    public void deleteUser(int id) throws Exception
+    {
+        String sql="delete from person where p_id=?";
+        
+        PreparedStatement pstm = con.prepareStatement(sql);    
+        pstm.setInt(1,id);
+        pstm.execute();
+    }
+    
+    public void newCategory(String name) throws Exception
+    {
+        String sql="insert into kategorie(kat_id,kat_bezeichnung) values(seq_kategorie.nextval,?)";
+        
+        PreparedStatement pstm = con.prepareStatement(sql);    
+        pstm.setString(1,name);
+        pstm.execute();
+    }
+    
+    public void deleteCategory(String name) throws Exception
+    {
+        String sql="delete from kategorie where kat_bezeichnung=? ";
+        
+        PreparedStatement pstm = con.prepareStatement(sql);    
+        pstm.setString(1,name);
         pstm.execute();
     }
 }

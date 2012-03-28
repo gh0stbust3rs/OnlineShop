@@ -30,15 +30,44 @@
         <h:form>
             <div id="nav">
                 <div id="navHead"><p id="navHeadText">Men&uuml;</p></div>
-                <div class="navMenu"><h:commandLink action="#{adminController.gotoUserManagement}" style="text-decoration:none;color:white;font-family:Trebuchet MS;margin-left:10px;font-size:12pt;line-height: 2.5em">Benutzer Verwalten</h:commandLink></div>
-                <div class="navMenu"><h:commandLink action="#{adminController.gotoNewCategory}" style="text-decoration:none;color:white;font-family:Trebuchet MS;margin-left:10px;font-size:12pt;line-height: 2.5em">Kategorie hinzuf&uuml;gen</h:commandLink></div>
-                <div class="navMenu"><h:commandLink action="#{adminController.gotoNewProduct}" style="text-decoration:none;color:white;font-family:Trebuchet MS;margin-left:10px;font-size:12pt;line-height: 2.5em">Produkt hinzuf&uuml;gen</h:commandLink></div>
+                <div class="navMenu"><h:commandLink action="#{adminController.gotoUserManagement}" style="text-decoration:none;color:white;font-family:Trebuchet MS;margin-left:10px;font-size:12pt;line-height: 2.5em">Benutzer verwalten</h:commandLink></div>
+                <div class="navMenu"><h:commandLink action="#{adminController.gotoNewCategory}" style="text-decoration:none;color:white;font-family:Trebuchet MS;margin-left:10px;font-size:12pt;line-height: 2.5em">Kategorien verwalten</h:commandLink></div>
+                <div class="navMenu"><h:commandLink action="#{adminController.gotoNewProduct}" style="text-decoration:none;color:white;font-family:Trebuchet MS;margin-left:10px;font-size:12pt;line-height: 2.5em">Produkte verwalten</h:commandLink></div>
                 <div class="navMenu"><h:commandLink action="#{adminController.logout}" style="text-decoration:none;color:white;font-family:Trebuchet MS;margin-left:10px;font-size:12pt;line-height: 2.5em">Ausloggen</h:commandLink></div>
             </div>
         </h:form>
         
         <div id="content">
-            <h1>Neue Kategorie</h1>
+            <h1>Kategorien Verwalten</h1>
+            <br/>
+            <h:form>
+                <h:dataTable border="1" style="border-collapse: collapse;border-style: solid;border-color: gray;border-width: 1px;" cellpadding="5" value="#{manageCategoriesController.kategorien}" var="item"> 
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Name der Kategorie"/>
+                        </f:facet>
+
+                        <h:outputText style="font-family:arial" value="#{item}"/>  
+
+                        <f:facet name="footer">
+                            <h:inputText value="#{manageCategoriesController.kategorie}" size="12"/>
+                        </f:facet>
+                    </h:column>
+
+           
+                    <h:column>
+                        <h:commandButton value="L&ouml;schen" action="#{manageCategoriesController.deleteCategory}">
+                            <f:setPropertyActionListener target="#{manageCategoriesController.kategorie}" value="#{item}" />
+                        </h:commandButton>
+
+                            <f:facet name="footer">
+                                <h:commandButton action="#{manageCategoriesController.newCategory}" style="font-family:arial" value="Hinzuf&uuml;gen"/>
+                        </f:facet>
+                    </h:column>
+            </h:dataTable>
+                <br/>
+                <h:outputText style="font-family:Trebuchet MS;font-size:12pt;color:red" value="#{manageCategoriesController.msg}"/>
+            </h:form>
         </div>
         
       

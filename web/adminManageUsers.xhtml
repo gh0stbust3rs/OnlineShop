@@ -30,15 +30,149 @@
         <h:form>
             <div id="nav">
                 <div id="navHead"><p id="navHeadText">Men&uuml;</p></div>
-                <div class="navMenu"><h:commandLink action="#{adminController.gotoUserManagement}" style="text-decoration:none;color:white;font-family:Trebuchet MS;margin-left:10px;font-size:12pt;line-height: 2.5em">Benutzer Verwalten</h:commandLink></div>
-                <div class="navMenu"><h:commandLink action="#{adminController.gotoNewCategory}" style="text-decoration:none;color:white;font-family:Trebuchet MS;margin-left:10px;font-size:12pt;line-height: 2.5em">Kategorie hinzuf&uuml;gen</h:commandLink></div>
-                <div class="navMenu"><h:commandLink action="#{adminController.gotoNewProduct}" style="text-decoration:none;color:white;font-family:Trebuchet MS;margin-left:10px;font-size:12pt;line-height: 2.5em">Produkt hinzuf&uuml;gen</h:commandLink></div>
+                <div class="navMenu"><h:commandLink action="#{adminController.gotoUserManagement}" style="text-decoration:none;color:white;font-family:Trebuchet MS;margin-left:10px;font-size:12pt;line-height: 2.5em">Benutzer verwalten</h:commandLink></div>
+                <div class="navMenu"><h:commandLink action="#{adminController.gotoNewCategory}" style="text-decoration:none;color:white;font-family:Trebuchet MS;margin-left:10px;font-size:12pt;line-height: 2.5em">Kategorien verwalten</h:commandLink></div>
+                <div class="navMenu"><h:commandLink action="#{adminController.gotoNewProduct}" style="text-decoration:none;color:white;font-family:Trebuchet MS;margin-left:10px;font-size:12pt;line-height: 2.5em">Produkte verwalten</h:commandLink></div>
                 <div class="navMenu"><h:commandLink action="#{adminController.logout}" style="text-decoration:none;color:white;font-family:Trebuchet MS;margin-left:10px;font-size:12pt;line-height: 2.5em">Ausloggen</h:commandLink></div>
             </div>
         </h:form>
         
         <div id="content">
             <h1>Benutzer verwalten</h1>
+            
+            <br/>
+            
+            <h:outputText style="font-family:Trebuchet MS;font-size:12pt;color:#404040;" value="Registrierte Benutzer: #{manageUsersController.userCount}"/>
+            
+            <br/>
+            
+            <h:form>
+                <h:dataTable border="1" style="border-collapse: collapse;border-style: solid;border-color: gray;border-width: 1px;" cellpadding="5" value="#{manageUsersController.personen}" var="item"> 
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Vorname"/>
+                        </f:facet>
+
+                        <h:outputText style="font-family:arial" value="#{item.vorname}"/>  
+                        
+                        <f:facet name="footer">
+                            <h:inputText value="#{manageUsersController.vorname}" size="12"/>
+                        </f:facet>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Nachname"/>
+                        </f:facet>
+
+                        <h:outputText style="font-family:arial" value="#{item.nachname}"/>  
+                        
+                        <f:facet name="footer">
+                            <h:inputText value="#{manageUsersController.nachname}" size="12"/>
+                        </f:facet>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Strasse"/>
+                        </f:facet>
+
+                        <h:outputText style="font-family:arial" value="#{item.strasse}"/>  
+                        
+                        <f:facet name="footer">
+                            <h:inputText value="#{manageUsersController.strasse}" size="12"/>
+                        </f:facet>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Hausnummer"/>
+                        </f:facet>
+
+                        <h:outputText style="font-family:arial" value="#{item.hausnr}"/>  
+                        
+                        <f:facet name="footer">
+                            <h:inputText value="#{manageUsersController.hausnr}" size="4"/>
+                        </f:facet>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="PLZ"/>
+                        </f:facet>
+
+                        <h:outputText style="font-family:arial" value="#{item.plz}"/> 
+                        
+                         <f:facet name="footer">
+                            <h:inputText value="#{manageUsersController.plz}" size="4"/>
+                        </f:facet>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Ort"/>
+                        </f:facet>
+
+                        <h:outputText style="font-family:arial" value="#{item.ort}"/>  
+                        
+                         <f:facet name="footer">
+                            <h:inputText value="#{manageUsersController.ort}" size="12"/>
+                        </f:facet>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Land"/>
+                        </f:facet>
+
+                        <h:outputText style="font-family:arial" value="#{item.land}"/>  
+                        
+                         <f:facet name="footer">
+                            <h:selectOneMenu value="#{manageUsersController.land}">
+                                <f:selectItem itemValue="&Ouml;sterreich"/>
+                                <f:selectItem itemValue="Deutschland"/>
+                                <f:selectItem itemValue="Schweiz"/>
+                            </h:selectOneMenu> 
+                        </f:facet>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="EMail"/>
+                        </f:facet>
+
+                        <h:outputText style="font-family:arial" value="#{item.email}"/>  
+                        
+                         <f:facet name="footer">
+                            <h:inputText value="#{manageUsersController.email}" size="15"/>
+                        </f:facet>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Passwort"/>
+                        </f:facet>
+
+                        <h:outputText style="font-family:arial" value="#{item.pass}"/>  
+                        
+                         <f:facet name="footer">
+                            <h:inputText value="#{manageUsersController.pass}" size="12"/>
+                        </f:facet>
+                    </h:column>
+
+                    <h:column>
+                        <h:commandButton value="L&ouml;schen" action="#{manageUsersController.deleteUser}">
+                            <f:setPropertyActionListener target="#{manageUsersController.userId}" value="#{item.id}" />
+                        </h:commandButton>
+                       
+                         <f:facet name="footer">
+                             <h:commandButton action="#{manageUsersController.addNewUser}" style="font-family:arial" value="Hinzuf&uuml;gen"/>
+                        </f:facet>
+                    </h:column>
+            </h:dataTable>
+                <br/>
+                <h:outputText style="font-family:Trebuchet MS;font-size:12pt;color:red" value="#{manageUsersController.msg}"/>
+            </h:form>
         </div>
         
       
