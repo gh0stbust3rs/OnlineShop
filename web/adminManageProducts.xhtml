@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">    
+    <h:head>
+         <title>Online Shop</title>
+         <h:outputStylesheet library="css" name="styleAdmin.css" />
+         <h:outputStylesheet library="css" name="style.css" />
+    </h:head>
+    <h:body style="padding:0px;margin:0px">
+        
+        <div id="head">
+            <img src="./resources/images/header.png" style="float:left"/>
+            <h:form>
+                <div id="userSpaceAdmin">
+                    <h:outputText style="font-family:Trebuchet MS;color:#404040;margin-left: 3px" value="Willkommen, #{mainController.user.vorname} #{mainController.user.nachname}"/>              
+                </div>
+            </h:form>
+        </div>
+        
+        <h:form>
+            <div id="seperator">
+                <div id="searchBar">
+                   
+                </div>
+            </div>
+        </h:form>
+        
+        <h:form>
+            <div id="nav">
+                <div id="navHead"><p id="navHeadText">Men&uuml;</p></div>
+                <div class="navMenu"><h:commandLink action="#{adminController.gotoUserManagement}" style="text-decoration:none;color:white;font-family:Trebuchet MS;margin-left:10px;font-size:12pt;line-height: 2.5em">Benutzer Verwalten</h:commandLink></div>
+                <div class="navMenu"><h:commandLink action="#{adminController.gotoNewCategory}" style="text-decoration:none;color:white;font-family:Trebuchet MS;margin-left:10px;font-size:12pt;line-height: 2.5em">Kategorie hinzuf&uuml;gen</h:commandLink></div>
+                <div class="navMenu"><h:commandLink action="#{adminController.gotoNewProduct}" style="text-decoration:none;color:white;font-family:Trebuchet MS;margin-left:10px;font-size:12pt;line-height: 2.5em">Produkt hinzuf&uuml;gen</h:commandLink></div>
+                <div class="navMenu"><h:commandLink action="#{adminController.logout}" style="text-decoration:none;color:white;font-family:Trebuchet MS;margin-left:10px;font-size:12pt;line-height: 2.5em">Ausloggen</h:commandLink></div>
+            </div>
+        </h:form>
+        
+        <div id="content">
+            <h1>Neues Produkt</h1>
+        </div>
+        
+      
+    </h:body>
+    
+</html>
+

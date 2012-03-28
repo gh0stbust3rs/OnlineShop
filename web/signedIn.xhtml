@@ -11,9 +11,22 @@
         
         <div id="head">
             <img src="./resources/images/header.png" style="float:left"/>
-            <div id="userSpace">
-                <h:outputText value="#{mainController.loginName}"/>
-            </div>
+            <h:form>
+                <div id="userSpaceSI">
+                    <h:outputText style="font-family:Trebuchet MS;color:#404040;margin-left: 3px" value="Willkommen, #{mainController.user.vorname} #{mainController.user.nachname}"/>
+                    <div>
+                        <table>
+                            <tr>
+                                <td><h:commandLink style="font-family:Trebuchet MS;text-decoration:none;" value="Warenkorb"/></td>
+                                <td>|</td>
+                                <td><h:commandLink style="font-family:Trebuchet MS;text-decoration:none;" value="Einstellungen"/></td>
+                                <td>|</td>
+                                <td><h:commandLink style="font-family:Trebuchet MS;text-decoration:none;" value="Ausloggen"/></td> 
+                        </tr>
+                        </table>                    
+                    </div>
+                </div>
+            </h:form>
         </div>
         
         <h:form>
