@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+         <title>Online Shop</title>
+         <h:outputStylesheet library="css" name="style.css" />
+    </h:head>
+    <h:body style="padding:0px;margin:0px">
+        
+        <div id="head">
+            <img src="./resources/images/header.png" style="float:left"/>
+            <div id="userSpace">
+                <table>
+                    <tr>
+                        <td colspan="2"><p id="loginHeadText">Login</p></td>
+                    </tr>
+                    <tr>
+                        <td><p class="loginText">Username:</p></td>
+                        <td><h:inputText/></td>
+                    </tr>
+                    <tr>
+                        <td><p class="loginText">Passwort:</p></td>
+                        <td><h:inputText/></td>
+                    </tr>
+                    <tr>
+                        <td><h:commandButton id="loginButton" value="Login"/></td>
+                        <td><a href="http://google.at" id="registerText">Registrieren</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <h:form>
+            <div id="seperator">
+                <div id="searchBar">
+                    <table style="padding-top:10px">
+                        <tr>
+                            <td><p id="searchText">Suche</p></td>
+                            <td><h:inputText size="120"/></td>
+                        </tr>                    
+                    </table>
+                </div>
+            </div>
+        </h:form>
+        
+        <div id="nav">
+            <div id="navHead"><p id="navHeadText">Kategorien</p></div>
+            <div class="navMenu"></div>
+            <div class="navMenu"></div>
+            <div class="navMenu"></div>
+        </div>
+        
+        <div id="content">
+            
+        </div>
+        
+      
+    </h:body>
+    
+</html>
+
