@@ -12,4 +12,5 @@
         <managed-bean-class>pkgOnlineShop.MainController</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
+    
 </faces-config>
