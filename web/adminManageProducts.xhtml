@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">    
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">    
     <h:head>
          <title>Online Shop</title>
          <h:outputStylesheet library="css" name="styleAdmin.css" />
@@ -39,6 +40,68 @@
         
         <div id="content">
             <h1>Produkte verwalten</h1>
+            <br/>
+            <h3>Neues Produkt</h3>
+            <h:form>
+                <table>
+                    <tr>
+                        <td><p>Bezeichnung</p></td>
+                        <td><p>Preis</p></td>
+                        <td><p>Bestand</p></td>
+                    </tr>
+                    <tr>
+                        <td><h:inputText value="#{manageProductsController.bezeichnung}" size="20"/></td>
+                        <td><h:inputText value="#{manageProductsController.preis}" size="4"/></td>
+                        <td><h:inputText value="#{manageProductsController.bestand}" size="4"/></td>
+                    </tr>
+                </table>
+                
+                <table>
+                    <tr>
+                        <td><p>Bezeichnung</p></td>
+                    </tr>
+                    <tr>
+                        <td><h:inputTextarea value="#{manageProductsController.beschreibung}" cols="40" rows="5"/></td>
+                    </tr>        
+                </table>
+                
+                  <table>
+                    <tr>
+                        <td><p>Kategorie</p></td>
+                        <td width="20"></td>
+                        <td><p>Bild</p></td>
+                    </tr>
+                    <tr>
+                        <td valign="top">
+                            <h:selectOneMenu value="#{manageProductsController.kategorie}">
+                                <f:selectItems value="#{manageProductsController.kategorien}" var="item" itemValue="#{item.bezeichnung}"/>
+                            </h:selectOneMenu>  
+                        </td>
+                        <td width="20"></td>
+                        <td>
+                             <h:form enctype="multipart/form-data">  
+                                <p:fileUpload value="#{manageProductsController.file}" mode="simple"/>  
+
+                                <p:commandButton value="Submit" ajax="false"  
+                                            actionListener="#{manageProductsController.upload}"/>  
+                            </h:form>
+                        </td>
+                    </tr>        
+                </table>
+                
+               <h:commandButton style="color:white;font-size: 15px;line-height: normal;
+                                    padding: 4px 14px 4px; -webkit-border-radius: 6px; -moz-border-radius: 6px; 
+                                    border-radius: 6px; background-color: #404040; background-repeat: repeat-x;
+                                    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); border-color: rgba(0, 0, 0, 0.1) 
+                                    rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);	" action="#{manageProductsController.addProduct}" value="Hinz&uuml;fgen"/>
+                <br/>
+                <br/>
+            </h:form>
+            <br/>           
+                
+            <h3>Produkte</h3>
+           <br/>
+           <h:outputText style="font-family:Trebuchet MS;font-size:12pt;color:red" value="#{manageProductsController.msg}"/>
         </div>
         
       
