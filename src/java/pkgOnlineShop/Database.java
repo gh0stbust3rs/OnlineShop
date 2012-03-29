@@ -33,17 +33,19 @@ public class Database {
         con = ds.getConnection();
     }
     
-    public List<String> getKategorien() throws Exception
+    public List<Kategorie> getKategorien() throws Exception
     {
-        List<String> kategorien = new ArrayList<String>();
+        List<Kategorie> kategorien = new ArrayList<Kategorie>();
         String sql="select * from kategorie";
         
         PreparedStatement pstm = con.prepareStatement(sql);            
         ResultSet rs = pstm.executeQuery();
         
+        Kategorie k = null;        
         while(rs.next())
         {
-            kategorien.add(rs.getString("KAT_BEZEICHNUNG"));
+            k = new Kategorie(rs.getInt("KAT_ID"),rs.getString("KAT_BEZEICHNUNG"));
+            kategorien.add(k);
         }
         
         return kategorien;

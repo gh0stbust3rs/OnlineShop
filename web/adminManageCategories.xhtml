@@ -47,7 +47,7 @@
                             <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Name der Kategorie"/>
                         </f:facet>
 
-                        <h:outputText style="font-family:arial" value="#{item}"/>  
+                        <h:outputText style="font-family:arial" value="#{item.bezeichnung}"/>  
 
                         <f:facet name="footer">
                             <h:inputText value="#{manageCategoriesController.kategorie}" size="12"/>
@@ -57,7 +57,7 @@
            
                     <h:column>
                         <h:commandButton value="L&ouml;schen" action="#{manageCategoriesController.deleteCategory}">
-                            <f:setPropertyActionListener target="#{manageCategoriesController.kategorie}" value="#{item}" />
+                            <f:setPropertyActionListener target="#{manageCategoriesController.kategorie}" value="#{item.bezeichnung}" />
                         </h:commandButton>
 
                             <f:facet name="footer">
