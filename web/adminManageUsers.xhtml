@@ -3,6 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">    
+    <f:view>
+        <f:event type="preRenderView" listener="#{manageUsersController.reload}"/>
+    </f:view>
     <h:head>
          <title>Online Shop</title>
          <h:outputStylesheet library="css" name="styleAdmin.css" />

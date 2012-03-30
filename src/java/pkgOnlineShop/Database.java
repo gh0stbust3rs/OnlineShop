@@ -184,4 +184,19 @@ public class Database {
         pstm.setInt(1,id);
         pstm.execute();
     }
+    
+    public void updateProduct(Produkt p) throws Exception
+    {
+        String sql="update produkt set bezeichnung=? and preis=? and bestand=? and beschreibung=? and bild=? and kat=? where pr_id=?";
+        
+        PreparedStatement pstm = con.prepareStatement(sql);
+        pstm.setString(1,p.getBezeichnung());
+        pstm.setFloat(2,p.getPreis());
+        pstm.setFloat(3,p.getBestand());
+        pstm.setString(4,p.getBeschreibung());
+        pstm.setString(5,p.getBild());
+        pstm.setString(6,p.getKategorie());
+        pstm.setInt(7,p.getId());
+        pstm.execute();
+    }
 }

@@ -6,7 +6,9 @@ package pkgOnlineShop;
 
 import java.util.List;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -37,7 +39,14 @@ public class ManageUsersController {
         try{           
             db = new Database();
             personen = db.getPersonen();
-        }catch(Exception ignore){}
+            
+        }catch(Exception ignore){
+        }
+    }
+
+    public void reload()
+    {
+        vorname="";nachname="";strasse="";hausnr=0;plz=0;ort="";land="Deutschland";email="";pass="";
     }
     
     public void addNewUser()

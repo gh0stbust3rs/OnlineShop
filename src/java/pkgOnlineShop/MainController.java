@@ -21,6 +21,7 @@ public class MainController {
     private String loginName;    
     private String pw;    
     private String message;
+    
     private Person user;
     
     private List kategorien;

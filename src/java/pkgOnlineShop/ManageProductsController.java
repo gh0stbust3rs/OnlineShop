@@ -34,6 +34,7 @@ public class ManageProductsController {
     private UploadedFile file; 
     
     private int selectedID;
+    private Produkt selectedProduct;
     
     private List products;
   
@@ -47,6 +48,11 @@ public class ManageProductsController {
        }catch(Exception ex){
            msg=ex.toString();
        }
+    }
+    
+    public void reload()
+    {
+        bezeichnung="";preis=0;kategorie="PC";beschreibung="";bestand=0;imagePath="default.png";msg="";
     }
     
     public void addProduct()
@@ -77,9 +83,26 @@ public class ManageProductsController {
         }
     }
     
-    public void productDetail()
+    public String productDetail()
     {
+        for(Object o : products)
+        {
+            if(((Produkt)o).getId() == selectedID)
+               selectedProduct = (Produkt)o;
+        }
+        return "adminProductDetails";
+    }
+    
+    public String saveChanges()
+    {
+        try{
+          db.updateProduct(selectedProduct);
+        }
+        catch(Exception ex){
+            msg = ex.toString();
+        }
         
+        return "adminManageProducts";
     }
     
     public void upload() {  
@@ -128,6 +151,14 @@ public class ManageProductsController {
          }
     }
 
+    public Produkt getSelectedProduct() {
+        return selectedProduct;
+    }
+
+    public void setSelectedProduct(Produkt selectedProduct) {
+        this.selectedProduct = selectedProduct;
+    }
+    
     public List getProducts() {
         return products;
     }

@@ -24,6 +24,7 @@ public class Produkt {
         this.beschreibung = beschreibung;
         this.bestand = bestand;
         this.bild = bild;
+        this.id = id;
     }
 
     public int getId() {
@@ -34,8 +35,6 @@ public class Produkt {
         this.id = id;
     }
     
-    
-
     public String getBeschreibung() {
         return beschreibung;
     }

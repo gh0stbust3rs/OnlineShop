@@ -31,6 +31,11 @@ public class ManageCategoriesController {
        }
     }
     
+    public void reload()
+    {
+       msg="";
+    }
+    
     public void newCategory()
     {
         try{
