@@ -2,6 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
+<<<<<<< HEAD
       xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
          <title>Online Shop</title>
@@ -71,6 +72,22 @@
             <h:outputText value="#{mainController.message}"/>
         </div>
         
+=======
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+   
+    <h:body style="padding:0px;margin:0px">
+        
+        <ui:composition template="WEB-INF/templates/template.xhtml">
+            
+            <ui:define name="content">
+                
+                <h:outputText value="#{mainController.message}" />
+                
+            </ui:define>
+            
+        </ui:composition>
+>>>>>>> origin/master
       
     </h:body>
     

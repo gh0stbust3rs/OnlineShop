@@ -31,11 +31,14 @@ public class ManageCategoriesController {
        }
     }
     
+<<<<<<< HEAD
     public void reload()
     {
        msg="";
     }
     
+=======
+>>>>>>> origin/master
     public void newCategory()
     {
         try{

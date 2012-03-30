@@ -4,9 +4,12 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">    
+<<<<<<< HEAD
     <f:view>
         <f:event type="preRenderView" listener="#{manageProductsController.reload}"/>
     </f:view>
+=======
+>>>>>>> origin/master
     <h:head>
          <title>Online Shop</title>
          <h:outputStylesheet library="css" name="styleAdmin.css" />
@@ -116,6 +119,7 @@
            <h3>Produkte</h3>
              <h:dataTable border="1" style="border-collapse: collapse;border-style: solid;border-color: gray;border-width: 1px;" 
                           cellpadding="5" value="#{manageProductsController.products}" var="item"> 
+<<<<<<< HEAD
                  <h:column>
                         <f:facet name="header">
                             <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="ID"/>
@@ -125,6 +129,8 @@
 
                     </h:column>
                  
+=======
+>>>>>>> origin/master
                     <h:column>
                         <f:facet name="header">
                             <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Bezeichnung"/>
@@ -133,7 +139,11 @@
                         <h:outputText style="font-family:arial" value="#{item.bezeichnung}"/>  
 
                     </h:column>
+<<<<<<< HEAD
                   
+=======
+                 
+>>>>>>> origin/master
                  <h:column>
                         <f:facet name="header">
                             <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Preis"/>

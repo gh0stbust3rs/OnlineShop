@@ -184,6 +184,7 @@ public class Database {
         pstm.setInt(1,id);
         pstm.execute();
     }
+<<<<<<< HEAD
     
     public void updateProduct(Produkt p) throws Exception
     {
@@ -199,4 +200,6 @@ public class Database {
         pstm.setInt(7,p.getId());
         pstm.execute();
     }
+=======
+>>>>>>> origin/master
 }

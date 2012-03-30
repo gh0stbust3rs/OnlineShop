@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context antiJARLocking="true" path="/OnlineShop">
+<<<<<<< HEAD
     <!--<Resource name="jdbc/resOnlineShop"
+=======
+  <!--<Resource name="jdbc/resOnlineShop"
+>>>>>>> origin/master
     auth="Container"
     type="javax.sql.DataSource"
     driverClassName="oracle.jdbc.OracleDriver"
@@ -11,6 +15,7 @@
     maxIdle="30"
     maxWait="-1"
     />-->
+<<<<<<< HEAD
     <Resource name="jdbc/resOnlineShop"
     auth="Container"
     type="javax.sql.DataSource"
@@ -22,4 +27,7 @@
     maxIdle="30"
     maxWait="-1"
     />
+=======
+  <Resource auth="Container" driverClassName="oracle.jdbc.OracleDriver" maxActive="20" maxIdle="30" maxWait="-1" name="jdbc/resOnlineShop" password="user" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:XE" username="user"/>
+>>>>>>> origin/master
 </Context>
