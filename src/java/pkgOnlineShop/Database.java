@@ -175,4 +175,13 @@ public class Database {
         
         pstm.execute();
     }
+    
+    public void deleteProduct(int id) throws Exception
+    {
+        String sql="delete from produkt where pr_id=?";
+        
+        PreparedStatement pstm = con.prepareStatement(sql);
+        pstm.setInt(1,id);
+        pstm.execute();
+    }
 }

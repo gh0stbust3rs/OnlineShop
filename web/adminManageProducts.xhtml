@@ -150,15 +150,15 @@
                     </h:column>
                  <h:column>
                        
-                     <h:commandButton value="Details" action="#{manageProductsController.deleteProduct}">
-                            <f:setPropertyActionListener target="#{manageCategoriesController.selectedID}" value="#{item.id}" />
+                     <h:commandButton value="Details" action="#{manageProductsController.productDetail}">
+                            <f:setPropertyActionListener target="#{manageProductsController.selectedID}" value="#{item.id}" />
                         </h:commandButton>
 
                  </h:column>
                  <h:column>
                        
-                        <h:commandButton value="L&ouml;schen" action="#{manageCategoriesController.productDetail}">
-                            <f:setPropertyActionListener target="#{manageCategoriesController.selectedID}" value="#{item.id}" />
+                     <h:commandButton value="L&ouml;schen" action="#{manageProductsController.deleteProduct}">
+                            <f:setPropertyActionListener target="#{manageProductsController.selectedID}" value="#{item.id}" />
                         </h:commandButton>
 
                  </h:column>
