@@ -66,7 +66,15 @@ public class ManageProductsController {
     
     public void deleteProduct()
     {
-        
+        try{
+            db.deleteProduct(selectedID);
+            products = db.getProducts();
+            msg = "Erfolgreich Gelöscht!";
+        }
+        catch(Exception ex)
+        {
+            msg = ex.toString();
+        }
     }
     
     public void productDetail()
