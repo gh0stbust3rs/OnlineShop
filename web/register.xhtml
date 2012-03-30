@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
          <title>Online Shop</title>
          <h:outputStylesheet library="css" name="style.css" />
@@ -87,8 +88,8 @@
                     <tr>
                         <td><p>Land:</p></td>
                         <td colspan="2">
-                            <h:selectOneMenu value="#{registerController.land}">
-                                <f:selectItem itemValue="&Ouml;sterreich"/>
+                           <h:selectOneMenu value="#{registerController.land}">
+                                <f:selectItem itemValue="Oesterreich"/>
                                 <f:selectItem itemValue="Deutschland"/>
                                 <f:selectItem itemValue="Schweiz"/>
                             </h:selectOneMenu> 

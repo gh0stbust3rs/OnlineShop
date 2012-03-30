@@ -42,6 +42,56 @@
             
             <br/>
             
+           <h:form>
+                <h3>Benutzer hinzuf&uuml;gen</h3>
+                <table>
+                    <tr>
+                        <td><p>Name:</p></td>
+                        <td><h:inputText value="#{manageUsersController.vorname}" size="15"/><h:inputText value="#{manageUsersController.nachname}" size="15"/></td>
+                    </tr>
+                    <tr>
+                        <td><p>Adresse:</p></td>
+                        <td><h:inputText value="#{manageUsersController.strasse}" size="20"/><h:inputText value="#{manageUsersController.hausnr}" size="2"/></td>
+                    </tr>
+                    <tr>
+                        <td><p>Ort:</p></td>
+                        <td><h:inputText value="#{manageUsersController.plz}" size="5"/><h:inputText value="#{manageUsersController.ort}" size="20"/></td>
+                    </tr>
+                    <tr>
+                        <td><p>Land:</p></td>
+                        <td colspan="2">
+                            <h:selectOneMenu value="#{manageUsersController.land}">
+                                <f:selectItem itemValue="Oesterreich"/>
+                                <f:selectItem itemValue="Deutschland"/>
+                                <f:selectItem itemValue="Schweiz"/>
+                            </h:selectOneMenu> 
+                        </td>
+                    </tr>
+                </table>
+                <br/>
+                <table>
+                    <tr>
+                        <td><p>Email:</p></td>
+                        <td><h:inputText name="registerMail" value="#{manageUsersController.email}"/></td>
+                    </tr>
+                    <tr>
+                        <td><p>Passwort:</p></td>
+                        <td><h:inputSecret name="registerPassword" value="#{manageUsersController.pass}"/></td>
+                    </tr>
+                </table>
+                <br/>
+                <h:commandButton style="color:white;font-size: 15px;line-height: normal;
+                                    padding: 4px 14px 4px; -webkit-border-radius: 6px; -moz-border-radius: 6px; 
+                                    border-radius: 6px; background-color: #404040; background-repeat: repeat-x;
+                                    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); border-color: rgba(0, 0, 0, 0.1) 
+                                    rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);" action="#{registerController.register}" value="Hinzuf&uuml;gen"/>
+                <br/>
+                <br/>
+                <h:outputText style="font-family:Trebuchet MS;color:red;" value="#{manageUsersController.msg}"/>
+            </h:form>
+            
+            <br/>
+            
             <h:outputText style="font-family:Trebuchet MS;font-size:12pt;color:#404040;" value="Registrierte Benutzer: #{manageUsersController.userCount}"/>
             
             <br/>
@@ -54,10 +104,7 @@
                         </f:facet>
 
                         <h:outputText style="font-family:arial" value="#{item.vorname}"/>  
-                        
-                        <f:facet name="footer">
-                            <h:inputText value="#{manageUsersController.vorname}" size="12"/>
-                        </f:facet>
+
                     </h:column>
 
                     <h:column>
@@ -66,35 +113,19 @@
                         </f:facet>
 
                         <h:outputText style="font-family:arial" value="#{item.nachname}"/>  
-                        
-                        <f:facet name="footer">
-                            <h:inputText value="#{manageUsersController.nachname}" size="12"/>
-                        </f:facet>
+
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Strasse"/>
+                            <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Adresse"/>
                         </f:facet>
 
-                        <h:outputText style="font-family:arial" value="#{item.strasse}"/>  
-                        
-                        <f:facet name="footer">
-                            <h:inputText value="#{manageUsersController.strasse}" size="12"/>
-                        </f:facet>
+                        <h:outputText style="font-family:arial" value="#{item.strasse}  #{item.hausnr}"/>  
+
                     </h:column>
 
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Hausnummer"/>
-                        </f:facet>
-
-                        <h:outputText style="font-family:arial" value="#{item.hausnr}"/>  
-                        
-                        <f:facet name="footer">
-                            <h:inputText value="#{manageUsersController.hausnr}" size="4"/>
-                        </f:facet>
-                    </h:column>
+                  
 
                     <h:column>
                         <f:facet name="header">
@@ -103,9 +134,6 @@
 
                         <h:outputText style="font-family:arial" value="#{item.plz}"/> 
                         
-                         <f:facet name="footer">
-                            <h:inputText value="#{manageUsersController.plz}" size="4"/>
-                        </f:facet>
                     </h:column>
 
                     <h:column>
@@ -114,10 +142,7 @@
                         </f:facet>
 
                         <h:outputText style="font-family:arial" value="#{item.ort}"/>  
-                        
-                         <f:facet name="footer">
-                            <h:inputText value="#{manageUsersController.ort}" size="12"/>
-                        </f:facet>
+       
                     </h:column>
 
                     <h:column>
@@ -127,13 +152,6 @@
 
                         <h:outputText style="font-family:arial" value="#{item.land}"/>  
                         
-                         <f:facet name="footer">
-                            <h:selectOneMenu value="#{manageUsersController.land}">
-                                <f:selectItem itemValue="&Ouml;sterreich"/>
-                                <f:selectItem itemValue="Deutschland"/>
-                                <f:selectItem itemValue="Schweiz"/>
-                            </h:selectOneMenu> 
-                        </f:facet>
                     </h:column>
 
                     <h:column>
@@ -142,10 +160,7 @@
                         </f:facet>
 
                         <h:outputText style="font-family:arial" value="#{item.email}"/>  
-                        
-                         <f:facet name="footer">
-                            <h:inputText value="#{manageUsersController.email}" size="15"/>
-                        </f:facet>
+
                     </h:column>
 
                     <h:column>
@@ -154,24 +169,17 @@
                         </f:facet>
 
                         <h:outputText style="font-family:arial" value="#{item.pass}"/>  
-                        
-                         <f:facet name="footer">
-                            <h:inputText value="#{manageUsersController.pass}" size="12"/>
-                        </f:facet>
+
                     </h:column>
 
                     <h:column>
                         <h:commandButton value="L&ouml;schen" action="#{manageUsersController.deleteUser}">
                             <f:setPropertyActionListener target="#{manageUsersController.userId}" value="#{item.id}" />
                         </h:commandButton>
-                       
-                         <f:facet name="footer">
-                             <h:commandButton action="#{manageUsersController.addNewUser}" style="font-family:arial" value="Hinzuf&uuml;gen"/>
-                        </f:facet>
+
                     </h:column>
             </h:dataTable>
-                <br/>
-                <h:outputText style="font-family:Trebuchet MS;font-size:12pt;color:red" value="#{manageUsersController.msg}"/>
+               <br/>
             </h:form>
         </div>
         

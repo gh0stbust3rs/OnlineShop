@@ -4,9 +4,14 @@
  */
 package pkgOnlineShop;
 
+import java.io.*;
 import java.util.List;
+import java.util.Scanner;
+import java.util.UUID;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.ServletContext;
 import org.primefaces.model.UploadedFile;
 /*
  *
@@ -26,14 +31,19 @@ public class ManageProductsController {
     private String beschreibung;
     private String kategorie;
     private String imagePath;
-    private String imageName;
     private UploadedFile file; 
+    
+    private int selectedID;
+    
+    private List products;
   
     
     public ManageProductsController() {
         try{
             db = new Database();
             kategorien = db.getKategorien();
+            imagePath = "default.png";
+            products = db.getProducts();
        }catch(Exception ex){
            msg=ex.toString();
        }
@@ -41,14 +51,83 @@ public class ManageProductsController {
     
     public void addProduct()
     {
-
+        try{
+            db.newProduct(bezeichnung,preis,kategorie,beschreibung,bestand,imagePath);
+            
+            imagePath = "default.png";
+            products = db.getProducts();
+            msg = "Erfolgreich Hinzugefügt!";
+        }
+        catch(Exception ex)
+        {
+            msg = ex.toString();
+        }
     }
     
-     public void upload() {  
-         if(file==null)
-             msg="fick";
+    public void deleteProduct()
+    {
+        
+    }
+    
+    public void productDetail()
+    {
+        
+    }
+    
+    public void upload() {  
+         try{
+            ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+            String path = servletContext.getRealPath("");
+            
+            UUID iuid = UUID.randomUUID();
+            
+            Scanner s = new Scanner(file.getFileName());
+            s.useDelimiter("\\.");
+            
+            String fileEnd = "";
+            
+            while(s.hasNext())
+                fileEnd = s.next();
+            
+            if(fileEnd.compareTo("png")==0 || fileEnd.compareTo("jpg")==0)
+            {           
+                String filePath = path + "/resources/productImages/" + iuid.toString() + "." + fileEnd;
+                File f = new File(filePath);
+                f.createNewFile();
+                InputStream inputStream = file.getInputstream();            
+                OutputStream out = new FileOutputStream(f);
+
+                byte buf[]=new byte[1024];
+                int len;
+
+                while((len=inputStream.read(buf))>0)                
+                    out.write(buf,0,len);
+
+                out.flush();
+                out.close();
+                inputStream.close();
+                
+                imagePath = iuid.toString() + "." + fileEnd;
+                msg = iuid.toString();
+            }
+            else
+            {
+                msg = "Bitte benutzen Sie nur Bilder vom Typ .png oder .jpg";
+            }
+         }
+         catch(Exception ex){
+             msg = ex.toString();
+         }
     }
 
+    public List getProducts() {
+        return products;
+    }
+
+    public void setProducts(List products) {
+        this.products = products;
+    }
+    
     public UploadedFile getFile() {
         return file;
     }
@@ -113,5 +192,21 @@ public class ManageProductsController {
         this.preis = preis;
     }
 
-        
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+    public int getSelectedID() {
+        return selectedID;
+    }
+
+    public void setSelectedID(int selectedID) {
+        this.selectedID = selectedID;
+    }
+    
+    
 }
