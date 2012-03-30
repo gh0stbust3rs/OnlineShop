@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+  <h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<body>
+    <div id="head">
+        <img src="./resources/images/header.png" style="float:left"/>
+        <div id="userSpace">
+            <h:form>
+                <table>
+                    <tr>
+                        <td colspan="2"><p id="loginHeadText">Login</p></td>
+                    </tr>
+                    <tr>
+                        <td><p class="loginText">Email:</p></td>
+                        <td><h:inputText value="#{mainController.loginName}"/></td>
+                    </tr>
+                    <tr>
+                        <td><p class="loginText">Passwort:</p></td>
+                        <td><h:inputSecret value="#{mainController.pw}"/></td>
+                    </tr>
+                    <tr>
+                        <td><h:commandButton style="float:right;color:white;font-size: 15px;line-height: normal;
+                                padding: 4px 14px 4px; -webkit-border-radius: 6px; -moz-border-radius: 6px; 
+                                border-radius: 6px; background-color: #404040; background-repeat: repeat-x;
+                                text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); border-color: rgba(0, 0, 0, 0.1) 
+                                rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);	" value="Login" action="#{mainController.login}"/></td>
+                        <td><h:commandLink action="#{mainController.register}" style="font-family:Arial;color:#5E61FF;margin:0px;text-decoration:none;margin-left:5px;" value="Registrieren"/></td>
+                    </tr>
+                </table>
+            </h:form>
+        </div>
+    </div>
+</body>
+</html>

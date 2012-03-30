@@ -21,8 +21,9 @@ public class MainController {
     private String loginName;    
     private String pw;    
     private String message;
-
     private Person user;
+    private String selectedKategorie;
+    private boolean signedin = false;
     
     private List kategorien;
     
@@ -73,9 +74,38 @@ public class MainController {
        }
     }
     
+    public String changeKategorie(Kategorie k) {
+        this.selectedKategorie = k.getBezeichnung();
+        return "products";
+    }
+    
     public String register()
     {
         return "register";
+    }
+    
+    public boolean isadmin(){
+        if(user != null){
+            if(user.getAnbieter()==1)
+                return true;
+        }
+        return false;
+    }
+    
+    public boolean isnotadmin(){
+        if(user != null){
+            if(user.getAnbieter()==1)
+                return false;
+        }
+        return true;
+    }
+
+    public boolean getsignedin(){
+        return signedin;
+    }
+    
+    public boolean getnotsignedin(){
+        return !signedin;
     }
 
     public List getKategorien() {
@@ -117,6 +147,15 @@ public class MainController {
     public void setUser(Person user) {
         this.user = user;
     }
+
+    public String getSelectedKategorie() {
+        return selectedKategorie;
+    }
+
+    public void setSelectedKategorie(String selectedKategorie) {
+        this.selectedKategorie = selectedKategorie;
+    }
  
+    
    
 }

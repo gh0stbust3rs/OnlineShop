@@ -182,23 +182,28 @@ public class Database {
         
         PreparedStatement pstm = con.prepareStatement(sql);
         pstm.setInt(1,id);
-        pstm.execute();
     }
-
     
-    public void updateProduct(Produkt p) throws Exception
-    {
-        String sql="update produkt set bezeichnung=? and preis=? and bestand=? and beschreibung=? and bild=? and kat=? where pr_id=?";
+    public ArrayList<Produkt> getProductsForCategory(String cat) throws Exception {
+        ArrayList<Produkt> products = new ArrayList<Produkt>();
         
-        PreparedStatement pstm = con.prepareStatement(sql);
-        pstm.setString(1,p.getBezeichnung());
-        pstm.setFloat(2,p.getPreis());
-        pstm.setFloat(3,p.getBestand());
-        pstm.setString(4,p.getBeschreibung());
-        pstm.setString(5,p.getBild());
-        pstm.setString(6,p.getKategorie());
-        pstm.setInt(7,p.getId());
-        pstm.execute();
+        String sql = "SELECT * FROM produkt WHERE kategorie like ?";
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        ResultSet rs = pstmt.executeQuery();
+        
+        while(rs.next()) {
+            products.add(new Produkt(
+                        rs.getInt("pr_id"),
+                        rs.getString("bezeichnung"),
+                        rs.getInt("preis"),
+                        rs.getString("kategorie"),
+                        rs.getString("beschreibung"),
+                        rs.getInt("bestand"),
+                        rs.getString("bild")
+                    ));
+        }
+        
+        return products;
     }
 
 }

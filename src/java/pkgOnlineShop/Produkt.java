@@ -16,7 +16,7 @@ public class Produkt {
     private String beschreibung;
     private int bestand;
     private String bild;
-
+    
     public Produkt(int id,String bezeichnung, int preis, String kategorie, String beschreibung, int bestand, String bild) {
         this.bezeichnung = bezeichnung;
         this.preis = preis;
@@ -36,6 +36,8 @@ public class Produkt {
     public void setId(int id) {
         this.id = id;
     }
+    
+    
 
     public String getBeschreibung() {
         return beschreibung;
