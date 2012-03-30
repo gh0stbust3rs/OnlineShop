@@ -2,70 +2,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
-    <h:head>
-         <title>Online Shop</title>
-         <h:outputStylesheet library="css" name="style.css" />
-    </h:head>
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+   
     <h:body style="padding:0px;margin:0px">
         
-        <div id="head">
-            <img src="./resources/images/header.png" style="float:left"/>
-
-            <h:form>
-                <div id="userSpaceSI">
-                    <h:outputText style="font-family:Trebuchet MS;color:#404040;margin-left: 3px" value="Willkommen, #{mainController.user.vorname} #{mainController.user.nachname}"/>
-                    <div>
-                        <table>
-                            <tr>
-                                <td><h:commandLink style="font-family:Trebuchet MS;text-decoration:none;" value="Warenkorb"/></td>
-                                <td>|</td>
-                                <td><h:commandLink style="font-family:Trebuchet MS;text-decoration:none;" value="Einstellungen"/></td>
-                                <td>|</td>
-                                <td><h:commandLink style="font-family:Trebuchet MS;text-decoration:none;" value="Ausloggen"/></td> 
-                        </tr>
-                        </table>                    
-                    </div>
-                </div>
-            </h:form>
-
-          
-
-        </div>
-        
-        <h:form>
-            <div id="seperator">
-                <div id="searchBar">
-                    <table style="padding-top:10px">
-                        <tr>
-                            <td><p id="searchText">Suche</p></td>
-                            <td><h:inputText size="120"/></td>
-                        </tr>                    
-                    </table>
-                </div>
-            </div>
-        </h:form>
-        
-        <h:form>
-            <div id="nav">
-                <div id="navHead"><p id="navHeadText">Kategorien</p></div>
-                <h:dataTable cellpadding="0" cellspacing="0" value="#{mainController.kategorien}" var="item"> 
-                    <h:column>
-                        <div class="navMenu">
-                            <h:commandLink style="text-decoration:none;color:white;font-family:Trebuchet MS;margin-left:10px;font-size:12pt;line-height: 2.5em" value="#{item}" action="#{mainController.changeKategorie}">
-                                <f:setPropertyActionListener target="#{mainController.selectedKategorie}" value="#{item}" />
-                            </h:commandLink>
-                        </div>
-                    </h:column>         
-
-                </h:dataTable>
-            </div>
-        </h:form>
-        
-        <div id="content">
-            <h:outputText value="#{mainController.message}"/>
-        </div>
-        
+        <ui:composition template="WEB-INF/templates/template.xhtml">
+            
+            <ui:define name="content">
+                
+                <h:outputText value="#{mainController.message}" />
+                
+            </ui:define>
+            
+        </ui:composition>
       
     </h:body>
     
