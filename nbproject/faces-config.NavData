@@ -3,13 +3,13 @@
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
         <Node id="products.xhtml" x="150" y="150" zoom="true"/>
-        <Node id="adminManageCategories.xhtml" x="900" y="150" zoom="true"/>
         <Node id="detail.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="adminManageCategories.xhtml" x="900" y="150" zoom="true"/>
         <Node id="register.xhtml" x="400" y="300" zoom="true"/>
         <Node id="index.xhtml" x="650" y="150" zoom="true"/>
         <Node id="searchresults.xhtml" x="150" y="600" zoom="true"/>
-        <Node id="orders.xhtml" x="1150" y="150" zoom="true"/>
         <Node id="aboutus.xhtml" x="462" y="452" zoom="true"/>
+        <Node id="orders.xhtml" x="1150" y="150" zoom="true"/>
         <Node id="signedIn.xhtml" x="150" y="300" zoom="true"/>
         <Node id="adminManageUsers.xhtml" x="900" y="300" zoom="true"/>
         <Node id="adminManageProducts.xhtml" x="150" y="450" zoom="true"/>

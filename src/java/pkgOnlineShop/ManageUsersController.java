@@ -50,7 +50,13 @@ public class ManageUsersController {
 
     public void reload()
     {
-        vorname="";nachname="";strasse="";hausnr=0;plz=0;ort="";land="Deutschland";email="";pass="";
+        try{
+            personen = db.getPersonen();
+        }
+        catch(Exception ex)
+        {
+            msg = ex.toString();
+        }
     }
     
     public void addNewUser()

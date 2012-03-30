@@ -24,6 +24,7 @@ public class ManageProductsController {
     private Database db;
     private List kategorien;
     private String msg;
+    private String detailMsg;
     
     private String bezeichnung;
     private int preis;
@@ -105,6 +106,57 @@ public class ManageProductsController {
         return "adminManageProducts";
     }
     
+    public void changeImage()
+    {
+        try{
+            ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+            String path = servletContext.getRealPath("");
+            
+            UUID iuid = UUID.randomUUID();
+            
+            Scanner s = new Scanner(file.getFileName());
+            s.useDelimiter("\\.");
+            
+            String fileEnd = "";
+            
+            while(s.hasNext())
+                fileEnd = s.next();
+            
+            if(fileEnd.compareTo("png")==0 || fileEnd.compareTo("jpg")==0)
+            {           
+                String filePath = path + "/resources/productImages/" + iuid.toString() + "." + fileEnd;
+                File f = new File(filePath);
+                f.createNewFile();
+                InputStream inputStream = file.getInputstream();            
+                OutputStream out = new FileOutputStream(f);
+
+                byte buf[]=new byte[1024];
+                int len;
+
+                while((len=inputStream.read(buf))>0)                
+                    out.write(buf,0,len);
+
+                out.flush();
+                out.close();
+                inputStream.close();
+                
+                if(selectedProduct.getBild().compareTo("default.png")!=0)
+                {
+                    f = new File(path + "/resources/productImages/" + selectedProduct.getBild());
+                    f.delete();
+                }
+                
+                selectedProduct.setBild(iuid.toString() + "." + fileEnd);
+            }
+            else
+            {
+               detailMsg = "Bitte benutzen Sie nur Bilder vom Typ .png oder .jpg";
+            }
+         }
+         catch(Exception ex){
+             detailMsg = ex.toString();
+         }
+    }    
     
     public void upload() {  
          try{
@@ -140,7 +192,6 @@ public class ManageProductsController {
                 inputStream.close();
                 
                 imagePath = iuid.toString() + "." + fileEnd;
-                msg = iuid.toString();
             }
             else
             {
@@ -246,6 +297,14 @@ public class ManageProductsController {
 
     public void setSelectedID(int selectedID) {
         this.selectedID = selectedID;
+    }
+
+    public String getDetailMsg() {
+        return detailMsg;
+    }
+
+    public void setDetailMsg(String detailMsg) {
+        this.detailMsg = detailMsg;
     }
     
     

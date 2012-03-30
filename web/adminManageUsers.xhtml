@@ -89,7 +89,7 @@
                                     padding: 4px 14px 4px; -webkit-border-radius: 6px; -moz-border-radius: 6px; 
                                     border-radius: 6px; background-color: #404040; background-repeat: repeat-x;
                                     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); border-color: rgba(0, 0, 0, 0.1) 
-                                    rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);" action="#{registerController.register}" value="Hinzuf&uuml;gen"/>
+                                    rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);" action="#{manageUsersController.addNewUser}" value="Hinzuf&uuml;gen"/>
                 <br/>
                 <br/>
                 <h:outputText style="font-family:Trebuchet MS;color:red;" value="#{manageUsersController.msg}"/>
@@ -129,9 +129,7 @@
                         <h:outputText style="font-family:arial" value="#{item.strasse}  #{item.hausnr}"/>  
 
                     </h:column>
-
-                  
-
+                    
                     <h:column>
                         <f:facet name="header">
                             <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="PLZ"/>

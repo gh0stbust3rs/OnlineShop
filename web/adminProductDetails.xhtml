@@ -84,6 +84,16 @@
                                         rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);	" value="Speichern" action="#{manageProductsController.saveChanges}"/>
                
             </h:form>
+             <br/>
+            <h:form enctype="multipart/form-data">  
+                <p>Bild &auml;ndern</p>
+
+                <p:fileUpload value="#{manageProductsController.file}" mode="simple"/>  <br/>
+                <p:commandButton value="Upload" ajax="false"
+                            actionListener="#{manageProductsController.changeImage}"/>  
+            </h:form>
+
+            <h:outputText style="font-family:Trebuchet MS;font-size:12pt;color:red" value="#{manageProductsController.detailMsg}"/>
         </div>
         
       
