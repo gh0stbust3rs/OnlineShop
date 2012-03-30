@@ -35,7 +35,7 @@ public class ProductsController {
 
     public void addToCart() {
         try {
-            db.addToCart(amount, selectedProduct.getId(), mainController.getUser().getId());
+            //db.addToCart(amount, selectedProduct.getId(), mainController.getUser().getId());
         }
         catch(Exception e) {
             System.out.println(e);

@@ -96,7 +96,7 @@ public class ManageProductsController {
     public String saveChanges()
     {
         try{
-          db.updateProduct(selectedProduct);
+          //db.updateProduct(selectedProduct);
         }
         catch(Exception ex){
             msg = ex.toString();
