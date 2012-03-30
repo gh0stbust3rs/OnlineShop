@@ -50,13 +50,8 @@ public class ProductsController {
         this.db = db;
     }
 
-    public ArrayList<Produkt> getProducts() {
-        try {
-            products = db.getProductsForCategory(mainController.getSelectedKategorie());
-        }
-        catch (Exception e) {
-            Logger.getLogger(ProductsController.class.getName()).log(Level.INFO, "####"+e.toString());
-        }
+    public ArrayList<Produkt> getProducts() throws Exception {
+        products = db.getProductsForCategory(mainController.getSelectedKategorie());
         return products;
     }
 
