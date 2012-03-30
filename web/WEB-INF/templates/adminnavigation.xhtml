@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+  <h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<body>
+    <div id="nav">
+        <h:form>
+            <div id="navHead"><p id="navHeadText">Men&uuml;</p></div>
+            <div class="navMenu"><h:commandLink action="#{adminController.gotoUserManagement}" style="text-decoration:none;color:white;font-family:Trebuchet MS;margin-left:10px;font-size:12pt;line-height: 2.5em">Benutzer verwalten</h:commandLink></div>
+            <div class="navMenu"><h:commandLink action="#{adminController.gotoNewCategory}" style="text-decoration:none;color:white;font-family:Trebuchet MS;margin-left:10px;font-size:12pt;line-height: 2.5em">Kategorien verwalten</h:commandLink></div>
+            <div class="navMenu"><h:commandLink action="#{adminController.gotoNewProduct}" style="text-decoration:none;color:white;font-family:Trebuchet MS;margin-left:10px;font-size:12pt;line-height: 2.5em">Produkte verwalten</h:commandLink></div>
+            <div class="navMenu"><h:commandLink action="#{adminController.logout}" style="text-decoration:none;color:white;font-family:Trebuchet MS;margin-left:10px;font-size:12pt;line-height: 2.5em">Ausloggen</h:commandLink></div>
+        </h:form>
+    </div>
+</body>
+</html>

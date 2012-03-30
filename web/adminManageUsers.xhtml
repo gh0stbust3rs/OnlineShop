@@ -1,0 +1,190 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">    
+    <h:head>
+         <title>Online Shop</title>
+         <h:outputStylesheet library="css" name="styleAdmin.css" />
+         <h:outputStylesheet library="css" name="style.css" />
+    </h:head>
+    <h:body style="padding:0px;margin:0px">
+        
+        <div id="head">
+            <img src="./resources/images/header.png" style="float:left"/>
+            <h:form>
+                <div id="userSpaceAdmin">
+                    <h:outputText style="font-family:Trebuchet MS;color:#404040;margin-left: 3px" value="Willkommen, #{mainController.user.vorname} #{mainController.user.nachname}"/>              
+                </div>
+            </h:form>
+        </div>
+        
+        <h:form>
+            <div id="seperator">
+                <div id="searchBar">
+                   
+                </div>
+            </div>
+        </h:form>
+        
+        <h:form>
+            <div id="nav">
+                <div id="navHead"><p id="navHeadText">Men&uuml;</p></div>
+                <div class="navMenu"><h:commandLink action="#{adminController.gotoUserManagement}" style="text-decoration:none;color:white;font-family:Trebuchet MS;margin-left:10px;font-size:12pt;line-height: 2.5em">Benutzer verwalten</h:commandLink></div>
+                <div class="navMenu"><h:commandLink action="#{adminController.gotoNewCategory}" style="text-decoration:none;color:white;font-family:Trebuchet MS;margin-left:10px;font-size:12pt;line-height: 2.5em">Kategorien verwalten</h:commandLink></div>
+                <div class="navMenu"><h:commandLink action="#{adminController.gotoNewProduct}" style="text-decoration:none;color:white;font-family:Trebuchet MS;margin-left:10px;font-size:12pt;line-height: 2.5em">Produkte verwalten</h:commandLink></div>
+                <div class="navMenu"><h:commandLink action="#{adminController.logout}" style="text-decoration:none;color:white;font-family:Trebuchet MS;margin-left:10px;font-size:12pt;line-height: 2.5em">Ausloggen</h:commandLink></div>
+            </div>
+        </h:form>
+        
+        <div id="content">
+            <h1>Benutzer verwalten</h1>
+            
+            <br/>
+            
+           <h:form>
+                <h3>Benutzer hinzuf&uuml;gen</h3>
+                <table>
+                    <tr>
+                        <td><p>Name:</p></td>
+                        <td><h:inputText value="#{manageUsersController.vorname}" size="15"/><h:inputText value="#{manageUsersController.nachname}" size="15"/></td>
+                    </tr>
+                    <tr>
+                        <td><p>Adresse:</p></td>
+                        <td><h:inputText value="#{manageUsersController.strasse}" size="20"/><h:inputText value="#{manageUsersController.hausnr}" size="2"/></td>
+                    </tr>
+                    <tr>
+                        <td><p>Ort:</p></td>
+                        <td><h:inputText value="#{manageUsersController.plz}" size="5"/><h:inputText value="#{manageUsersController.ort}" size="20"/></td>
+                    </tr>
+                    <tr>
+                        <td><p>Land:</p></td>
+                        <td colspan="2">
+                            <h:selectOneMenu value="#{manageUsersController.land}">
+                                <f:selectItem itemValue="Oesterreich"/>
+                                <f:selectItem itemValue="Deutschland"/>
+                                <f:selectItem itemValue="Schweiz"/>
+                            </h:selectOneMenu> 
+                        </td>
+                    </tr>
+                </table>
+                <br/>
+                <table>
+                    <tr>
+                        <td><p>Email:</p></td>
+                        <td><h:inputText name="registerMail" value="#{manageUsersController.email}"/></td>
+                    </tr>
+                    <tr>
+                        <td><p>Passwort:</p></td>
+                        <td><h:inputSecret name="registerPassword" value="#{manageUsersController.pass}"/></td>
+                    </tr>
+                </table>
+                <br/>
+                <h:commandButton style="color:white;font-size: 15px;line-height: normal;
+                                    padding: 4px 14px 4px; -webkit-border-radius: 6px; -moz-border-radius: 6px; 
+                                    border-radius: 6px; background-color: #404040; background-repeat: repeat-x;
+                                    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); border-color: rgba(0, 0, 0, 0.1) 
+                                    rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);" action="#{registerController.register}" value="Hinzuf&uuml;gen"/>
+                <br/>
+                <br/>
+                <h:outputText style="font-family:Trebuchet MS;color:red;" value="#{manageUsersController.msg}"/>
+            </h:form>
+            
+            <br/>
+            
+            <h:outputText style="font-family:Trebuchet MS;font-size:12pt;color:#404040;" value="Registrierte Benutzer: #{manageUsersController.userCount}"/>
+            
+            <br/>
+            
+            <h:form>
+                <h:dataTable border="1" style="border-collapse: collapse;border-style: solid;border-color: gray;border-width: 1px;" cellpadding="5" value="#{manageUsersController.personen}" var="item"> 
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Vorname"/>
+                        </f:facet>
+
+                        <h:outputText style="font-family:arial" value="#{item.vorname}"/>  
+
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Nachname"/>
+                        </f:facet>
+
+                        <h:outputText style="font-family:arial" value="#{item.nachname}"/>  
+
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Adresse"/>
+                        </f:facet>
+
+                        <h:outputText style="font-family:arial" value="#{item.strasse}  #{item.hausnr}"/>  
+
+                    </h:column>
+
+                  
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="PLZ"/>
+                        </f:facet>
+
+                        <h:outputText style="font-family:arial" value="#{item.plz}"/> 
+                        
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Ort"/>
+                        </f:facet>
+
+                        <h:outputText style="font-family:arial" value="#{item.ort}"/>  
+       
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Land"/>
+                        </f:facet>
+
+                        <h:outputText style="font-family:arial" value="#{item.land}"/>  
+                        
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="EMail"/>
+                        </f:facet>
+
+                        <h:outputText style="font-family:arial" value="#{item.email}"/>  
+
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Passwort"/>
+                        </f:facet>
+
+                        <h:outputText style="font-family:arial" value="#{item.pass}"/>  
+
+                    </h:column>
+
+                    <h:column>
+                        <h:commandButton value="L&ouml;schen" action="#{manageUsersController.deleteUser}">
+                            <f:setPropertyActionListener target="#{manageUsersController.userId}" value="#{item.id}" />
+                        </h:commandButton>
+
+                    </h:column>
+            </h:dataTable>
+               <br/>
+            </h:form>
+        </div>
+        
+      
+    </h:body>
+    
+</html>
+

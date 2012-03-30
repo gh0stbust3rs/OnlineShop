@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+         <title>Online Shop</title>
+         <h:outputStylesheet library="css" name="style.css" />
+    </h:head>
+    <h:body style="padding:0px;margin:0px">
+        
+        <div id="head">
+            <img src="./resources/images/header.png" style="float:left"/>
+            <div id="userSpace">
+                <h:form>
+                    <table>
+                        <tr>
+                            <td colspan="2"><p id="loginHeadText">Login</p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="loginText">Email:</p></td>
+                            <td><h:inputText value="#{mainController.loginName}"/></td>
+                        </tr>
+                        <tr>
+                            <td><p class="loginText">Passwort:</p></td>
+                            <td><h:inputSecret value="#{mainController.pw}"/></td>
+                        </tr>
+                        <tr>
+                            <td><h:commandButton style="float:right;color:white;font-size: 15px;line-height: normal;
+                                    padding: 4px 14px 4px; -webkit-border-radius: 6px; -moz-border-radius: 6px; 
+                                    border-radius: 6px; background-color: #404040; background-repeat: repeat-x;
+                                    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); border-color: rgba(0, 0, 0, 0.1) 
+                                    rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);	" value="Login" action="#{mainController.login}"/></td>
+                             <td><h:commandLink action="#{mainController.register}" style="font-family:Arial;color:#5E61FF;margin:0px;text-decoration:none;margin-left:5px;" value="Registrieren"/></td>
+                        </tr>
+                    </table>
+                </h:form>
+            </div>
+        </div>
+        
+        <h:form>
+            <div id="seperator">
+                <div id="searchBar">
+                    <table style="padding-top:10px">
+                        <tr>
+                            <td><p id="searchText">Suche</p></td>
+                            <td><h:inputText size="120"/></td>
+                        </tr>                    
+                    </table>
+                </div>
+            </div>
+        </h:form>
+        
+        <h:form>
+            <div id="nav">
+                <div id="navHead"><p id="navHeadText">Kategorien</p></div>
+                <h:dataTable cellpadding="0" cellspacing="0" value="#{mainController.kategorien}" var="item"> 
+                    <h:column>
+                        <div class="navMenu">
+                            <h:commandLink style="text-decoration:none;color:white;font-family:Trebuchet MS;margin-left:10px;font-size:12pt;line-height: 2.5em" value="#{item}" action="#{mainController.changeKategorie}">
+                                <f:setPropertyActionListener target="#{mainController.selectedKategorie}" value="#{item}" />
+                            </h:commandLink>
+                        </div>
+                    </h:column>         
+
+                </h:dataTable>
+            </div>
+        </h:form>
+        
+        <div id="content">
+            <h:form>
+                <h1>Registrieren</h1>
+                <br/>
+                <table>
+                    <tr>
+                        <td><p>Name:</p></td>
+                        <td><h:inputText value="#{registerController.vorname}" size="15"/><h:inputText value="#{registerController.nachname}" size="15"/></td>
+                    </tr>
+                    <tr>
+                        <td><p>Adresse:</p></td>
+                        <td><h:inputText value="#{registerController.strasse}" size="20"/><h:inputText value="#{registerController.hausnr}" size="2"/></td>
+                    </tr>
+                    <tr>
+                        <td><p>Ort:</p></td>
+                        <td><h:inputText value="#{registerController.plz}" size="5"/><h:inputText value="#{registerController.ort}" size="20"/></td>
+                    </tr>
+                    <tr>
+                        <td><p>Land:</p></td>
+                        <td colspan="2">
+                           <h:selectOneMenu value="#{registerController.land}">
+                                <f:selectItem itemValue="Oesterreich"/>
+                                <f:selectItem itemValue="Deutschland"/>
+                                <f:selectItem itemValue="Schweiz"/>
+                            </h:selectOneMenu> 
+                        </td>
+                    </tr>
+                </table>
+                <br/>
+                <table>
+                    <tr>
+                        <td><p>Email:</p></td>
+                        <td><h:inputText name="registerMail" value="#{registerController.email}"/></td>
+                    </tr>
+                    <tr>
+                        <td><p>Passwort:</p></td>
+                        <td><h:inputSecret name="registerPassword" value="#{registerController.pass}"/></td>
+                    </tr>
+                </table>
+                <br/>
+                <h:commandButton style="color:white;font-size: 15px;line-height: normal;
+                                    padding: 4px 14px 4px; -webkit-border-radius: 6px; -moz-border-radius: 6px; 
+                                    border-radius: 6px; background-color: #404040; background-repeat: repeat-x;
+                                    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); border-color: rgba(0, 0, 0, 0.1) 
+                                    rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);" action="#{registerController.register}" value="Registrieren"/>
+                <br/>
+                <br/>
+                <h:outputText style="font-family:Trebuchet MS;color:red;" value="#{registerController.msg}"/>
+            </h:form>
+        </div>
+        
+      
+    </h:body>
+    
+</html>
+
