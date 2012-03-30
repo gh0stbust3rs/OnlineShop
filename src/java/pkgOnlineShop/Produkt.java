@@ -24,10 +24,9 @@ public class Produkt {
         this.beschreibung = beschreibung;
         this.bestand = bestand;
         this.bild = bild;
-<<<<<<< HEAD
+
         this.id = id;
-=======
->>>>>>> origin/master
+
     }
 
     public int getId() {
@@ -37,12 +36,7 @@ public class Produkt {
     public void setId(int id) {
         this.id = id;
     }
-    
-<<<<<<< HEAD
-=======
-    
 
->>>>>>> origin/master
     public String getBeschreibung() {
         return beschreibung;
     }

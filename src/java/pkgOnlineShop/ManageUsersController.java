@@ -6,13 +6,13 @@ package pkgOnlineShop;
 
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-<<<<<<< HEAD
+
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-=======
+
 import javax.faces.bean.SessionScoped;
->>>>>>> origin/master
+
 
 /**
  *
@@ -43,18 +43,14 @@ public class ManageUsersController {
         try{           
             db = new Database();
             personen = db.getPersonen();
-<<<<<<< HEAD
-            
         }catch(Exception ignore){
+            msg = ignore.toString();
         }
     }
 
     public void reload()
     {
         vorname="";nachname="";strasse="";hausnr=0;plz=0;ort="";land="Deutschland";email="";pass="";
-=======
-        }catch(Exception ignore){}
->>>>>>> origin/master
     }
     
     public void addNewUser()

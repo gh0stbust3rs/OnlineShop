@@ -34,10 +34,7 @@ public class ManageProductsController {
     private UploadedFile file; 
     
     private int selectedID;
-<<<<<<< HEAD
     private Produkt selectedProduct;
-=======
->>>>>>> origin/master
     
     private List products;
   
@@ -53,14 +50,11 @@ public class ManageProductsController {
        }
     }
     
-<<<<<<< HEAD
     public void reload()
     {
         bezeichnung="";preis=0;kategorie="PC";beschreibung="";bestand=0;imagePath="default.png";msg="";
     }
     
-=======
->>>>>>> origin/master
     public void addProduct()
     {
         try{
@@ -89,7 +83,6 @@ public class ManageProductsController {
         }
     }
     
-<<<<<<< HEAD
     public String productDetail()
     {
         for(Object o : products)
@@ -110,12 +103,8 @@ public class ManageProductsController {
         }
         
         return "adminManageProducts";
-=======
-    public void productDetail()
-    {
-        
->>>>>>> origin/master
     }
+    
     
     public void upload() {  
          try{
@@ -163,7 +152,6 @@ public class ManageProductsController {
          }
     }
 
-<<<<<<< HEAD
     public Produkt getSelectedProduct() {
         return selectedProduct;
     }
@@ -172,8 +160,6 @@ public class ManageProductsController {
         this.selectedProduct = selectedProduct;
     }
     
-=======
->>>>>>> origin/master
     public List getProducts() {
         return products;
     }
