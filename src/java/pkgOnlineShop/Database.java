@@ -7,9 +7,10 @@ package pkgOnlineShop;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.naming.Context;
@@ -113,6 +114,26 @@ public class Database {
         return persons;
     }
     
+    public List<Produkt> getProducts() throws Exception
+    {
+        String sql = "select * from produkt";
+        List<Produkt> products = new ArrayList<Produkt>();
+        
+        PreparedStatement pstm = con.prepareStatement(sql);    
+        ResultSet rs = pstm.executeQuery();
+        
+        Produkt p;
+        while(rs.next())
+        {
+            p = new Produkt(rs.getInt("pr_id"),rs.getString("bezeichnung"),rs.getInt("preis"),rs.getString("kat"),
+                    rs.getString("beschreibung"),rs.getInt("bestand"),rs.getString("bild"));
+            
+            products.add(p);
+        }
+        
+        return products;
+    }
+    
     public void deleteUser(int id) throws Exception
     {
         String sql="delete from person where p_id=?";
@@ -137,6 +158,21 @@ public class Database {
         
         PreparedStatement pstm = con.prepareStatement(sql);    
         pstm.setString(1,name);
+        pstm.execute();
+    }
+    
+    public void newProduct(String bezeichnung,int preis,String kategorie,String beschreibung,int bestand,String imagePath) throws Exception
+    {
+        String sql="insert into produkt values(seq_produkt.nextval,?,?,?,?,?,?)";
+        
+        PreparedStatement pstm = con.prepareStatement(sql);
+        pstm.setString(1,bezeichnung);
+        pstm.setFloat(2,preis);
+        pstm.setString(3,beschreibung);
+        pstm.setFloat(4,bestand);
+        pstm.setString(5,imagePath);
+        pstm.setString(6,kategorie);
+        
         pstm.execute();
     }
 }
