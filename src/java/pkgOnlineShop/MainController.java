@@ -8,6 +8,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 /**
  *
  * @author Andreas
@@ -93,6 +94,9 @@ public class MainController {
     public String logout(){
         user = null;
         signedin = false;
+        FacesContext context = FacesContext.getCurrentInstance();
+        Object remove = context.getExternalContext().getSessionMap().remove("OrderController");
+        message = remove+" halllo";
         return "index";
     }
     

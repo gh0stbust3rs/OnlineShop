@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <h:head>
+         <title>Online Shop</title>
+         <h:outputStylesheet library="css" name="styleAdmin.css" />
+         <h:outputStylesheet library="css" name="style.css" />
+    </h:head>
+    <h:body style="padding:0px;margin:0px">
+        <ui:composition template="/WEB-INF/templates/template.xhtml">
+
+            <div id="content">
+                <ui:define name="content">
+                    <h1>Bestellung abschicken</h1>
+
+                    <br/>
+
+                <h:form>
+                        <h3>Kreditkarteninformationen eingeben</h3>
+                        <br/>
+                        <table>
+                            <tr>
+                                <td><p>Kredikartennummer: </p></td>
+                                <td><h:inputText value="#{orderController.kreditnummer}" size="15"/></td>
+                            </tr>
+                            <tr>
+                                <td><p>Sicherheitsnummer: </p></td>
+                                <td><h:inputText value="#{orderController.sichernummer}" size="20"/></td>
+                            </tr>
+                            <tr>
+                                <td><p>Monat</p></td>
+                                <td>
+                                    <h:selectOneMenu value="#{orderController.monat}">
+                                        <f:selectItems value="#{orderController.allemonate}"/>
+                                    </h:selectOneMenu> 
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><p>Jahr</p></td>
+                                <td>
+                                    <h:selectOneMenu value="#{orderController.jahr}">
+                                        <f:selectItems value="#{orderController.allejahre}"/>
+                                    </h:selectOneMenu> 
+                                </td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <h:commandButton style="color:white;font-size: 15px;line-height: normal;
+                                                padding: 4px 14px 4px; -webkit-border-radius: 6px; -moz-border-radius: 6px; 
+                                                border-radius: 6px; background-color: #404040; background-repeat: repeat-x;
+                                                text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); border-color: rgba(0, 0, 0, 0.1) 
+                                                rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);" action="#{orderController.kreditcheck}" value="Karte pr&uuml;fen"/>
+                        <br/>
+                        <br/>
+                        <h3>Sicherheits&uuml;berpr&uuml;fung</h3>
+                        <br/>
+                        <p>Zur Sicherheit m&uuml;&szlig;en Sie sich nach der Kreditkarten&uuml;berpr&uuml;fung nochmals anmelden!<br/>
+                        Der Button f&uuml; die endg&uuml;ltige Best&auml;tigunt der Bestellung erscheint erst, wenn Sie ihre<br/>
+                        Eingaben der Kreditkarteninformationen g&uuml;tige sind!"</p>
+                        <h:outputText value="#{orderController.message}"/>
+                        <table>
+                            <tr>
+                                <td><p>Email:</p></td>
+                                <td><h:inputText name="registerMail" value="#{orderController.email}"/></td>
+                            </tr>
+                            <tr>
+                                <td><p>Passwort:</p></td>
+                                <td><h:inputSecret name="registerPassword" value="#{orderController.pass}"/></td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <h:panelGroup rendered="#{orderController.enable}">
+                            <h:commandButton style="color:white;font-size: 15px;line-height: normal;
+                                                padding: 4px 14px 4px; -webkit-border-radius: 6px; -moz-border-radius: 6px; 
+                                                border-radius: 6px; background-color: #404040; background-repeat: repeat-x;
+                                                text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); border-color: rgba(0, 0, 0, 0.1) 
+                                                rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);" action="#{orderController.bestellen}" value="Bestellen"/>
+                        </h:panelGroup>
+                        <br/>
+                        <br/>
+                    </h:form>
+                </ui:define>
+            </div>
+        </ui:composition>
+        
+      
+    </h:body>
+    
+</html>
+

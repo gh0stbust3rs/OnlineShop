@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 /**
@@ -24,9 +23,10 @@ public class WarenkorbController {
     private Person person;
     private int wid;
 
-    private String msg;
+    private String msg; 
     
     public WarenkorbController(){
+        
     }
     
     private void loadcart(){
@@ -34,7 +34,7 @@ public class WarenkorbController {
             db = new Database();
             warenkorb = db.getWarenkorb(person);
         }catch(Exception ignore){
-            msg = ignore.toString() + " ;)";
+            msg = ignore.toString();
         }
     }
     
@@ -51,6 +51,10 @@ public class WarenkorbController {
         }catch(Exception ignore){
             msg = ignore.toString();
         }
+    }
+    
+    public String order(){
+        return "order";
     }
 
     public String getMsg() {

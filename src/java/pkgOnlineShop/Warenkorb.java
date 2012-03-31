@@ -11,14 +11,25 @@ package pkgOnlineShop;
 public class Warenkorb {
     private int id;
     private Produkt produkt;
+    
     private Person person;
     private int quantity;
+    private int gesamtpreis;
 
     public Warenkorb(int id, int quantity, Produkt produkt, Person person) {
         this.id = id;
         this.produkt = produkt;
         this.person = person;
         this.quantity = quantity;
+        this.gesamtpreis = this.quantity * this.produkt.getPreis();
+    }
+    
+        public int getGesamtpreis() {
+        return gesamtpreis;
+    }
+
+    public void setGesamtpreis(int gesamtpreis) {
+        this.gesamtpreis = gesamtpreis;
     }
 
     public Person getPerson() {
