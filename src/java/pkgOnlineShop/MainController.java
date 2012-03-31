@@ -47,7 +47,7 @@ public class MainController {
                 signedin = true;
                 if(user.getAnbieter() == 1)
                 {
-                    return "adminManageUsers";
+                    return "index";
                 }
                 else
                 {
@@ -114,6 +114,10 @@ public class MainController {
    
     public boolean getsignedin(){
         return signedin;
+    }
+
+    public void setSignedin(boolean signedin) {
+        this.signedin = signedin;
     }
     
     public boolean getnotsignedin(){

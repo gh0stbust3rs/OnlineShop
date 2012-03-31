@@ -14,21 +14,23 @@
             <h:form>
                 <div id="userSpaceSI">
                     <h:outputText style="font-family:Trebuchet MS;color:#404040;margin-left: 3px" value="Willkommen, #{mainController.user.vorname} #{mainController.user.nachname}"/>
-                    <div>
-                        <table>
-                            <tr>
-                                <td>
-                                    <h:commandLink style="font-family:Trebuchet MS;text-decoration:none;" value="Warenkorb" action="#{mainController.warenkorb()}">
-                                        <f:setPropertyActionListener target="#{warenkorbController.person}" value="#{mainController.user}" />
-                                    </h:commandLink>
-                                </td>
-                                <td>|</td>
-                                <td><h:commandLink style="font-family:Trebuchet MS;text-decoration:none;" value="Einstellungen"/></td>
-                                <td>|</td>
-                                <td><h:commandLink style="font-family:Trebuchet MS;text-decoration:none;" value="Ausloggen" action="#{mainController.logout()}"/></td> 
-                        </tr>
-                        </table>                    
-                    </div>
+                    <h:panelGroup rendered="#{mainController.isnotadmin()}">
+                        <div>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <h:commandLink style="font-family:Trebuchet MS;text-decoration:none;" value="Warenkorb" action="#{mainController.warenkorb()}">
+                                            <f:setPropertyActionListener target="#{warenkorbController.person}" value="#{mainController.user}" />
+                                        </h:commandLink>
+                                    </td>
+                                    <td>|</td>
+                                    <td><h:commandLink style="font-family:Trebuchet MS;text-decoration:none;" value="Einstellungen"/></td>
+                                    <td>|</td>
+                                    <td><h:commandLink style="font-family:Trebuchet MS;text-decoration:none;" value="Ausloggen" action="#{mainController.logout()}"/></td> 
+                            </tr>
+                            </table>                    
+                        </div>
+                    </h:panelGroup>
                 </div>
             </h:form>
         </div>

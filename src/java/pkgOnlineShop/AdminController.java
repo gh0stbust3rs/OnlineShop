@@ -50,6 +50,7 @@ public class AdminController {
     public String logout()
     {
         ctrl.setUser(null);
+        ctrl.setSignedin(false);
         return "index";
     }
 
