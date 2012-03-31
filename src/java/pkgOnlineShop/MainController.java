@@ -44,6 +44,7 @@ public class MainController {
 
             if(user != null)
             {
+                signedin = true;
                 if(user.getAnbieter() == 1)
                 {
                     return "adminManageUsers";
@@ -55,6 +56,7 @@ public class MainController {
             }
             else
             {
+                signedin = false;
                 message = "Login Failed";
                 return "index";
             }

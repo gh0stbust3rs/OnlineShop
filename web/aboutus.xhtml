@@ -2,133 +2,79 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
          <title>About us</title>
          <h:outputStylesheet library="css" name="style.css" />
     </h:head>
     <h:body style="padding:0px;margin:0px">
-        
-        <div id="head">
-            <img src="./resources/images/header.png" style="float:left"/>
-            <div id="userSpace">
-                <h:form>
+        <ui:composition template="/WEB-INF/templates/template.xhtml">
+            <div id="content">
+                <ui:define name="content">
                     <table>
-                        <tr>
-                            <td colspan="2"><p id="loginHeadText">Login</p></td>
+                        <tr><td colspan="2">
+                                        <p>Hier erhalten Sie Informationen über die Betreiber der Website und deren Funktion.
+                                        Sie haben auch die Möglichkeit, den einzelnen Betreibern eine email zu schicken oder 
+                                        sie verwenden<a href="mailto:matthias.webhofer@gmail.com?cc=andreas.lackner@gmail.com;milan.kollmann@gmail.com"> diesen Link </a>um alle anzuschreiben.</p>
+                                </td>
                         </tr>
                         <tr>
-                            <td><p class="loginText">Email:</p></td>
-                            <td><h:inputText value="#{mainController.loginName}"/></td>
+                                <td><p>Vorname: </p></td>
+                                <td><p>Matthias</p></td>
                         </tr>
                         <tr>
-                            <td><p class="loginText">Passwort:</p></td>
-                            <td><h:inputSecret value="#{mainController.pw}"/></td>
+                                <td><p>Nachname: </p></td>
+                                <td><p>Webhofer</p></td>
                         </tr>
                         <tr>
-                            <td><h:commandButton style="float:right;color:white;font-size: 15px;line-height: normal;
-                                    padding: 4px 14px 4px; -webkit-border-radius: 6px; -moz-border-radius: 6px; 
-                                    border-radius: 6px; background-color: #404040; background-repeat: repeat-x;
-                                    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); border-color: rgba(0, 0, 0, 0.1) 
-                                    rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);	" value="Login" action="#{mainController.login}"/></td>
-                            <td><h:commandLink action="#{mainController.register}" style="font-family:Arial;color:#5E61FF;margin:0px;text-decoration:none;margin-left:5px;" value="Registrieren"/></td>
+                                <td><p>Funktion: </p></td>
+                                <td><p>Programmierer</p></td>
+                        </tr>
+                        <tr>
+                                <td><p>email: </p></td>
+                                <td><a href="mailto:matthias.webhofer@gmail.com?subject=Fragen%20zum%20OnlineShop">matthias.webhofer@gmail.com</a></td>
+                        </tr>
+                        <tr></tr>
+                        <tr></tr>
+                                        <tr>
+                                <td><p>Vorname: </p></td>
+                                <td><p>Andreas</p></td>
+                        </tr>
+                        <tr>
+                                <td><p>Nachname: </p></td>
+                                <td><p>Lackner</p></td>
+                        </tr>
+                        <tr>
+                                <td><p>Funktion: </p></td>
+                                <td><p>Programmierer</p></td>
+                        </tr>
+                        <tr>
+                                <td><p>email: </p></td>
+                                <td><a href="mailto:andreas.lackner@gmail.com?subject=Fragen%20zum%20OnlineShop">andreas.lackner@gmail.com</a></td>
+                        </tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr>
+                                <td><p>Vorname: </p></td>
+                                <td><p>Milan</p></td>
+                        </tr>
+                        <tr>
+                                <td><p>Nachname: </p></td>
+                                <td><p>Kollmann</p></td>
+                        </tr>
+                        <tr>
+                                <td><p>Funktion: </p></td>
+                                <td><p>Programmierer</p></td>
+                        </tr>
+                        <tr>
+                                <td><p>email: </p></td>
+                                <td><a href="mailto:milan.kollmann@gmail.com?subject=Fragen%20zum%20OnlineShop">milan.kollmann@gmail.com</a></td>
                         </tr>
                     </table>
-                </h:form>
+                </ui:define>
             </div>
-        </div>
-        
-        <h:form>
-            <div id="seperator">
-                <div id="searchBar">
-                    <table style="padding-top:10px">
-                        <tr>
-                            <td><p id="searchText">Suche</p></td>
-                            <td><h:inputText size="120"/></td>
-                        </tr>                    
-                    </table>
-                </div>
-            </div>
-        </h:form>
-        
-        <h:form>
-            <div id="nav">
-                <div id="navHead"><p id="navHeadText">Kategorien</p></div>
-                <h:dataTable cellpadding="0" cellspacing="0" value="#{mainController.kategorien}" var="item"> 
-                    <h:column>
-                        <div class="navMenu">
-                            <h:commandLink style="text-decoration:none;color:white;font-family:Trebuchet MS;margin-left:10px;font-size:12pt;line-height: 2.5em" value="#{item}" action="#{mainController.changeKategorie}">
-                                <f:setPropertyActionListener target="#{mainController.selectedKategorie}" value="#{item}" />
-                            </h:commandLink>
-                        </div>
-                    </h:column>         
-
-                </h:dataTable>
-            </div>
-        </h:form>
-        
-        <div id="content">
-            <table>
-            	<tr><td colspan="2">
-            			<p>Hier erhalten Sie Informationen über die Betreiber der Website und deren Funktion.
-            			Sie haben auch die Möglichkeit, den einzelnen Betreibern eine email zu schicken oder 
-            			sie verwenden<a href="mailto:matthias.webhofer@gmail.com?cc=andreas.lackner@gmail.com;milan.kollmann@gmail.com"> diesen Link </a>um alle anzuschreiben.</p>
-                  	</td>
-                </tr>
-            	<tr>
-            		<td><p>Vorname: </p></td>
-            		<td><p>Matthias</p></td>
-            	</tr>
-            	<tr>
-            		<td><p>Nachname: </p></td>
-            		<td><p>Webhofer</p></td>
-            	</tr>
-            	<tr>
-            		<td><p>Funktion: </p></td>
-            		<td><p>Programmierer</p></td>
-            	</tr>
-            	<tr>
-            		<td><p>email: </p></td>
-            		<td><a href="mailto:matthias.webhofer@gmail.com?subject=Fragen%20zum%20OnlineShop">matthias.webhofer@gmail.com</a></td>
-            	</tr>
-            	<tr></tr>
-            	<tr></tr>
-            	            	<tr>
-            		<td><p>Vorname: </p></td>
-            		<td><p>Andreas</p></td>
-            	</tr>
-            	<tr>
-            		<td><p>Nachname: </p></td>
-            		<td><p>Lackner</p></td>
-            	</tr>
-            	<tr>
-            		<td><p>Funktion: </p></td>
-            		<td><p>Programmierer</p></td>
-            	</tr>
-            	<tr>
-            		<td><p>email: </p></td>
-            		<td><a href="mailto:andreas.lackner@gmail.com?subject=Fragen%20zum%20OnlineShop">andreas.lackner@gmail.com</a></td>
-            	</tr>
-            	<tr></tr>
-            	<tr></tr>
-            	<tr>
-            		<td><p>Vorname: </p></td>
-            		<td><p>Milan</p></td>
-            	</tr>
-            	<tr>
-            		<td><p>Nachname: </p></td>
-            		<td><p>Kollmann</p></td>
-            	</tr>
-            	<tr>
-            		<td><p>Funktion: </p></td>
-            		<td><p>Programmierer</p></td>
-            	</tr>
-            	<tr>
-            		<td><p>email: </p></td>
-            		<td><a href="mailto:milan.kollmann@gmail.com?subject=Fragen%20zum%20OnlineShop">milan.kollmann@gmail.com</a></td>
-            	</tr>
-            </table>
-        </div>
+        </ui:composition>
         
       
     </h:body>

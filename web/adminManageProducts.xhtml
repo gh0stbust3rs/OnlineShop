@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">    
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 
     <f:view>
         <f:event type="preRenderView" listener="#{adminController.checkUser}"/>
@@ -17,177 +18,154 @@
     </h:head>
     <h:body style="padding:0px;margin:0px">
         
-        <div id="head">
-            <img src="./resources/images/header.png" style="float:left"/>
-            <h:form>
-                <div id="userSpaceAdmin">
-                    <h:outputText style="font-family:Trebuchet MS;color:#404040;margin-left: 3px" value="Willkommen, #{mainController.user.vorname} #{mainController.user.nachname}"/>              
-                </div>
-            </h:form>
-        </div>
-        
-        <h:form>
-            <div id="seperator">
-                <div id="searchBar">
-                   
-                </div>
-            </div>
-        </h:form>
-        
-        <h:form>
-            <div id="nav">
-                <div id="navHead"><p id="navHeadText">Men&uuml;</p></div>
-                <div class="navMenu"><h:commandLink action="#{adminController.gotoUserManagement}" style="text-decoration:none;color:white;font-family:Trebuchet MS;margin-left:10px;font-size:12pt;line-height: 2.5em">Benutzer verwalten</h:commandLink></div>
-                <div class="navMenu"><h:commandLink action="#{adminController.gotoNewCategory}" style="text-decoration:none;color:white;font-family:Trebuchet MS;margin-left:10px;font-size:12pt;line-height: 2.5em">Kategorien verwalten</h:commandLink></div>
-                <div class="navMenu"><h:commandLink action="#{adminController.gotoNewProduct}" style="text-decoration:none;color:white;font-family:Trebuchet MS;margin-left:10px;font-size:12pt;line-height: 2.5em">Produkte verwalten</h:commandLink></div>
-                <div class="navMenu"><h:commandLink action="#{adminController.logout}" style="text-decoration:none;color:white;font-family:Trebuchet MS;margin-left:10px;font-size:12pt;line-height: 2.5em">Ausloggen</h:commandLink></div>
-            </div>
-        </h:form>
-        
-        <div id="content">
-            <h1>Produkte verwalten</h1>
-            <p>Bitte achten Sie beim hinzug&uuml;gen eines neuen Produktes darauf, zuerst das Produktbild hochzuladen.</p>
-            <br/>
-            <table>
-            <tr><td>
-            <h3>Neues Produkt</h3>
-            <div style="float:left;">
-                <h:form>
-                    <table>
-                        <tr>
-                            <td><p>Bezeichnung</p></td>
-                            <td><p>Preis</p></td>
-                            <td><p>Bestand</p></td>
-                        </tr>
-                        <tr>
-                            <td><h:inputText value="#{manageProductsController.bezeichnung}" size="20"/></td>
-                            <td><h:inputText value="#{manageProductsController.preis}" size="4"/></td>
-                            <td><h:inputText value="#{manageProductsController.bestand}" size="4"/></td>
-                        </tr>
-                    </table>
-
-                    <table>
-                        <tr>
-                            <td><p>Bezeichnung</p></td>
-                        </tr>
-                        <tr>
-                            <td><h:inputTextarea value="#{manageProductsController.beschreibung}" cols="40" rows="5"/></td>
-                        </tr>        
-                    </table>
-
-                    <table>
-                        <tr>
-                            <td><p>Kategorie</p></td>
-                        </tr>
-                        <tr>
-                            <td valign="top">
-                                <h:selectOneMenu value="#{manageProductsController.kategorie}">
-                                    <f:selectItems value="#{manageProductsController.kategorien}" var="item" itemValue="#{item.bezeichnung}"/>
-                                </h:selectOneMenu>  
-                            </td>
-                        </tr>        
-                    </table>
-                    
-                    <br/><br/>
-                <h:commandButton style="color:white;font-size: 15px;line-height: normal;
-                                        padding: 4px 14px 4px; -webkit-border-radius: 6px; -moz-border-radius: 6px; 
-                                        border-radius: 6px; background-color: #404040; background-repeat: repeat-x;
-                                        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); border-color: rgba(0, 0, 0, 0.1) 
-                                        rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);	" action="#{manageProductsController.addProduct}" value="Hinz&uuml;fgen"/>
-                    
-        
-                </h:form>        
-            </div>            
-            
-            <div style="float:left;margin-left:20px">
-                <h:form enctype="multipart/form-data">  
-                <p>Bild</p>
-                
-                <p:graphicImage value="./resources/productImages/#{manageProductsController.imagePath}"/>
+        <ui:composition template="/WEB-INF/templates/template.xhtml">
+            <div id="content">
+                <ui:define name="content">
+                <h1>Produkte verwalten</h1>
+                <p>Bitte achten Sie beim hinzug&uuml;gen eines neuen Produktes darauf, zuerst das Produktbild hochzuladen.</p>
                 <br/>
-                <p:fileUpload value="#{manageProductsController.file}" mode="simple"/>  <br/>
-                <p:commandButton value="Upload" ajax="false"
-                            actionListener="#{manageProductsController.upload}"/>  
-                </h:form>
-                <br/>
-            </div>
-            <br/>   
+                <table>
+                <tr><td>
+                <h3>Neues Produkt</h3>
+                <div style="float:left;">
+                    <h:form>
+                        <table>
+                            <tr>
+                                <td><p>Bezeichnung</p></td>
+                                <td><p>Preis</p></td>
+                                <td><p>Bestand</p></td>
+                            </tr>
+                            <tr>
+                                <td><h:inputText value="#{manageProductsController.bezeichnung}" size="20"/></td>
+                                <td><h:inputText value="#{manageProductsController.preis}" size="4"/></td>
+                                <td><h:inputText value="#{manageProductsController.bestand}" size="4"/></td>
+                            </tr>
+                        </table>
+
+                        <table>
+                            <tr>
+                                <td><p>Bezeichnung</p></td>
+                            </tr>
+                            <tr>
+                                <td><h:inputTextarea value="#{manageProductsController.beschreibung}" cols="40" rows="5"/></td>
+                            </tr>        
+                        </table>
+
+                        <table>
+                            <tr>
+                                <td><p>Kategorie</p></td>
+                            </tr>
+                            <tr>
+                                <td valign="top">
+                                    <h:selectOneMenu value="#{manageProductsController.kategorie}">
+                                        <f:selectItems value="#{manageProductsController.kategorien}" var="item" itemValue="#{item.bezeichnung}"/>
+                                    </h:selectOneMenu>  
+                                </td>
+                            </tr>        
+                        </table>
+
+                        <br/><br/>
+                    <h:commandButton style="color:white;font-size: 15px;line-height: normal;
+                                            padding: 4px 14px 4px; -webkit-border-radius: 6px; -moz-border-radius: 6px; 
+                                            border-radius: 6px; background-color: #404040; background-repeat: repeat-x;
+                                            text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); border-color: rgba(0, 0, 0, 0.1) 
+                                            rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);	" action="#{manageProductsController.addProduct}" value="Hinz&uuml;fgen"/>
+
+
+                    </h:form>        
+                </div>            
             
-           </td></tr><tr height="30"> 
-               <td><h:outputText style="font-family:Trebuchet MS;font-size:12pt;color:red" value="#{manageProductsController.msg}"/></td>
-             </tr><tr><td>
+                <div style="float:left;margin-left:20px">
+                    <h:form enctype="multipart/form-data">  
+                    <p>Bild</p>
+
+                    <p:graphicImage value="./resources/productImages/#{manageProductsController.imagePath}"/>
+                    <br/>
+                    <p:fileUpload value="#{manageProductsController.file}" mode="simple"/>  <br/>
+                    <p:commandButton value="Upload" ajax="false"
+                                actionListener="#{manageProductsController.upload}"/>  
+                    </h:form>
+                    <br/>
+                </div>
+                <br/>   
+            
+                </td></tr><tr height="30"> 
+                    <td><h:outputText style="font-family:Trebuchet MS;font-size:12pt;color:red" value="#{manageProductsController.msg}"/></td>
+                    </tr><tr><td>
            
-           <h:form>
-           <h3>Produkte</h3>
-             <h:dataTable border="1" style="border-collapse: collapse;border-style: solid;border-color: gray;border-width: 1px;" 
-                          cellpadding="5" value="#{manageProductsController.products}" var="item"> 
+                <h:form>
+                <h3>Produkte</h3>
+                    <h:dataTable border="1" style="border-collapse: collapse;border-style: solid;border-color: gray;border-width: 1px;" 
+                                cellpadding="5" value="#{manageProductsController.products}" var="item"> 
 
-                 <h:column>
-                        <f:facet name="header">
-                            <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="ID"/>
-                        </f:facet>
+                        <h:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="ID"/>
+                                </f:facet>
 
-                        <h:outputText style="font-family:arial" value="#{item.id}"/>  
+                                <h:outputText style="font-family:arial" value="#{item.id}"/>  
 
-                    </h:column>
+                            </h:column>
 
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Bezeichnung"/>
-                        </f:facet>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Bezeichnung"/>
+                                </f:facet>
 
-                        <h:outputText style="font-family:arial" value="#{item.bezeichnung}"/>  
+                                <h:outputText style="font-family:arial" value="#{item.bezeichnung}"/>  
 
-                    </h:column>
+                            </h:column>
 
-                 <h:column>
-                        <f:facet name="header">
-                            <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Preis"/>
-                        </f:facet>
+                        <h:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Preis"/>
+                                </f:facet>
 
-                        <h:outputText style="font-family:arial" value="#{item.preis}"/>  
+                                <h:outputText style="font-family:arial" value="#{item.preis}"/>  
 
-                    </h:column>
-                 
-                 <h:column>
-                        <f:facet name="header">
-                            <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Bestand"/>
-                        </f:facet>
+                            </h:column>
 
-                        <h:outputText style="font-family:arial" value="#{item.bestand}"/>  
+                        <h:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Bestand"/>
+                                </f:facet>
 
-                    </h:column>
-                 
-                 <h:column>
-                        <f:facet name="header">
-                            <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Kategorie"/>
-                        </f:facet>
+                                <h:outputText style="font-family:arial" value="#{item.bestand}"/>  
 
-                        <h:outputText style="font-family:arial" value="#{item.kategorie}"/>  
+                            </h:column>
 
-                    </h:column>
-                 <h:column>
-                       
-                     <h:commandButton value="Details" action="#{manageProductsController.productDetail}">
-                            <f:setPropertyActionListener target="#{manageProductsController.selectedID}" value="#{item.id}" />
-                        </h:commandButton>
+                        <h:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Kategorie"/>
+                                </f:facet>
 
-                 </h:column>
-                 <h:column>
-                       
-                     <h:commandButton value="L&ouml;schen" action="#{manageProductsController.deleteProduct}">
-                            <f:setPropertyActionListener target="#{manageProductsController.selectedID}" value="#{item.id}" />
-                        </h:commandButton>
+                                <h:outputText style="font-family:arial" value="#{item.kategorie}"/>  
 
-                 </h:column>
-                 
-            </h:dataTable>
-           </h:form>
-           <br/>
-                
-          </td></tr>
-         </table>
+                            </h:column>
+                        <h:column>
+
+                            <h:commandButton value="Details" action="#{manageProductsController.productDetail}">
+                                    <f:setPropertyActionListener target="#{manageProductsController.selectedID}" value="#{item.id}" />
+                                </h:commandButton>
+
+                        </h:column>
+                        <h:column>
+
+                            <h:commandButton value="L&ouml;schen" action="#{manageProductsController.deleteProduct}">
+                                    <f:setPropertyActionListener target="#{manageProductsController.selectedID}" value="#{item.id}" />
+                                </h:commandButton>
+
+                        </h:column>
+
+                    </h:dataTable>
+                </h:form>
+                    <br/>
+
+                    </td></tr>
+                </table>
+            </ui:define>
         </div>
+        </ui:composition>
         
       
     </h:body>

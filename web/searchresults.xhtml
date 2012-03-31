@@ -8,12 +8,13 @@
     <h:body style="padding:0px;margin:0px">
         
         <ui:composition template="WEB-INF/templates/template.xhtml">
-            
-            <ui:define name="content">
-                
-                <h:outputText value="#{mainController.message}" />
-                
-            </ui:define>
+            <div id="content">
+                <ui:define name="content">
+
+                    <h:outputText value="#{mainController.message}" />
+
+                </ui:define>
+            </div>
             
         </ui:composition>
       
