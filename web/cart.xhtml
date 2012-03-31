@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <f:view>
+        <f:event type="preRenderView" listener="#{mainController.reload}"/>
+    </f:view>
+
+    <h:head>
+         <title>Online Shop</title>
+         <h:outputStylesheet library="css" name="style.css" />
+    </h:head>
+    <h:body style="padding:0px;margin:0px">
+        <ui:composition template="/WEB-INF/templates/template.xhtml">
+            <div id="content">
+                <ui:define name="content">
+                    
+                    <h1>Warenkorb</h1>
+                    <br/><br/>
+                
+                    <h:outputText style="font-family:Trebuchet MS;font-size:12pt;color:#404040;" value="#{manageUsersController.userCount} Waren im Warenkorb!"/>
+
+                    <br/>
+
+                    <h:form>
+                        <h:dataTable border="1" style="border-collapse: collapse;border-style: solid;border-color: gray;border-width: 1px;" cellpadding="5" value="#{manageUsersController.personen}" var="item"> 
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Vorname"/>
+                                </f:facet>
+
+                                <h:outputText style="font-family:arial" value="#{item.vorname}"/>  
+
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Nachname"/>
+                                </f:facet>
+
+                                <h:outputText style="font-family:arial" value="#{item.nachname}"/>  
+
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Adresse"/>
+                                </f:facet>
+
+                                <h:outputText style="font-family:arial" value="#{item.strasse}  #{item.hausnr}"/>  
+
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="PLZ"/>
+                                </f:facet>
+
+                                <h:outputText style="font-family:arial" value="#{item.plz}"/> 
+
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Ort"/>
+                                </f:facet>
+
+                                <h:outputText style="font-family:arial" value="#{item.ort}"/>  
+
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Land"/>
+                                </f:facet>
+
+                                <h:outputText style="font-family:arial" value="#{item.land}"/>  
+
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="EMail"/>
+                                </f:facet>
+
+                                <h:outputText style="font-family:arial" value="#{item.email}"/>  
+
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Passwort"/>
+                                </f:facet>
+
+                                <h:outputText style="font-family:arial" value="#{item.pass}"/>  
+
+                            </h:column>
+
+                            <h:column>
+                                <h:commandButton value="L&ouml;schen" action="#{manageUsersController.deleteUser}">
+                                    <f:setPropertyActionListener target="#{manageUsersController.userId}" value="#{item.id}" />
+                                </h:commandButton>
+
+                            </h:column>
+                    </h:dataTable>
+                    <br/>
+                    </h:form>
+                    
+                </ui:define>
+            </div>
+        </ui:composition>      
+    </h:body>
+    
+</html>
+
