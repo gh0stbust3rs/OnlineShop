@@ -19,7 +19,10 @@
 
             <div id="content">
                 <ui:define name="content">
-                    Hallo ich bin der Content
+                    <h:form>
+                    <h:commandLink action="#{sapController.read()}" value="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaah"/>
+                    </h:form>
+                    <h:outputText value="#{sapController.message}"/>
                 </ui:define>
             </div>
 
