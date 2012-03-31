@@ -5,6 +5,11 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">    
 
+    <f:view>
+        <f:event type="preRenderView" listener="#{adminController.checkUser}"/>
+        <f:event type="preRenderView" listener="#{manageProductsController.checkSelectedProduct}"/>
+    </f:view>
+    
     <h:head>
          <title>Online Shop</title>
          <h:outputStylesheet library="css" name="styleAdmin.css" />
@@ -85,16 +90,19 @@
                
             </h:form>
              <br/>
-            <h:form enctype="multipart/form-data">  
-                <p>Bild &auml;ndern</p>
+             <div style="float:left">
+                <h:form enctype="multipart/form-data">  
+                    <p>Bild &auml;ndern</p>
 
-                <p:fileUpload value="#{manageProductsController.file}" mode="simple"/>  <br/>
-                <p:commandButton value="Upload" ajax="false"
-                            actionListener="#{manageProductsController.changeImage}"/>  
-            </h:form>
-
+                    <p:fileUpload value="#{manageProductsController.file}" mode="simple"/>  <br/>
+                    <p:commandButton value="Upload" ajax="false"
+                                actionListener="#{manageProductsController.changeImage}"/>  
+                </h:form>
+             </div>
+              <br/>
             <h:outputText style="font-family:Trebuchet MS;font-size:12pt;color:red" value="#{manageProductsController.detailMsg}"/>
-        </div>
+        
+          </div>
         
       
     </h:body>

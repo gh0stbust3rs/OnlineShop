@@ -4,8 +4,11 @@
  */
 package pkgOnlineShop;
 
+import java.io.IOException;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -15,6 +18,9 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class AdminController {
 
+    @ManagedProperty(value="#{mainController}")
+    private MainController ctrl;
+    
     public AdminController() {
     }
    
@@ -33,9 +39,28 @@ public class AdminController {
         return "adminManageProducts";
     }
     
+    public void checkUser()
+    {
+        try{
+          if(ctrl.getUser()==null || ctrl.getUser().getAnbieter() == 0)
+                FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+        }catch(Exception ignore){}
+    }
+    
     public String logout()
     {
+        ctrl.setUser(null);
         return "index";
     }
+
+    public MainController getCtrl() {
+        return ctrl;
+    }
+
+    public void setCtrl(MainController ctrl) {
+        this.ctrl = ctrl;
+    }
+    
+    
 
 }

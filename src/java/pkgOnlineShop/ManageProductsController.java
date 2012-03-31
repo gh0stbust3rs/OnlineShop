@@ -53,7 +53,26 @@ public class ManageProductsController {
     
     public void reload()
     {
-        bezeichnung="";preis=0;kategorie="PC";beschreibung="";bestand=0;imagePath="default.png";msg="";
+        try{
+            bezeichnung="";preis=0;kategorie="PC";beschreibung="";bestand=0;
+            products = db.getProducts();
+        }
+        catch(Exception ex)
+        {
+            msg = ex.toString();
+        }
+    }
+    
+    public void checkSelectedProduct()
+    {
+        try{
+            if(selectedProduct==null)
+            {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("adminManageProducts.xhtml");
+            }
+        }
+        catch(Exception ignore)
+        {}       
     }
     
     public void addProduct()
@@ -97,7 +116,8 @@ public class ManageProductsController {
     public String saveChanges()
     {
         try{
-          //db.updateProduct(selectedProduct);
+          db.updateProduct(selectedProduct);
+          bezeichnung="";preis=0;kategorie="PC";beschreibung="";bestand=0;imagePath="default.png";msg="";
         }
         catch(Exception ex){
             msg = ex.toString();
@@ -124,25 +144,11 @@ public class ManageProductsController {
             
             if(fileEnd.compareTo("png")==0 || fileEnd.compareTo("jpg")==0)
             {           
-                String filePath = path + "/resources/productImages/" + iuid.toString() + "." + fileEnd;
-                File f = new File(filePath);
-                f.createNewFile();
-                InputStream inputStream = file.getInputstream();            
-                OutputStream out = new FileOutputStream(f);
-
-                byte buf[]=new byte[1024];
-                int len;
-
-                while((len=inputStream.read(buf))>0)                
-                    out.write(buf,0,len);
-
-                out.flush();
-                out.close();
-                inputStream.close();
+                this.createFileFromUpload(iuid.toString() + "." + fileEnd);
                 
                 if(selectedProduct.getBild().compareTo("default.png")!=0)
                 {
-                    f = new File(path + "/resources/productImages/" + selectedProduct.getBild());
+                    File f = new File(path + "/resources/productImages/" + selectedProduct.getBild());
                     f.delete();
                 }
                 
@@ -154,15 +160,12 @@ public class ManageProductsController {
             }
          }
          catch(Exception ex){
-             detailMsg = ex.toString();
+             detailMsg = "oasch" + ex.toString();
          }
     }    
     
     public void upload() {  
-         try{
-            ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
-            String path = servletContext.getRealPath("");
-            
+         try{           
             UUID iuid = UUID.randomUUID();
             
             Scanner s = new Scanner(file.getFileName());
@@ -174,24 +177,10 @@ public class ManageProductsController {
                 fileEnd = s.next();
             
             if(fileEnd.compareTo("png")==0 || fileEnd.compareTo("jpg")==0)
-            {           
-                String filePath = path + "/resources/productImages/" + iuid.toString() + "." + fileEnd;
-                File f = new File(filePath);
-                f.createNewFile();
-                InputStream inputStream = file.getInputstream();            
-                OutputStream out = new FileOutputStream(f);
-
-                byte buf[]=new byte[1024];
-                int len;
-
-                while((len=inputStream.read(buf))>0)                
-                    out.write(buf,0,len);
-
-                out.flush();
-                out.close();
-                inputStream.close();
-                
+            {       
                 imagePath = iuid.toString() + "." + fileEnd;
+                this.createFileFromUpload(imagePath);
+                msg="";
             }
             else
             {
@@ -201,6 +190,33 @@ public class ManageProductsController {
          catch(Exception ex){
              msg = ex.toString();
          }
+    }
+   
+    private void createFileFromUpload(String image)
+    {
+        try{
+            ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+            String path = servletContext.getRealPath("");
+
+            String filePath = path + "/resources/productImages/" + image;
+            File f = new File(filePath);
+            f.createNewFile();
+            InputStream inputStream = file.getInputstream();            
+            OutputStream out = new FileOutputStream(f);
+
+            byte buf[]=new byte[1024];
+            int len;
+
+            while((len=inputStream.read(buf))>0)                
+                out.write(buf,0,len);
+
+            out.flush();
+            out.close();
+            inputStream.close();
+        }
+        catch(Exception ex){
+            msg = ex.toString();
+        }
     }
 
     public Produkt getSelectedProduct() {

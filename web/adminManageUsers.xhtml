@@ -5,6 +5,7 @@
       xmlns:f="http://java.sun.com/jsf/core">    
 
     <f:view>
+        <f:event type="preRenderView" listener="#{adminController.checkUser}"/>
         <f:event type="preRenderView" listener="#{manageUsersController.reload}"/>
     </f:view>
 

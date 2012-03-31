@@ -182,6 +182,7 @@ public class Database {
         
         PreparedStatement pstm = con.prepareStatement(sql);
         pstm.setInt(1,id);
+        pstm.execute();
     }
     
     public ArrayList<Produkt> getProductsForCategory(String cat) throws Exception {
@@ -206,4 +207,19 @@ public class Database {
         return products;
     }
 
+    public void updateProduct(Produkt p) throws Exception
+    {
+        String sql="update produkt set bezeichnung=?,preis=?,bestand=?,beschreibung=?,bild=?,kat=? where pr_id=?";
+        
+        PreparedStatement pstm = con.prepareStatement(sql);
+        pstm.setString(1,p.getBezeichnung());
+        pstm.setFloat(2,p.getPreis());
+        pstm.setInt(3,p.getBestand());
+        pstm.setString(4,p.getBeschreibung());
+        pstm.setString(5,p.getBild());
+        pstm.setString(6,p.getKategorie());
+        pstm.setInt(7,p.getId());
+        
+        pstm.execute();
+    }
 }
