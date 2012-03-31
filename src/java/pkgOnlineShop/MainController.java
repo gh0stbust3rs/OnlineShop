@@ -51,7 +51,7 @@ public class MainController {
                 }
                 else
                 {
-                    return "signedIn";
+                    return "index";
                 }
             }
             else
@@ -86,6 +86,16 @@ public class MainController {
         return "register";
     }
     
+    public String warenkorb(){
+        return "cart";
+    }
+    
+    public String logout(){
+        user = null;
+        signedin = false;
+        return "index";
+    }
+    
     public boolean isadmin(){
         if(user != null){
             if(user.getAnbieter()==1)
@@ -101,7 +111,7 @@ public class MainController {
         }
         return true;
     }
-
+   
     public boolean getsignedin(){
         return signedin;
     }

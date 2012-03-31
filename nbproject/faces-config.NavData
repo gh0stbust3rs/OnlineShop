@@ -12,10 +12,10 @@
         <Node id="invoice.xhtml" x="400" y="150" zoom="true"/>
         <Node id="products.xhtml" x="150" y="150" zoom="true"/>
         <Node id="register.xhtml" x="400" y="300" zoom="true"/>
-        <Node id="searchresults.xhtml" x="150" y="600" zoom="true"/>
         <Node id="index.xhtml" x="650" y="150" zoom="true"/>
-        <Node id="adminManageProducts.xhtml" x="1012" y="439" zoom="true"/>
+        <Node id="searchresults.xhtml" x="150" y="600" zoom="true"/>
         <Node id="adminManageUsers.xhtml" x="929" y="281" zoom="true"/>
+        <Node id="adminManageProducts.xhtml" x="1012" y="439" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>

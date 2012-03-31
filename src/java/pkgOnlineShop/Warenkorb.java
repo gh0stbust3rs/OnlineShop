@@ -10,15 +10,31 @@ package pkgOnlineShop;
  */
 public class Warenkorb {
     private int id;
-    private int produktID;
-    private int personID;
+    private Produkt produkt;
+    private Person person;
     private int quantity;
 
-    public Warenkorb(int id, int produktID, int personID, int quantity) {
+    public Warenkorb(int id, int quantity, Produkt produkt, Person person) {
         this.id = id;
-        this.produktID = produktID;
-        this.personID = personID;
+        this.produkt = produkt;
+        this.person = person;
         this.quantity = quantity;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
+    public Produkt getProdukt() {
+        return produkt;
+    }
+
+    public void setProdukt(Produkt produkt) {
+        this.produkt = produkt;
     }
 
     public int getId() {
@@ -27,22 +43,6 @@ public class Warenkorb {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getPersonID() {
-        return personID;
-    }
-
-    public void setPersonID(int personID) {
-        this.personID = personID;
-    }
-
-    public int getProduktID() {
-        return produktID;
-    }
-
-    public void setProduktID(int produktID) {
-        this.produktID = produktID;
     }
 
     public int getQuantity() {

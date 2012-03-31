@@ -134,6 +134,33 @@ public class Database {
         return products;
     }
     
+    public List<Warenkorb> getWarenkorb(Person person) throws Exception{
+        String sql = "SELECT produkt.pr_id, produkt.bezeichnung, produkt.preis, produkt.bild, "+
+                     "produkt.beschreibung, produkt.bestand, produkt.kat, wk_id, quantitiy FROM warenkorb "+
+                     "JOIN produkt ON( produkt.pr_id = warenkorb.pr_id) "+
+                     "where warenkorb.p_id = ?";
+        List<Warenkorb> warenkorb = new ArrayList<Warenkorb>();
+        
+        PreparedStatement pstm = con.prepareStatement(sql);
+        pstm.setInt(1, person.getId());
+        ResultSet rs = pstm.executeQuery();
+        Produkt produkt;
+        while(rs.next()){
+            produkt = new Produkt(rs.getInt("pr_id"), rs.getString("bezeichnung"), rs.getInt("preis"), 
+                   rs.getString("kat"), rs.getString("beschreibung"),rs.getInt("bestand"), rs.getString("bild"));
+            warenkorb.add(new Warenkorb(rs.getInt("wk_id"),rs.getInt("quantitiy"),produkt,person));
+        }
+        
+        return warenkorb;
+    }
+    
+    public void deleteWarenkorb(int id) throws Exception{
+        String sql = "delete from warenkorb where wk_id = ?";
+        PreparedStatement pstm = con.prepareCall(sql);
+        pstm.setInt(1, id);
+        pstm.execute();
+    }
+    
     public void deleteUser(int id) throws Exception
     {
         String sql="delete from person where p_id=?";
