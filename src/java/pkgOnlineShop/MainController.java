@@ -95,7 +95,7 @@ public class MainController {
         user = null;
         signedin = false;
         FacesContext context = FacesContext.getCurrentInstance();
-        Object remove = context.getExternalContext().getSessionMap().remove("OrderController");
+        Object remove = context.getExternalContext().getSessionMap().remove("#{OrderController}");
         message = remove+" halllo";
         return "index";
     }

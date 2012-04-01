@@ -249,4 +249,8 @@ public class Database {
         
         pstm.execute();
     }
+    
+    public void fillOrders(Warenkorb waren){
+        
+    }
 }

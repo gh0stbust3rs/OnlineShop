@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <f:view>
+        <f:event type="preRenderView" listener="#{adminController.checkUser}"/>
+        <f:event type="preRenderView" listener="#{manageUsersController.reload}"/>
+    </f:view>
+
+    <h:head>
+         <title>Online Shop</title>
+         <h:outputStylesheet library="css" name="styleAdmin.css" />
+         <h:outputStylesheet library="css" name="style.css" />
+    </h:head>
+    <h:body style="padding:0px;margin:0px">
+        <ui:composition template="/WEB-INF/templates/template.xhtml">
+
+            <div id="content">
+                <ui:define name="content">
+                    <h1>Einstellungen verwalten</h1>
+
+                    <br/>
+
+                <h:form>
+                        <table>
+                            <tr>
+                                <td><p>Name:</p></td>
+                                <td><h:inputText value="#{manageUsersController.vorname}" size="15"/><h:inputText value="#{manageUsersController.nachname}" size="15"/></td>
+                            </tr>
+                            <tr>
+                                <td><p>Adresse:</p></td>
+                                <td><h:inputText value="#{manageUsersController.strasse}" size="20"/><h:inputText value="#{manageUsersController.hausnr}" size="2"/></td>
+                            </tr>
+                            <tr>
+                                <td><p>Ort:</p></td>
+                                <td><h:inputText value="#{manageUsersController.plz}" size="5"/><h:inputText value="#{manageUsersController.ort}" size="20"/></td>
+                            </tr>
+                            <tr>
+                                <td><p>Land:</p></td>
+                                <td colspan="2">
+                                    <h:selectOneMenu value="#{manageUsersController.land}">
+                                        <f:selectItem itemValue="Oesterreich"/>
+                                        <f:selectItem itemValue="Deutschland"/>
+                                        <f:selectItem itemValue="Schweiz"/>
+                                    </h:selectOneMenu> 
+                                </td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <table>
+                            <tr>
+                                <td><p>Email:</p></td>
+                                <td><h:inputText name="registerMail" value="#{manageUsersController.email}"/></td>
+                            </tr>
+                            <tr>
+                                <td><p>Passwort:</p></td>
+                                <td><h:inputSecret name="registerPassword" value="#{manageUsersController.pass}"/></td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <h:commandButton style="color:white;font-size: 15px;line-height: normal;
+                                            padding: 4px 14px 4px; -webkit-border-radius: 6px; -moz-border-radius: 6px; 
+                                            border-radius: 6px; background-color: #404040; background-repeat: repeat-x;
+                                            text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); border-color: rgba(0, 0, 0, 0.1) 
+                                            rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);" action="#{manageUsersController.addNewUser}" value="Hinzuf&uuml;gen"/>
+                    </h:form>
+                </ui:define>
+            </div>
+        </ui:composition>
+        
+      
+    </h:body>
+    
+</html>
+

@@ -25,19 +25,31 @@ public class OrderController {
 
     private String email;
     private String pass;
+    private Person person;
+    private Warenkorb warenkorb;
     
     private String message;
+    
+    private Database db = null;
 
     public OrderController() {
     }
     
     public String bestellen(){
-        return "index";
+        if(person.getPass().equals(pass) && person.getEmail().equals(email)){
+            try{
+                db = new Database();
+                db.fillOrders(warenkorb);
+                enable = false;
+                return "finish";
+            }catch(Exception ignore){message = ignore.toString();}
+        }
+        return null;
     }
     
     public void kreditcheck(){
         enable = true;
-    }
+    } 
 
     public int getJahr() {
         return jahr;
@@ -101,6 +113,22 @@ public class OrderController {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
+    public Warenkorb getWarenkorb() {
+        return warenkorb;
+    }
+
+    public void setWarenkorb(Warenkorb warenkorb) {
+        this.warenkorb = warenkorb;
     }
     
     private SelectItem[] allemonate = {new SelectItem(1,"1"),new SelectItem(2,"2"),new SelectItem(3,"3"),
