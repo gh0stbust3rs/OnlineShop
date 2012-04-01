@@ -62,7 +62,6 @@
                         <p>Zur Sicherheit m&uuml;&szlig;en Sie sich nach der Kreditkarten&uuml;berpr&uuml;fung nochmals anmelden!<br/>
                         Der Button f&uuml; die endg&uuml;ltige Best&auml;tigunt der Bestellung erscheint erst, wenn Sie ihre<br/>
                         Eingaben der Kreditkarteninformationen g&uuml;tige sind!"</p>
-                        <h:outputText value="#{orderController.message}"/>
                         <table>
                             <tr>
                                 <td><p>Email:</p></td>
@@ -82,11 +81,13 @@
                                                 rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);" action="#{orderController.bestellen}" value="Bestellen">
                                 <f:setPropertyActionListener target="#{orderController.person}" value="#{mainController.user}"/>
                                 <f:setPropertyActionListener target="#{orderController.warenkorb}" value="#{warenkorbController.warenkorb}"/>
+                                <f:setPropertyActionListener target="#{finishControll.person}" value="#{mainController.user}"/>
                             </h:commandButton>
                         </h:panelGroup>
                         <br/>
                         <br/>
                     </h:form>
+                    <h:outputText value="#{orderController.message}"/>
                 </ui:define>
             </div>
         </ui:composition>

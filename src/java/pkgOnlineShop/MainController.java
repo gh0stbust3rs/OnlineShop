@@ -13,8 +13,6 @@ import javax.faces.context.FacesContext;
  *
  * @author Andreas
  */
-@ManagedBean
-@SessionScoped
 public class MainController {
     
     private Database db;
@@ -80,6 +78,10 @@ public class MainController {
     public String changeKategorie(Kategorie k) {
         this.selectedKategorie = k.getBezeichnung();
         return "products";
+    }
+    
+    public String settings(){
+        return "settings";
     }
     
     public String register()

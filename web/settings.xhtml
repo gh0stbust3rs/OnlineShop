@@ -5,11 +5,6 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
-    <f:view>
-        <f:event type="preRenderView" listener="#{adminController.checkUser}"/>
-        <f:event type="preRenderView" listener="#{manageUsersController.reload}"/>
-    </f:view>
-
     <h:head>
          <title>Online Shop</title>
          <h:outputStylesheet library="css" name="styleAdmin.css" />
@@ -28,20 +23,20 @@
                         <table>
                             <tr>
                                 <td><p>Name:</p></td>
-                                <td><h:inputText value="#{manageUsersController.vorname}" size="15"/><h:inputText value="#{manageUsersController.nachname}" size="15"/></td>
+                                <td><h:inputText value="#{settingController.vorname}" size="15"/><h:inputText value="#{settingController.nachname}" size="15"/></td>
                             </tr>
                             <tr>
                                 <td><p>Adresse:</p></td>
-                                <td><h:inputText value="#{manageUsersController.strasse}" size="20"/><h:inputText value="#{manageUsersController.hausnr}" size="2"/></td>
+                                <td><h:inputText value="#{settingController.strasse}" size="20"/><h:inputText value="#{settingController.hausnr}" size="2"/></td>
                             </tr>
                             <tr>
                                 <td><p>Ort:</p></td>
-                                <td><h:inputText value="#{manageUsersController.plz}" size="5"/><h:inputText value="#{manageUsersController.ort}" size="20"/></td>
+                                <td><h:inputText value="#{settingController.plz}" size="5"/><h:inputText value="#{settingController.ort}" size="20"/></td>
                             </tr>
                             <tr>
                                 <td><p>Land:</p></td>
                                 <td colspan="2">
-                                    <h:selectOneMenu value="#{manageUsersController.land}">
+                                    <h:selectOneMenu value="#{settingController.land}">
                                         <f:selectItem itemValue="Oesterreich"/>
                                         <f:selectItem itemValue="Deutschland"/>
                                         <f:selectItem itemValue="Schweiz"/>
@@ -53,11 +48,11 @@
                         <table>
                             <tr>
                                 <td><p>Email:</p></td>
-                                <td><h:inputText name="registerMail" value="#{manageUsersController.email}"/></td>
+                                <td><h:inputText name="registerMail" value="#{settingController.email}"/></td>
                             </tr>
                             <tr>
                                 <td><p>Passwort:</p></td>
-                                <td><h:inputSecret name="registerPassword" value="#{manageUsersController.pass}"/></td>
+                                <td><h:inputSecret name="registerPassword" value="#{settingController.pass}"/></td>
                             </tr>
                         </table>
                         <br/>
@@ -65,8 +60,9 @@
                                             padding: 4px 14px 4px; -webkit-border-radius: 6px; -moz-border-radius: 6px; 
                                             border-radius: 6px; background-color: #404040; background-repeat: repeat-x;
                                             text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); border-color: rgba(0, 0, 0, 0.1) 
-                                            rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);" action="#{manageUsersController.addNewUser}" value="Hinzuf&uuml;gen"/>
+                                            rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);" action="#{settingController.update()}" value="Speichern"/>
                     </h:form>
+                    <h:outputText value="#{settingController.message}"/>
                 </ui:define>
             </div>
         </ui:composition>

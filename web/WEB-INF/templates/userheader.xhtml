@@ -24,7 +24,9 @@
                                         </h:commandLink>
                                     </td>
                                     <td>|</td>
-                                    <td><h:commandLink style="font-family:Trebuchet MS;text-decoration:none;" value="Einstellungen"/></td>
+                                    <td><h:commandLink style="font-family:Trebuchet MS;text-decoration:none;" value="Einstellungen" action="#{mainController.settings()}">
+                                            <f:setPropertyActionListener target="#{settingController.person}" value="#{mainController.user}"/>
+                                        </h:commandLink></td>
                                     <td>|</td>
                                     <td><h:commandLink style="font-family:Trebuchet MS;text-decoration:none;" value="Ausloggen" action="#{mainController.logout()}"/></td> 
                             </tr>

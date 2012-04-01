@@ -4,9 +4,7 @@
  */
 package pkgOnlineShop;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -250,7 +248,63 @@ public class Database {
         pstm.execute();
     }
     
-    public void fillOrders(Warenkorb waren){
+    public void fillOrders(List<Warenkorb> waren, String knr, String cvc, String monat, String jahr) throws SQLException{
+        String sql="insert into bestellung values(seq_bestellung.nextval,?,?,?,?,?,?,?,?,?)";
+        java.util.Date curdate = new java.util.Date();
+        java.sql.Date date = new java.sql.Date(curdate.getTime());
         
+        PreparedStatement pstm = con.prepareStatement(sql);
+        pstm.setDate(1,date);
+        pstm.setString(2,knr);
+        pstm.setString(3,cvc);
+        pstm.setString(4,monat);
+        pstm.setString(5,jahr);
+        pstm.setDate(8,null);
+        
+        for(int i = 0; i < waren.size(); i++){
+            pstm.setInt(6,waren.get(i).getPerson().getId());
+            pstm.setInt(7,waren.get(i).getProdukt().getId());
+            pstm.setInt(9,waren.get(i).getQuantity());
+            pstm.execute();
+        }
+    }
+    
+    public List getBestellungen(Person person) throws SQLException{
+        String sql = "SELECT produkt.pr_id, produkt.bezeichnung, produkt.preis, produkt.bild, "+
+                     "produkt.beschreibung, produkt.bestand, produkt.kat, b_id, datum, kreditkarte, "+
+                     "cvc, valid_month, valid_year, shipped, quantity FROM bestellung "+
+                     "JOIN produkt ON( produkt.pr_id = bestellung.pr_id) "+
+                     "where bestellung.p_id = ? and bestellung.shipped is null";
+        List<Bestellung> bestellung = new ArrayList<Bestellung>();
+        PreparedStatement pstm = con.prepareStatement(sql);
+        pstm.setInt(1, person.getId());
+        ResultSet rs = pstm.executeQuery();
+        Produkt produkt;
+        while(rs.next()){
+            produkt = new Produkt(rs.getInt("pr_id"), rs.getString("bezeichnung"), rs.getInt("preis"), 
+                   rs.getString("kat"), rs.getString("beschreibung"),rs.getInt("bestand"), rs.getString("bild"));
+            bestellung.add(new Bestellung(rs.getInt("b_id"),rs.getDate("datum"),rs.getString("kreditkarte"),rs.getString("cvc"),
+                    rs.getString("valid_month"),rs.getString("valid_year"),person,produkt,rs.getDate("shipped"),rs.getInt("quantity")));
+        }
+        
+        return bestellung;
+    }
+
+    public void updatePerson(int id, String vorname, String nachname, String strasse, String hausnr, String plz, String ort, String land, String email, String pass) throws SQLException {
+        String sql="update person set vorname=?,nachname=?,strasse=?,hausnr=?,plz=?,ort=?,land=?,email=?,pass=? where p_id=?";
+        
+        PreparedStatement pstm = con.prepareStatement(sql);
+        pstm.setString(1,vorname);
+        pstm.setString(2, nachname);
+        pstm.setString(3,strasse);
+        pstm.setString(4, hausnr);
+        pstm.setString(5, plz);
+        pstm.setString(6,ort);
+        pstm.setString(7, land);
+        pstm.setString(8, email);
+        pstm.setString(9, pass);
+        pstm.setInt(10, id);
+        
+        pstm.execute();
     }
 }
