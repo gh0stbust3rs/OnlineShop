@@ -6,3 +6,13 @@ nbdist/
 nbactions.xml
 nb-configuration.xml
 nbproject/.DS_Store
+
+.DS_Store
+
+nbbuild.xml
+
+nbproject/ant-deploy.xml
+
+nbproject/build-impl.xml
+
+nbproject/genfiles.properties
