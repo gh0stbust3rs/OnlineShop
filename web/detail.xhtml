@@ -11,7 +11,23 @@
             
             <ui:define name="content">
                 
-                <h:outputText value="#{mainController.message}" />
+                <h1> #{mainController.selectedProduct.bezeichnung}" </h1>
+                <br />
+                <h:graphicImage value="resources/productImages/#{mainController.selectedProduct.bild}" />
+                <br />
+                <h:outputText value="Preis: #{mainController.selectedProduct.preis} €" />
+                <br />
+                <p>#{ mainController.selectedProduct.beschreibung }</p>
+                <br />
+                <h:outputText value="Bestand: #{mainController.selectedProduct.bestand} Stk." />
+                <br />
+                <h:outputText value="Kategorie: #{mainController.selectedProduct.kategorie }" />
+                <br />
+                <h:inputText value="#{detailController.amount}">
+                		<f:validateLongRange minimum="1" />
+                     <f:validateRequired />
+                </h:inputText>
+                <h:commandButton value="in den Warenkorb" action="#{detailController.addToCart}" /> 
                 
             </ui:define>
             

@@ -213,8 +213,9 @@ public class Database {
     public ArrayList<Produkt> getProductsForCategory(String cat) throws Exception {
         ArrayList<Produkt> products = new ArrayList<Produkt>();
         
-        String sql = "SELECT * FROM produkt WHERE kategorie like ?";
+        String sql = "SELECT * FROM produkt WHERE kat like ?";
         PreparedStatement pstmt = con.prepareStatement(sql);
+        pstmt.setString(1, cat);
         ResultSet rs = pstmt.executeQuery();
         
         while(rs.next()) {
@@ -222,7 +223,7 @@ public class Database {
                         rs.getInt("pr_id"),
                         rs.getString("bezeichnung"),
                         rs.getInt("preis"),
-                        rs.getString("kategorie"),
+                        rs.getString("kat"),
                         rs.getString("beschreibung"),
                         rs.getInt("bestand"),
                         rs.getString("bild")
@@ -307,4 +308,17 @@ public class Database {
         
         pstm.execute();
     }
+
+	public void addToCart(int amount, int pr_id, int p_id) throws Exception {
+		String sql = "INSERT INTO warenkorb VALUES(seq_warenkorb.nextval,?,?,?,1)";
+		
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		
+		pstmt.setInt(1, amount);
+		pstmt.setInt(2, pr_id);
+		pstmt.setInt(3, p_id);
+		
+		pstmt.execute();
+		
+	}
 }

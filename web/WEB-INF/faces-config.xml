@@ -17,6 +17,42 @@
         <managed-bean-name>productsController</managed-bean-name>
         <managed-bean-class>pkgOnlineShop.ProductsController</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+        		<property-name>db</property-name>
+        		<value>#{database}</value>
+        </managed-property>
+        <managed-property>
+        		<property-name>mainController</property-name>
+        		<value>#{mainController}</value>
+        </managed-property>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>detailController</managed-bean-name>
+        <managed-bean-class>pkgOnlineShop.DetailController</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+        		<property-name>db</property-name>
+        		<value>#{database}</value>
+        </managed-property>
+        <managed-property>
+        		<property-name>mainController</property-name>
+        		<value>#{mainController}</value>
+        </managed-property>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>invoiceController</managed-bean-name>
+        <managed-bean-class>pkgOnlineShop.InvoiceController</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+        		<property-name>db</property-name>
+        		<value>#{database}</value>
+        </managed-property>
+        <managed-property>
+        		<property-name>mainController</property-name>
+        		<value>#{mainController}</value>
+        </managed-property>
     </managed-bean>
         
 </faces-config>

@@ -14,7 +14,7 @@
             <h:dataTable cellpadding="0" cellspacing="0" value="#{mainController.kategorien}" var="item"> 
                 <h:column>
                     <div class="navMenu">
-                        <h:commandLink style="text-decoration:none;color:white;font-family:Trebuchet MS;margin-left:10px;font-size:12pt;line-height: 2.5em" value="#{item.bezeichnung}" action="#{mainController.changeKategorie}">
+                        <h:commandLink style="text-decoration:none;color:white;font-family:Trebuchet MS;margin-left:10px;font-size:12pt;line-height: 2.5em" value="#{item.bezeichnung}" action="products">
                             <f:setPropertyActionListener target="#{mainController.selectedKategorie}" value="#{item.bezeichnung}" />
                         </h:commandLink>
                     </div>

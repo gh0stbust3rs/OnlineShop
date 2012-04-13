@@ -22,6 +22,7 @@ public class MainController {
     private String message;
     private Person user;
     private String selectedKategorie;
+    private Produkt selectedProduct;
     private boolean signedin = false;
     
     private List kategorien;
@@ -177,7 +178,15 @@ public class MainController {
     public void setSelectedKategorie(String selectedKategorie) {
         this.selectedKategorie = selectedKategorie;
     }
- 
+
+	public Produkt getSelectedProduct() {
+		return selectedProduct;
+	}
+
+	public void setSelectedProduct(Produkt selectedProduct) {
+		this.selectedProduct = selectedProduct;
+	}
+    
     
    
 }

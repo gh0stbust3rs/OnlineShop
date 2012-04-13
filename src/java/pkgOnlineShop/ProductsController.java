@@ -5,9 +5,8 @@
 package pkgOnlineShop;
 
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.annotation.ManagedBean;
+
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
@@ -15,31 +14,31 @@ import javax.faces.bean.SessionScoped;
  *
  * @author matthias
  */
-@ManagedBean
-@SessionScoped
+
 public class ProductsController {
     
     private ArrayList<Produkt> products;
     private Produkt selectedProduct;
     private int amount;
     
-    @ManagedProperty(value="#{database}")
     private Database db;
     
-    @ManagedProperty(value="#{mainController}")
     private MainController mainController;
     
     public ProductsController() {
         
     }
 
-    public void addToCart() {
+    public String addToCart() {
+    		String retVal = "";
         try {
-            //db.addToCart(amount, selectedProduct.getId(), mainController.getUser().getId());
+             db.addToCart(amount, selectedProduct.getId(), mainController.getUser().getId());
+        		retVal = "cart";
         }
         catch(Exception e) {
             System.out.println(e);
         }
+        return retVal;
     }
     
     public Database getDb() {

@@ -28,7 +28,7 @@
 
                                     <p:commandLink update=":form:productDetail" oncomplete="productDialog.show()" title="View Detail" value="Details"> 
                                         <f:setPropertyActionListener value="#{product}"   
-                                                target="#{tableBean.selectedProduct}" />  
+                                                target="#{productsController.selectedProduct}" />  
                                     </p:commandLink>  
                                 </h:panelGrid>  
                             </p:panel>  
@@ -45,10 +45,13 @@
                                 <h:outputLabel for="produktbeschreibung" value="Beschreibung: " />  
                                 <h:outputText id="produktbeschreibung" value="#{productsController.selectedProduct.beschreibung}" />  
 
-                                <h:outputLabel for="preis" value="Year: " />  
+                                <h:outputLabel for="preis" value="Preis: " />  
                                 <h:outputText id="preis" value="#{productsController.selectedProduct.preis}" />  
 
-                                <h:inputText value="#{productsController.amount}" />
+                                <h:inputText value="#{productsController.amount}">
+                                		<f:validateLongRange minimum="1" />
+                                		<f:validateRequired />
+                                </h:inputText>
                                 <h:commandButton value="in den Warenkorb" action="#{productsController.addToCart}" />  
                             </h:panelGrid>  
                         </p:outputPanel>  

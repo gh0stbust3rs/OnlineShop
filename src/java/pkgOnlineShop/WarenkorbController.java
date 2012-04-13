@@ -75,6 +75,7 @@ public class WarenkorbController {
     }
 
     public List getWarenkorb() {
+    		loadcart();
         return warenkorb;
     }
 
