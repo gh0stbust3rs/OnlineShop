@@ -321,4 +321,90 @@ public class Database {
 		pstmt.execute();
 		
 	}
+
+	public ArrayList<Rechnung> getRechnungenForCustomer(Person p) throws Exception {
+		ArrayList<Rechnung> rechnungen = new ArrayList<Rechnung>();
+		
+		String sql = "SELECT r.r_id, r.r_datum FROM rechnung r " +
+				"JOIN bestellung b ON (r.r_id = b.r_id) " +
+				"WHERE b.p_id=? " +
+				"GROUP BY r.r_id,r.r_datum";
+		
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, p.getId());
+		ResultSet rs = pstmt.executeQuery();
+		
+		while(rs.next()) {
+			rechnungen.add(
+						new Rechnung(
+									rs.getInt(1),
+									new java.util.Date(rs.getDate(2).getTime()) 
+								)
+					);
+		}
+		
+		return rechnungen;
+	}
+
+	public String getRechnungssumme(Rechnung r) throws Exception {
+		String retVal = "";
+		
+		String sql = "SELECT sum(p.preis) FROM bestellung b " +
+				"JOIN produkt p ON (b.pr_id = p.pr_id) " +
+				"WHERE b.r_id=?";
+		
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, r.getR_id());
+		ResultSet rs = pstmt.executeQuery();
+		
+		if(rs.next()) {
+			retVal = Integer.toString(rs.getInt(1));
+		}
+		
+		return retVal;
+	}
+
+	public String getQuantityForProduct(Produkt p) throws Exception {
+		String retVal = "";
+		
+		String sql = "SELECT quantity FROM bestellung WHERE pr_id=?";
+		
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, p.getId());
+		ResultSet rs = pstmt.executeQuery();
+		
+		if(rs.next()) {
+			retVal = Integer.toString(rs.getInt("quantity"));
+		}
+		
+		return retVal;
+	}
+
+	public ArrayList<Produkt> getProductsForSelectedRechnung (Rechnung selectedRechnung) throws Exception {
+		ArrayList<Produkt> produkte = new ArrayList<Produkt>();
+		
+		String sql = "SELECT p.pr_id, p.bezeichnung, p.preis, p.beschreibung, p.bestand, p.bild, p.kat FROM produkt p " +
+				"JOIN bestellung b " +
+				"ON (b.pr_id = p.pr_id) " +
+				"WHERE b.r_id=?";
+		
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, selectedRechnung.getR_id());
+		ResultSet rs = pstmt.executeQuery();
+		
+		while(rs.next()) {
+			Produkt pr = new Produkt(
+						rs.getInt(1),
+						rs.getString(2),
+						rs.getInt(3),
+						rs.getString(7),
+						rs.getString(4),
+						rs.getInt(5),
+						rs.getString(6)
+					);
+			produkte.add(pr);
+		}
+		
+		return produkte;
+	}
 }

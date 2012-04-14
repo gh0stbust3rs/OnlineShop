@@ -72,6 +72,7 @@ public class ProductsController {
 
     public void setSelectedProduct(Produkt selectedProduct) {
         this.selectedProduct = selectedProduct;
+        System.out.println("selectedProduct: "+selectedProduct.toString());
     }
 
     public int getAmount() {

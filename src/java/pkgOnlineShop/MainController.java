@@ -94,6 +94,10 @@ public class MainController {
         return "cart";
     }
     
+    public String rechnung() {
+    		return "invoice";
+    }
+    
     public String logout(){
         user = null;
         signedin = false;

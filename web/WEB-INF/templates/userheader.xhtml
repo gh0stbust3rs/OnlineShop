@@ -24,6 +24,12 @@
                                         </h:commandLink>
                                     </td>
                                     <td>|</td>
+                                    <td>
+                                        <h:commandLink style="font-family:Trebuchet MS;text-decoration:none;" value="Rechnungen" action="#{mainController.rechnung()}">
+                                            <f:setPropertyActionListener target="#{invoiceController.person}" value="#{mainController.user}" />
+                                        </h:commandLink>
+                                    </td>
+                                    <td>|</td>
                                     <td><h:commandLink style="font-family:Trebuchet MS;text-decoration:none;" value="Einstellungen" action="#{mainController.settings()}">
                                             <f:setPropertyActionListener target="#{settingController.person}" value="#{mainController.user}"/>
                                         </h:commandLink></td>
