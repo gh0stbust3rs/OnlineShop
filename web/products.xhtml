@@ -12,7 +12,7 @@
             
             <ui:define name="content">
                 
-                <h:form id="form">  
+               <!--  <h:form id="form">  
   
                     <p:dataGrid var="product" value="#{productsController.products}" columns="3"  
                         rows="12" paginator="true"  
@@ -57,7 +57,56 @@
                         </p:outputPanel>  
                     </p:dialog>  
 
-                </h:form>  
+                </h:form>  -->
+                
+                <h:form id="form">
+
+					<p:dataGrid var="product" value="#{productsController.products}" columns="3"
+						rows="12" paginator="true"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						rowsPerPageTemplate="9,12,15">
+						
+						<p:column>
+							<p:panel header="#{product.bezeichnung}" style="text-align:center">
+								<h:panelGrid columns="1" style="width:100%">
+									<p:graphicImage value="resources/productImages/#{product.bild}"/> 
+								
+								
+									<h:outputText value="#{product.preis}" />
+									
+									<p:commandLink update=":form:productDetail" oncomplete="productDialog.show()" title="View Detail">
+										<h:outputText value="Details" /> 
+										<f:setPropertyActionListener value="#{product}" 
+												target="#{productsController.selectedProduct}" />
+									</p:commandLink>
+								</h:panelGrid>
+							</p:panel>
+						</p:column>
+				
+					</p:dataGrid>
+					
+					<p:dialog header="#{productsController.selectedProduct.bezeichnung}" widgetVar="productDialog" modal="true">
+						<p:outputPanel id="productDetail" style="text-align:center;" layout="block">
+						
+							<p:graphicImage value="resources/productImages/#{product.bild}"/>
+							
+							<h:panelGrid  columns="2" cellpadding="5">
+								<h:outputLabel for="beschreibung" value="Beschreibung: " />
+								<h:outputText id="beschreibung" value="#{tableBean.selectedCar.model}" />
+								
+								<h:outputLabel for="preis" value="Preis: " />
+								<h:outputText id="preis" value="#{productsController.selectedProduct.preis}" />
+								
+								<h:inputText value="#{productsController.amount}">
+                                		<f:validateLongRange minimum="1" />
+                                		<f:validateRequired />
+                                </h:inputText>
+                                <h:commandButton value="in den Warenkorb" action="#{ productsController.addToCart }" />
+							</h:panelGrid>
+						</p:outputPanel>
+					</p:dialog>
+				
+				</h:form>
                 
            </ui:define>
             
