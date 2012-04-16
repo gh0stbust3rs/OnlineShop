@@ -20,7 +20,7 @@ import javax.sql.DataSource;
  * @author matthias
  */
 
-@ManagedBean
+@ManagedBean	
 @SessionScoped
 public class Database {
     Connection con = null;
