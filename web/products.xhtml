@@ -12,7 +12,7 @@
             
             <ui:define name="content">
                 
-               <!--  <h:form id="form">  
+               <!-- <h:form id="form">  
   
                     <p:dataGrid var="product" value="#{productsController.products}" columns="3"  
                         rows="12" paginator="true"  
@@ -57,9 +57,9 @@
                         </p:outputPanel>  
                     </p:dialog>  
 
-                </h:form>  -->
+                </h:form> -->
                 
-                <h:form id="form">
+                 <h:form id="form">
 
 					<p:dataGrid var="product" value="#{productsController.products}" columns="3"
 						rows="12" paginator="true"
@@ -101,7 +101,7 @@
                                 		<f:validateLongRange minimum="1" />
                                 		<f:validateRequired />
                                 </h:inputText>
-                                <h:commandButton value="in den Warenkorb" action="#{ productsController.addToCart }" />
+                                <!-- <h:commandButton value="in den Warenkorb" action="#{ productsController.addToCart }" /> -->
 							</h:panelGrid>
 						</p:outputPanel>
 					</p:dialog>
