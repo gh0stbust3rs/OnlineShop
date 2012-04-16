@@ -41,6 +41,7 @@ public class ProductsController {
         return retVal;
     }
     
+    
     public Database getDb() {
         return db;
     }

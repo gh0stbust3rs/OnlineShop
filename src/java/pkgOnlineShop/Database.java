@@ -4,6 +4,8 @@
  */
 package pkgOnlineShop;
 
+import java.io.Reader;
+import java.nio.CharBuffer;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -219,15 +221,8 @@ public class Database {
         ResultSet rs = pstmt.executeQuery();
         
         while(rs.next()) {
-            products.add(new Produkt(
-                        rs.getInt("pr_id"),
-                        rs.getString("bezeichnung"),
-                        rs.getInt("preis"),
-                        rs.getString("kat"),
-                        rs.getString("beschreibung"),
-                        rs.getInt("bestand"),
-                        rs.getString("bild")
-                    ));
+            products.add(new Produkt(rs.getInt("pr_id"),rs.getString("bezeichnung"),rs.getInt("preis"),rs.getString("kat"),
+                    rs.getString("beschreibung"),rs.getInt("bestand"),rs.getString("bild")));
         }
         
         return products;
@@ -417,6 +412,7 @@ public class Database {
 		ResultSet rs = pstmt.executeQuery();
 		
 		while(rs.next()) {
+			
             products.add(new Produkt(
                         rs.getInt("pr_id"),
                         rs.getString("bezeichnung"),
