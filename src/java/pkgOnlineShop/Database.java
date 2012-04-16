@@ -134,7 +134,7 @@ public class Database {
     
     public List<Warenkorb> getWarenkorb(Person person) throws Exception{
         String sql = "SELECT produkt.pr_id, produkt.bezeichnung, produkt.preis, produkt.bild, "+
-                     "produkt.beschreibung, produkt.bestand, produkt.kat, wk_id, quantitiy FROM warenkorb "+
+                     "produkt.beschreibung, produkt.bestand, produkt.kat, wk_id, quantity FROM warenkorb "+
                      "JOIN produkt ON( produkt.pr_id = warenkorb.pr_id) "+
                      "where warenkorb.p_id = ?";
         List<Warenkorb> warenkorb = new ArrayList<Warenkorb>();
@@ -146,7 +146,7 @@ public class Database {
         while(rs.next()){
             produkt = new Produkt(rs.getInt("pr_id"), rs.getString("bezeichnung"), rs.getInt("preis"), 
                    rs.getString("kat"), rs.getString("beschreibung"),rs.getInt("bestand"), rs.getString("bild"));
-            warenkorb.add(new Warenkorb(rs.getInt("wk_id"),rs.getInt("quantitiy"),produkt,person));
+            warenkorb.add(new Warenkorb(rs.getInt("wk_id"),rs.getInt("quantity"),produkt,person));
         }
         
         return warenkorb;
@@ -250,7 +250,7 @@ public class Database {
     }
     
     public void fillOrders(List<Warenkorb> waren, String knr, String cvc, String monat, String jahr) throws SQLException{
-        String sql="insert into bestellung values(seq_bestellung.nextval,?,?,?,?,?,?,?,?,?)";
+        String sql="insert into bestellung values(seq_bestellung.nextval,?,?,?,?,?,?,?,?,?,?,?)";
         java.util.Date curdate = new java.util.Date();
         java.sql.Date date = new java.sql.Date(curdate.getTime());
         
@@ -260,7 +260,10 @@ public class Database {
         pstm.setString(3,cvc);
         pstm.setString(4,monat);
         pstm.setString(5,jahr);
+        
         pstm.setDate(8,null);
+        pstm.setInt(10,0);
+        pstm.setInt(11,waren.get(0).getId());
         
         for(int i = 0; i < waren.size(); i++){
             pstm.setInt(6,waren.get(i).getPerson().getId());
