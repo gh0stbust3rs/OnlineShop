@@ -54,5 +54,19 @@
         		<value>#{mainController}</value>
         </managed-property>
     </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>searchController</managed-bean-name>
+        <managed-bean-class>pkgOnlineShop.SearchController</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+        		<property-name>db</property-name>
+        		<value>#{database}</value>
+        </managed-property>
+        <managed-property>
+        		<property-name>mainController</property-name>
+        		<value>#{mainController}</value>
+        </managed-property>
+    </managed-bean>
         
 </faces-config>

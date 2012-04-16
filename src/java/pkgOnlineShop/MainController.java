@@ -24,6 +24,7 @@ public class MainController {
     private String selectedKategorie;
     private Produkt selectedProduct;
     private boolean signedin = false;
+    private String search;
     
     private List kategorien;
     
@@ -189,6 +190,14 @@ public class MainController {
 
 	public void setSelectedProduct(Produkt selectedProduct) {
 		this.selectedProduct = selectedProduct;
+	}
+
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
 	}
     
     

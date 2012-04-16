@@ -407,4 +407,27 @@ public class Database {
 		
 		return produkte;
 	}
+
+	public ArrayList<Produkt> getProductsForSearch(String search) throws Exception {
+		ArrayList<Produkt> products = new ArrayList<Produkt>();
+		
+		String sql = "SELECT * FROM produkt WHERE bezeichnung like ?";
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, "%" + search + "%");
+		ResultSet rs = pstmt.executeQuery();
+		
+		while(rs.next()) {
+            products.add(new Produkt(
+                        rs.getInt("pr_id"),
+                        rs.getString("bezeichnung"),
+                        rs.getInt("preis"),
+                        rs.getString("kat"),
+                        rs.getString("beschreibung"),
+                        rs.getInt("bestand"),
+                        rs.getString("bild")
+                    ));
+        }
+		
+		return products;
+	}
 }

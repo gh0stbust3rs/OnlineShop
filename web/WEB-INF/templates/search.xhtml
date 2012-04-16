@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core" >
 <h:head>
   <h:outputStylesheet library="css" name="style.css" />
 </h:head>
@@ -13,7 +14,11 @@
                 <table style="padding-top:10px">
                     <tr>
                         <td><p id="searchText">Suche</p></td>
-                        <td><h:inputText size="120"/></td>
+                        <td><h:inputText value="#{ mainController.search }" size="120"/></td>
+                        <td>
+                        		<h:commandButton action="searchresults" value="Suchen">
+                        		</h:commandButton>
+                        	</td>
                     </tr>                    
                 </table>
             </div>
