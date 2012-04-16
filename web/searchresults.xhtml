@@ -51,7 +51,7 @@
 								<h:inputText value="#{searchController.amount}">
 									
 								</h:inputText>
-								<h:commandButton value="In den Warenkorb" action="#{searchController.addToCart}" />
+								<h:commandButton value="In den Warenkorb" action="#{searchController.addToCart}" disabled="#{ searchController.userNotLoggedIn }" />
 							</h:panelGrid>
 						</p:outputPanel>
 					</p:dialog>

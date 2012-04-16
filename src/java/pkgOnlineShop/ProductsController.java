@@ -20,6 +20,7 @@ public class ProductsController {
     private ArrayList<Produkt> products;
     private Produkt selectedProduct;
     private int amount;
+    private String userNotLoggedIn;
     
     private Database db;
     
@@ -41,6 +42,19 @@ public class ProductsController {
         return retVal;
     }
     
+    public String getUserNotLoggedIn() {
+    		String retVal = "true";
+    		
+    		if(mainController.getUser() != null) {
+    			retVal = "false";
+    		}
+    		    			
+    		return retVal;
+    }
+    
+    public void setUserNotLoggedIn(String v) {
+    		this.userNotLoggedIn = v;
+    }
     
     public Database getDb() {
         return db;
