@@ -4,13 +4,9 @@
  */
 package pkgOnlineShop;
 
-import java.io.Reader;
-import java.nio.CharBuffer;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.naming.Context;
@@ -195,10 +191,10 @@ public class Database {
         PreparedStatement pstm = con.prepareStatement(sql);
         pstm.setString(1,bezeichnung);
         pstm.setFloat(2,preis);
-        pstm.setString(3,beschreibung);
-        pstm.setFloat(4,bestand);
-        pstm.setString(5,imagePath);
-        pstm.setString(6,kategorie);
+        pstm.setFloat(3,bestand);
+        pstm.setString(4,imagePath);
+        pstm.setString(5,kategorie);
+        pstm.setString(6,beschreibung);
         
         pstm.execute();
     }
@@ -244,14 +240,40 @@ public class Database {
         pstm.execute();
     }
     
-    public void fillOrders(List<Warenkorb> waren, String knr, String cvc, String monat, String jahr) throws SQLException{
+    public void fillOrders(List<Warenkorb> waren, String knr, String cvc, String monat, String jahr,int pid) throws SQLException{
         String sql="insert into bestellung values(seq_bestellung.nextval,?,?,?,?,?,?,?)";
         java.util.Date curdate = new java.util.Date();
         java.sql.Date date = new java.sql.Date(curdate.getTime());
         
         PreparedStatement pstm = con.prepareStatement(sql);
+        pstm.setInt(1,pid);
+        pstm.setDate(2,date);
+        pstm.setDate(3,null);
+        pstm.setString(4,knr);
+        pstm.setString(5,cvc);
+        pstm.setString(6,monat);
+        pstm.setString(7,jahr);
+        pstm.execute();
         
-        /** hier weitermachen **/
+        pstm = con.prepareStatement("select seq_bestellung.currval from dual");
+        ResultSet res = pstm.executeQuery();
+        
+        res.next();
+        int bid = res.getInt("currval");
+        
+        for(Object o:waren)
+        {
+            Warenkorb w = (Warenkorb)o;
+            
+            sql="insert into orderproducts values(?,?,?)";
+            pstm = con.prepareStatement(sql);
+            pstm.setInt(1,w.getProdukt().getId());
+            pstm.setInt(2,bid);
+            pstm.setInt(3,w.getQuantity());
+            pstm.execute();
+            
+            this.cleanCart(w.getProdukt().getId());
+        }
     }
     
     public void cleanCart(int id) throws SQLException

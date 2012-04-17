@@ -14,8 +14,7 @@ import javax.faces.bean.SessionScoped;
  *
  * @author Milan
  */
-@ManagedBean
-@SessionScoped
+
 public class WarenkorbController {    
     private Database db;
     
@@ -24,15 +23,15 @@ public class WarenkorbController {
     private int wid;
 
     private String msg; 
+    private MainController mainController;
     
     public WarenkorbController(){
-        
+
     }
     
     private void loadcart(){
         try{           
-            db = new Database();
-            warenkorb = db.getWarenkorb(person);
+            warenkorb = db.getWarenkorb(mainController.getUser());
         }catch(Exception ignore){
             msg = ignore.toString();
         }
@@ -51,6 +50,22 @@ public class WarenkorbController {
         }catch(Exception ignore){
             msg = ignore.toString();
         }
+    }
+
+    public MainController getMainController() {
+        return mainController;
+    }
+
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
+    }
+
+    public Database getDb() {
+        return db;
+    }
+
+    public void setDb(Database db) {
+        this.db = db;
     }
     
     public String order(){

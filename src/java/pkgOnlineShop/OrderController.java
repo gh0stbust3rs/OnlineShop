@@ -4,6 +4,8 @@
  */
 package pkgOnlineShop;
 
+import com.sap.mw.jco.JCO;
+import com.sap.mw.jco.JCO.Connection;
 import java.util.*;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -35,26 +37,46 @@ public class OrderController {
     
     private String message = "default wert";
     
+    //private SAPConnection co;
+   //private JCO.Client mConnection = null;
+    //private SAPFunctions sapFunc;
+    
     private Database db = null;
 
     public OrderController() {
+        /*try{
+            co = new SAPConnection();
+            mConnection = co.connect();
+            sapFunc = new SAPFunctions();
+        }
+        catch(Exception ignore){}*/
     }
     
     public String bestellen(){
         if(person.getPass().equals(pass) && person.getEmail().equals(email)){
-            try{
-                db = new Database();
-                db.fillOrders(warenkorb, kreditkarte, cvc, valid_month, valid_year);
-                enable = false;
-                return "finish";
-            }catch(Exception ignore){message += ignore.toString();}
+            if(!warenkorb.isEmpty()){
+                try{
+                    db = new Database();
+                    db.fillOrders(warenkorb, kreditkarte, cvc, valid_month, valid_year, person.getId());
+                    enable = false;
+                    message="Die Bestellung wurde erfolgreich abgeschickt!";
+                }catch(Exception notignore){message = notignore.toString();}
+            }
+            else{
+                message = "Warenkorb ist leer";
+            }
         }
         else
-            message += "EMail oder Passwort stimmen nicht über ein "+email+" "+pass+" "+person.getPass()+" "+person.getEmail();
+            message = "EMail oder Passwort stimmen nicht über ein";
         return null;
     }
     
     public void kreditcheck(){
+        if(kreditkarte.length()>=1 && cvc.length()>=1 && valid_month.length()>=1 && valid_year.length()>=1){
+            //int check = sapFunc.FunctionReadCreditCard(mConnection, kreditkarte, cvc, valid_year+""+valid_month);
+            //if(check == 1)
+            //   enable = true;
+        }
         enable = true;
     }
 
@@ -175,9 +197,9 @@ public class OrderController {
                                        new SelectItem(7,"7"),new SelectItem(8,"8"),new SelectItem(9,"9"),
                                        new SelectItem(10,"10"),new SelectItem(11,"11"),new SelectItem(12,"12")};
      
-    private SelectItem[] allejahre = {new SelectItem(1,"12"),new SelectItem(2,"13"),new SelectItem(3,"14"),
-                                      new SelectItem(4,"15"),new SelectItem(5,"16"),new SelectItem(6,"17"),
-                                      new SelectItem(7,"18"),new SelectItem(8,"19"),new SelectItem(9,"20")};
+    private SelectItem[] allejahre = {new SelectItem(1,"2012"),new SelectItem(2,"2013"),new SelectItem(3,"2014"),
+                                      new SelectItem(4,"2015"),new SelectItem(5,"2016"),new SelectItem(6,"2017"),
+                                      new SelectItem(7,"2018"),new SelectItem(8,"2019"),new SelectItem(9,"2020")};
     public SelectItem[] getAllejahre() {
         return allejahre;
     }

@@ -95,8 +95,8 @@ public class MainController {
         return "cart";
     }
     
-    public String rechnung() {
-    		return "invoice";
+    public String orders() {
+    	return "orders";
     }
     
     public String logout(){

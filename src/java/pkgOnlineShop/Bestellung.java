@@ -20,12 +20,9 @@ public class Bestellung {
     private String monat;
     private String jahr;
     private Person person;
-    private Produkt produkt;
     private Date shipped;
-    private int quantity;
-    private int gesamtpreis;
 
-    public Bestellung(int id, Date datum, String knr, String cvc, String monat, String jahr, Person person, Produkt produkt, Date shipped, int quantity) {
+    public Bestellung(int id, Date datum, String knr, String cvc, String monat, String jahr, Person person, Date shipped) {
         this.id = id;
         this.datum = datum;
         this.knr = knr;
@@ -33,19 +30,9 @@ public class Bestellung {
         this.monat = monat;
         this.jahr = jahr;
         this.person = person;
-        this.produkt = produkt;
         this.shipped = shipped;
-        this.quantity = quantity;
-        this.gesamtpreis = this.produkt.getPreis() * this.quantity;
     }
 
-    public int getGesamtpreis() {
-        return gesamtpreis;
-    }
-
-    public void setGesamtpreis(int gesamtpreis) {
-        this.gesamtpreis = gesamtpreis;
-    }
 
     public String getCvc() {
         return cvc;
@@ -93,22 +80,6 @@ public class Bestellung {
 
     public void setMonat(String monat) {
         this.monat = monat;
-    }
-
-    public Produkt getProdukt() {
-        return produkt;
-    }
-
-    public void setProdukt(Produkt produkt) {
-        this.produkt = produkt;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 
     public Date getShipped() {

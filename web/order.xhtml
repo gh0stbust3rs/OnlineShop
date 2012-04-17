@@ -80,8 +80,7 @@
                                                 text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); border-color: rgba(0, 0, 0, 0.1) 
                                                 rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);" action="#{orderController.bestellen}" value="Bestellen">
                                 <f:setPropertyActionListener target="#{orderController.person}" value="#{mainController.user}"/>
-                                <f:setPropertyActionListener target="#{orderController.warenkorb}" value="#{warenkorbController.warenkorb}"/>
-                                <f:setPropertyActionListener target="#{finishControll.person}" value="#{mainController.user}"/>
+                                <f:setPropertyActionListener target="#{orderController.warenkorb}" value="#{warenkorbController.warenkorb}"/>                      
                             </h:commandButton>
                         </h:panelGroup>
                         <br/>
