@@ -5,6 +5,8 @@
 package pkgOnlineShop;
 
 import java.sql.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 
@@ -21,6 +23,8 @@ public class Bestellung {
     private String jahr;
     private Person person;
     private Date shipped;
+    private String abgeschickt;
+    private float gesamtwert;
 
     public Bestellung(int id, Date datum, String knr, String cvc, String monat, String jahr, Person person, Date shipped) {
         this.id = id;
@@ -33,6 +37,22 @@ public class Bestellung {
         this.shipped = shipped;
     }
 
+    public float getGesamtwert() {
+        try{
+            Database db = new Database();
+            return db.getGesamtpreis(id);
+        }catch(Exception ex){return -1;}
+    }
+    
+    
+
+    public String getAbgeschickt() {
+        if(shipped==null)
+            return "Nein";
+        else
+            return "Ja";
+    }
+    
 
     public String getCvc() {
         return cvc;

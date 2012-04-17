@@ -11,8 +11,72 @@
             
             <ui:define name="content">
                 
-                <h:outputText value="Willkommen bei den orders" />
+                <h1>Bestellungen</h1>
+                <h:form>
+                    <h:dataTable border="1" style="border-collapse: collapse;border-style: solid;border-color: 
+                                 gray;border-width: 1px;" cellpadding="5" value="#{ordersController.orders}" var="item"> 
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Bestellnummer"/>
+                                </f:facet>
+
+                                <h:outputText style="font-family:arial" value="#{item.id}"/>  
+
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Bestelldatum"/>
+                                </f:facet>
+
+                                <h:outputText style="font-family:arial" value="#{item.datum}"/>  
+
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Kreditkartennummer"/>
+                                </f:facet>
+
+                                <h:outputText style="font-family:arial" value="#{item.knr}"/>  
+
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Abgeschickt"/>
+                                </f:facet>
+
+                                <h:outputText style="font-family:arial" value="#{item.abgeschickt}"/> 
+
+                            </h:column>
+                            
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Gesamtwert"/>
+                                </f:facet>
+
+                                <h:outputText style="font-family:arial" value="#{item.gesamtwert}"/> 
+
+                            </h:column>
+
+                            <h:column>
+                                <h:commandButton value="Detail" action="#{ordersController.orderDetails}">
+                                    <f:setPropertyActionListener target="#{ordersController.selectedOrder}" value="#{item.id}" />
+                                </h:commandButton>
+
+                            </h:column>
+                            
+                            <h:column>
+                                <h:commandButton value="Rechnung" action="#{ordersController.generateInvoice}">
+                                    <f:setPropertyActionListener target="#{ordersController.selectedOrder}" value="#{item.id}" />
+                                </h:commandButton>
+
+                            </h:column>
+                    </h:dataTable>
+                </h:form>
                 
+                <h:outputText value="#{ordersController.msg}"/>
             </ui:define>
             
         </ui:composition>

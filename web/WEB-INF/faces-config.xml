@@ -82,5 +82,20 @@
         		<value>#{mainController}</value>
         </managed-property>
     </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>ordersController</managed-bean-name>
+        <managed-bean-class>pkgOnlineShop.OrdersController</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+        		<property-name>db</property-name>
+        		<value>#{database}</value>
+        </managed-property>
+        <managed-property>
+        		<property-name>mainController</property-name>
+        		<value>#{mainController}</value>
+        </managed-property>
+    </managed-bean>
+
         
 </faces-config>

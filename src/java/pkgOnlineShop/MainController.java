@@ -49,7 +49,7 @@ public class MainController {
                 signedin = true;
                 if(user.getAnbieter() == 1)
                 {
-                    return "index";
+                    return "adminManageUsers";
                 }
                 else
                 {
