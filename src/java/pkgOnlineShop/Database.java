@@ -30,6 +30,30 @@ public class Database {
         con = ds.getConnection();
     }
     
+    public List<Bestellung> getOrders(Person p) throws Exception
+    {
+        List<Bestellung> orders = new ArrayList<Bestellung>();
+        
+        String sql="select * from bestellung where p_nr = ?";        
+        PreparedStatement pstm = con.prepareStatement(sql);            
+        pstm.setInt(1,p.getId());
+        ResultSet rs = pstm.executeQuery();
+              
+        while(rs.next())
+        {
+           Bestellung b = new Bestellung(rs.getInt("bid"),rs.getDate("orderdate"),rs.getString("creditcard"),
+                   rs.getString("cvc"),rs.getString("cmonth"),rs.getString("cyear"),p,rs.getDate("shipped"));
+           orders.add(b);
+        }
+        
+        return orders;
+    }
+    
+    public float getGesamtpreis(int id) throws Exception
+    {
+        return 0;
+    }
+    
     public List<Kategorie> getKategorien() throws Exception
     {
         List<Kategorie> kategorien = new ArrayList<Kategorie>();
