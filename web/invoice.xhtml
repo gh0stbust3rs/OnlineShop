@@ -12,53 +12,11 @@
             <ui:define name="content">
                 
                 <h:form id="form">
-                        <h:dataTable border="1" style="border-collapse: collapse;border-style: solid;border-color: gray;border-width: 1px;" cellpadding="5" value="#{invoiceController.rechnungen}" var="item"> 
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Rechnungsnummer"/>
-                                </f:facet>
-
-                                <h:outputText style="font-family:arial" value="#{item.r_id}"/>  
-
-                            </h:column>
-
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Rechnungsdatum"/>
-                                </f:facet>
-
-                                <h:outputText style="font-family:arial" value="#{item.r_datum}"/>  
-
-                            </h:column>
-
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Summe"/>
-                                </f:facet>
-
-                                <h:outputText style="font-family:arial" value="#{invoiceController.getRechnungssumme(item)}"/>  
-
-                            </h:column>
-
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value=""/>
-                                </f:facet>
-
-                                <h:commandButton value="Details">
-                                		<f:setPropertyActionListener target="#{invoiceController.selectedRechnung}" value="#{item}" />
-                                		<!-- <f:ajax render=":form:rechnung"></f:ajax> -->
-                                </h:commandButton>
-
-                            </h:column>
-                            
-                            
-                    </h:dataTable>
                     
                     <div id="rechnung">
                     <br />
-                    <h1>Rechnungsnummer: #{ invoiceController.selectedRechnung.r_id }</h1>
-                    <h2>Rechnungsdatum: #{ invoiceController.selectedRechnung.r_datum }</h2>
+                    <h1>Rechnungsnummer: #{ mainController.selectedBestellung.b_id }</h1>
+                    <h2>Rechnungsdatum: #{ mainController.selectedBestellung.b_datum }</h2>
                     <br />
                     <h2>Produkte:</h2>
                     

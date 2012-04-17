@@ -10,6 +10,7 @@ public class SearchController {
     private Database db;
     
     private MainController mainController;
+	private String userNotLoggedIn;
     
     public SearchController() {
         
@@ -27,6 +28,20 @@ public class SearchController {
         return retVal;
     }
     
+    public String getUserNotLoggedIn() {
+    		userNotLoggedIn = "true";
+		
+		if(mainController.getUser() != null) {
+			userNotLoggedIn = "false";
+		}
+		    			
+		return userNotLoggedIn;
+		}
+		
+		public void setUserNotLoggedIn(String v) {
+				this.userNotLoggedIn = v;
+		}
+    
     public Database getDb() {
         return db;
     }
@@ -37,6 +52,7 @@ public class SearchController {
 
     public ArrayList<Produkt> getProducts() throws Exception {
         products = db.getProductsForSearch(mainController.getSearch());
+        mainController.setSearch("");
         return products;
     }
 
