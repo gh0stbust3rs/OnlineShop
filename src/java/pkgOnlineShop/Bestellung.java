@@ -4,129 +4,117 @@
  */
 package pkgOnlineShop;
 
-import java.sql.Date;
+import java.util.Date;
 
 
 
 /**
  *
- * @author Milan
+ * @author matthias
  */
 public class Bestellung {
     private int id;
+    private Person person;
     private Date datum;
+    private Date shipped;
     private String knr;
     private String cvc;
-    private String monat;
-    private String jahr;
-    private Person person;
-    private Produkt produkt;
-    private Date shipped;
-    private int quantity;
-    private int gesamtpreis;
+    private int monat;
+    private int jahr;
 
-    public Bestellung(int id, Date datum, String knr, String cvc, String monat, String jahr, Person person, Produkt produkt, Date shipped, int quantity) {
+    public Bestellung() {
+    	
+    }
+
+    public Bestellung(int id, Person person, Date datum, Date shipped, String knr, String cvc, int monat, int jahr) {
         this.id = id;
+        this.person = person;
         this.datum = datum;
+        this.shipped = shipped;
         this.knr = knr;
         this.cvc = cvc;
         this.monat = monat;
         this.jahr = jahr;
-        this.person = person;
-        this.produkt = produkt;
-        this.shipped = shipped;
-        this.quantity = quantity;
-        this.gesamtpreis = this.produkt.getPreis() * this.quantity;
     }
 
-    public int getGesamtpreis() {
-        return gesamtpreis;
-    }
 
-    public void setGesamtpreis(int gesamtpreis) {
-        this.gesamtpreis = gesamtpreis;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public String getCvc() {
-        return cvc;
-    }
 
-    public void setCvc(String cvc) {
-        this.cvc = cvc;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public Date getDatum() {
-        return datum;
-    }
 
-    public void setDatum(Date datum) {
-        this.datum = datum;
-    }
+	public Person getPerson() {
+		return person;
+	}
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public void setPerson(Person person) {
+		this.person = person;
+	}
 
-    public String getJahr() {
-        return jahr;
-    }
 
-    public void setJahr(String jahr) {
-        this.jahr = jahr;
-    }
+	public Date getDatum() {
+		return datum;
+	}
 
-    public String getKnr() {
-        return knr;
-    }
 
-    public void setKnr(String knr) {
-        this.knr = knr;
-    }
+	public void setDatum(Date datum) {
+		this.datum = datum;
+	}
 
-    public String getMonat() {
-        return monat;
-    }
 
-    public void setMonat(String monat) {
-        this.monat = monat;
-    }
+	public Date getShipped() {
+		return shipped;
+	}
 
-    public Produkt getProdukt() {
-        return produkt;
-    }
 
-    public void setProdukt(Produkt produkt) {
-        this.produkt = produkt;
-    }
+	public void setShipped(Date shipped) {
+		this.shipped = shipped;
+	}
 
-    public int getQuantity() {
-        return quantity;
-    }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
+	public String getKnr() {
+		return knr;
+	}
 
-    public Date getShipped() {
-        return shipped;
-    }
 
-    public void setShipped(Date shipped) {
-        this.shipped = shipped;
-    }
+	public void setKnr(String knr) {
+		this.knr = knr;
+	}
 
-    public Person getPerson() {
-        return person;
-    }
 
-    public void setPerson(Person person) {
-        this.person = person;
-    }
-    
-    
-    
+	public String getCvc() {
+		return cvc;
+	}
+
+
+	public void setCvc(String cvc) {
+		this.cvc = cvc;
+	}
+
+
+	public int getMonat() {
+		return monat;
+	}
+
+
+	public void setMonat(int monat) {
+		this.monat = monat;
+	}
+
+
+	public int getJahr() {
+		return jahr;
+	}
+
+
+	public void setJahr(int jahr) {
+		this.jahr = jahr;
+	}
+
 }

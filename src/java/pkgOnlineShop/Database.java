@@ -4,13 +4,9 @@
  */
 package pkgOnlineShop;
 
-import java.io.Reader;
-import java.nio.CharBuffer;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.naming.Context;
@@ -215,7 +211,7 @@ public class Database {
     public ArrayList<Produkt> getProductsForCategory(String cat) throws Exception {
         ArrayList<Produkt> products = new ArrayList<Produkt>();
         
-        String sql = "SELECT * FROM produkt WHERE kat like ?";
+        String sql = "SELECT * FROM produkt WHERE kat like ? OR pr_id=3";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, cat);
         ResultSet rs = pstmt.executeQuery();
@@ -321,15 +317,15 @@ public class Database {
 		return rechnungen;
 	}
 
-	public String getRechnungssumme(Rechnung r) throws Exception {
+	public String getRechnungssumme(Bestellung b) throws Exception {
 		String retVal = "";
 		
-		String sql = "SELECT sum(p.preis) FROM bestellung b " +
-				"JOIN produkt p ON (b.pr_id = p.pr_id) " +
-				"WHERE b.r_id=?";
+		String sql = "SELECT sum(p.preis) FROM orderproducts op " +
+				"JOIN produkt p ON (op.pr_id = p.pr_id) " +
+				"WHERE op.bid=?";
 		
 		PreparedStatement pstmt = con.prepareStatement(sql);
-		pstmt.setInt(1, r.getR_id());
+		pstmt.setInt(1, b.getId());
 		ResultSet rs = pstmt.executeQuery();
 		
 		if(rs.next()) {
@@ -355,16 +351,16 @@ public class Database {
 		return retVal;
 	}
 
-	public ArrayList<Produkt> getProductsForSelectedRechnung (Rechnung selectedRechnung) throws Exception {
+	public ArrayList<Produkt> getProductsForSelectedBestellung (Bestellung selectedBestellung) throws Exception {
 		ArrayList<Produkt> produkte = new ArrayList<Produkt>();
 		
-		String sql = "SELECT p.pr_id, p.bezeichnung, p.preis, p.beschreibung, p.bestand, p.bild, p.kat FROM produkt p " +
-				"JOIN bestellung b " +
-				"ON (b.pr_id = p.pr_id) " +
-				"WHERE b.r_id=?";
+		String sql = "SELECT p.pr_id, p.bezeichnung, p.preis, p.beschreibung, p.bestand, p.bild, p.kat" +
+				"FROM produkt p" +
+				"JOIN orderproducts op ON (p.pr_id = op.pr_id)" +
+				"WHERE op.bid=?";
 		
 		PreparedStatement pstmt = con.prepareStatement(sql);
-		pstmt.setInt(1, selectedRechnung.getR_id());
+		pstmt.setInt(1, selectedBestellung.getId());
 		ResultSet rs = pstmt.executeQuery();
 		
 		while(rs.next()) {
@@ -386,9 +382,37 @@ public class Database {
 	public ArrayList<Produkt> getProductsForSearch(String search) throws Exception {
 		ArrayList<Produkt> products = new ArrayList<Produkt>();
 		
-		String sql = "SELECT * FROM produkt WHERE bezeichnung like ?";
+		String sql = "SELECT * FROM produkt WHERE bezeichnung like ? OR pr_id=3";
 		PreparedStatement pstmt = con.prepareStatement(sql);
 		pstmt.setString(1, "%" + search + "%");
+		ResultSet rs = pstmt.executeQuery();
+		
+		while(rs.next()) {
+			
+            products.add(new Produkt(
+                        rs.getInt("pr_id"),
+                        rs.getString("bezeichnung"),
+                        rs.getInt("preis"),
+                        rs.getString("kat"),
+                        rs.getString("beschreibung"),
+                        rs.getInt("bestand"),
+                        rs.getString("bild")
+                    ));
+        }
+		
+		return products;
+	}
+
+	public ArrayList<Produkt> getRandomProducts() throws Exception {
+		ArrayList<Produkt> products = new ArrayList<Produkt>();
+		
+		String sql = "SELECT * " +
+				"FROM (SELECT * " +
+				"FROM produkt " +
+				"ORDER BY dbms_random.VALUE) " +
+				"WHERE ROWNUM < 4";
+		
+		PreparedStatement pstmt = con.prepareStatement(sql);
 		ResultSet rs = pstmt.executeQuery();
 		
 		while(rs.next()) {

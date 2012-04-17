@@ -20,7 +20,7 @@
                     <br />
                     <h2>Produkte:</h2>
                     
-                    		<h:dataTable border="1" style="border-collapse: collapse;border-style: solid;border-color: gray;border-width: 1px;" cellpadding="5" value="#{invoiceController.productsForSelectedRechnung}" var="item"> 
+                    		<h:dataTable border="1" style="border-collapse: collapse;border-style: solid;border-color: gray;border-width: 1px;" cellpadding="5" value="#{invoiceController.productsForSelectedBestellung}" var="item"> 
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText style="font-family:Trebuchet MS;font-size:12pt" value="Produkt ID"/>
@@ -69,7 +69,7 @@
                     </h:dataTable>
                     <p>Summe Netto: #{ invoiceController.rechnungssummeNetto }<br />
                     Mehwertsteuer (20%): #{invoiceController.rechnungMWSt }<br />
-                    Summe Brutto: #{invoiceController.getRechnungssumme(invoiceController.selectedRechnung)}
+                    Summe Brutto: #{invoiceController.rechnungssumme}
                     
                     </p>
                     

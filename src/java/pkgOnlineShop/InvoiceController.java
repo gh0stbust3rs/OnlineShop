@@ -6,7 +6,6 @@ public class InvoiceController {
 	private Database db;
 	private MainController mainController;
 	
-	private Rechnung selectedRechnung;
 	private Person person;
 	
 	public InvoiceController() {
@@ -26,11 +25,11 @@ public class InvoiceController {
 		return rechnungen;
 	}
 	
-	public String getRechnungssumme(Rechnung r) {
+	public String getRechnungssumme() {
 		String retVal = "";
 		
 		try {
-			retVal = db.getRechnungssumme(r);
+			retVal = db.getRechnungssumme(mainController.getSelectedBestellung());
 		}
 		catch(Exception e) {
 			e.printStackTrace();
@@ -62,11 +61,11 @@ public class InvoiceController {
 		return retVal;
 	}
 	
-	public ArrayList<Produkt> getProductsForSelectedRechnung() {
+	public ArrayList<Produkt> getProductsForSelectedBestellung() {
 		ArrayList<Produkt> produkte = new ArrayList<Produkt>();
-		if(selectedRechnung != null) {
+		if(mainController.getSelectedBestellung() != null) {
 			try {
-				produkte = db.getProductsForSelectedRechnung(selectedRechnung);
+				produkte = db.getProductsForSelectedBestellung(mainController.getSelectedBestellung());
 			}
 			catch(Exception e) {
 				e.printStackTrace();
@@ -80,7 +79,7 @@ public class InvoiceController {
 		String retVal = "";
 		
 		try {
-			int summe = Integer.parseInt(getRechnungssumme(selectedRechnung));
+			int summe = Integer.parseInt(getRechnungssumme());
 			int summeNo = summe / 1;
 			retVal = Integer.toString(summeNo);
 		}
@@ -96,7 +95,7 @@ public class InvoiceController {
 		String retVal = "";
 		
 		try {
-			int summe = Integer.parseInt(getRechnungssumme(selectedRechnung));
+			int summe = Integer.parseInt(getRechnungssumme());
 			int summeNo = summe / 1;
 			retVal = Integer.toString(summe - summeNo);
 		}
@@ -121,14 +120,6 @@ public class InvoiceController {
 
 	public void setMainController(MainController mainController) {
 		this.mainController = mainController;
-	}
-
-	public Rechnung getSelectedRechnung() {
-		return selectedRechnung;
-	}
-
-	public void setSelectedRechnung(Rechnung selectedRechnung) {
-		this.selectedRechnung = selectedRechnung;
 	}
 
 	public Person getPerson() {

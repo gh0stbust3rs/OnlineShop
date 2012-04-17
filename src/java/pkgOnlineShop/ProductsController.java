@@ -18,6 +18,7 @@ import javax.faces.bean.SessionScoped;
 public class ProductsController {
     
     private ArrayList<Produkt> products;
+    private ArrayList<Produkt> randomProducts;
     private Produkt selectedProduct;
     private int amount;
     private String userNotLoggedIn;
@@ -97,4 +98,16 @@ public class ProductsController {
     public void setAmount(int amount) {
         this.amount = amount;
     }
+
+	public ArrayList<Produkt> getRandomProducts() throws Exception {
+		randomProducts = db.getRandomProducts();
+		System.out.println("randomProducts: "+randomProducts.size());
+		return randomProducts;
+	}
+
+	public void setRandomProducts(ArrayList<Produkt> randomProducts) {
+		this.randomProducts = randomProducts;
+	}
+    
+    
 }
