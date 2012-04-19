@@ -30,7 +30,7 @@
 						<p:column>
 							<p:panel header="#{product.bezeichnung}" style="text-align:center">
 								<h:panelGrid columns="1" style="width:100px">
-									<p:graphicImage value="resources/productImages/#{product.bild}"/> 
+									<p:graphicImage value="resources/productImages/#{product.bild}" height="150px" width="150px"/> 
 								
 									<h:outputText value="#{product.preis} €" />
 									
@@ -47,7 +47,7 @@
 					<p:dialog id="productDetail" header="#{productsController.selectedProduct.bezeichnung}" widgetVar="productDialog" modal="true">
 						<p:outputPanel style="text-align:center;" layout="block">
 						
-							<p:graphicImage value="resources/productImages/#{productsController.selectedProduct.bild}"/>
+							<p:graphicImage value="resources/productImages/#{productsController.selectedProduct.bild}" height="150px" width="150px"/>
 							
 							<h:panelGrid  columns="2" cellpadding="5">
 								<h:outputLabel for="beschreibung" value="Beschreibung: " />

@@ -72,6 +72,13 @@
                                 </h:commandButton>
 
                             </h:column>
+                            
+                            <h:column>
+                                <h:commandButton value="Details" action="detail">
+                                    <f:setPropertyActionListener target="#{mainController.selectedProduct}" value="#{item.}" />
+                                </h:commandButton>
+
+                            </h:column>
                     </h:dataTable>
                     <br/>
                     <h:commandButton style="color:white;font-size: 15px;line-height: normal;

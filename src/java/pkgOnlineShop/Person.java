@@ -20,6 +20,10 @@ public class Person {
     private String email;
     private String pass;
     private int anbieter;
+    
+    public Person() {
+    	
+    }
 
     public Person(int id,String vorname, String nachname, String strasse, int hausnr, int plz, String ort, String land, String email, String pass, int anbieter) {
         this.id = id;

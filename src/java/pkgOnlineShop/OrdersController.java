@@ -4,6 +4,7 @@
  */
 package pkgOnlineShop;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,6 +20,7 @@ public class OrdersController {
 
     private Database db;
     private List<Bestellung> orders;
+    private ArrayList<Bestellung> adminOrders;
     private String msg;
     private MainController mainController;
     
@@ -65,7 +67,31 @@ public class OrdersController {
         this.orders = orders;
     }
 
-    public String getMsg() {
+    public ArrayList<Bestellung> getAdminOrders() {
+    		try {
+    			adminOrders = db.getAdminOrders();
+    		}
+    		catch(Exception e) {
+    			e.printStackTrace();
+    		}
+		return adminOrders;
+	}
+
+    public String ship() {
+    		try {
+    			db.shipOrder(selectedOrder);
+    		}
+    		catch(Exception e) {
+    			System.out.println(e);
+    		}
+    		return "adminOrders";
+    }
+    
+	public void setAdminOrders(ArrayList<Bestellung> adminOrders) {
+		this.adminOrders = adminOrders;
+	}
+
+	public String getMsg() {
         return msg;
     }
 

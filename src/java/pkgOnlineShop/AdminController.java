@@ -39,6 +39,10 @@ public class AdminController {
         return "adminManageProducts";
     }
     
+    public String gotoOrders() {
+    		return "adminOrders";
+    }
+    
     public void checkUser()
     {
         try{

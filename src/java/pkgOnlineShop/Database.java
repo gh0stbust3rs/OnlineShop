@@ -558,5 +558,50 @@ public class Database {
         
         return retVal;
     }
+
+	public ArrayList<Bestellung> getAdminOrders() throws Exception {
+		ArrayList<Bestellung> bestellungen = new ArrayList<Bestellung>();
+		
+		String sql="select * from bestellung";        
+        PreparedStatement pstm = con.prepareStatement(sql);            
+        ResultSet rs = pstm.executeQuery();
+              
+        while(rs.next())
+        {
+        		String sql2 = "select * from person where p_id = ?";
+        		PreparedStatement pstmt2 = con.prepareStatement(sql2);
+        		pstmt2.setInt(1, rs.getInt("p_nr"));
+        		ResultSet rs2 = pstmt2.executeQuery();
+        		Person p = new Person();
+        		if(rs2.next()) {
+        			p = new Person(rs2.getInt("p_id"),rs2.getString("vorname"),rs2.getString("nachname"),
+                            rs2.getString("strasse"),rs2.getInt("hausnr"),rs2.getInt("plz"),
+                            rs2.getString("ort"),rs2.getString("land"),rs2.getString("email"),
+                            rs2.getString("pass"),rs2.getInt("anbieter"));
+        		}
+        		rs2.close();
+        		pstmt2.close();
+        		
+           Bestellung b = new Bestellung(rs.getInt("bid"),rs.getDate("orderdate"),rs.getString("creditcard"),
+                   rs.getString("cvc"),rs.getString("cmonth"),rs.getString("cyear"),p,rs.getDate("shipped"));
+           bestellungen.add(b);
+        }
+        
+        rs.close();
+        pstm.close();
+		
+		return bestellungen;
+	}
+
+	public void shipOrder(int selectedOrder) throws Exception {
+		String sql = "UPDATE bestellung SET shipped=sysdate WHERE bid=?";
+		
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, selectedOrder);
+		pstmt.execute();
+		
+		pstmt.close();
+		
+	}
 }
     
