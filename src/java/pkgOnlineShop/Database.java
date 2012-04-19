@@ -46,6 +46,9 @@ public class Database {
            orders.add(b);
         }
         
+        rs.close();
+        pstm.close();
+        
         return orders;
     }
     
@@ -73,6 +76,9 @@ public class Database {
           price+=partial_price;
         }
         
+        rs.close();
+        pstm.close();
+        
         return price;
     }
     
@@ -90,6 +96,9 @@ public class Database {
             k = new Kategorie(rs.getInt("KAT_ID"),rs.getString("KAT_BEZEICHNUNG"));
             kategorien.add(k);
         }
+        
+        rs.close();
+        pstm.close();
         
         return kategorien;
     }
@@ -112,6 +121,9 @@ public class Database {
                     rs.getString("pass"),rs.getInt("anbieter"));
         }
         
+        rs.close();
+        pstm.close();
+        
         return p;
     }
     
@@ -132,6 +144,8 @@ public class Database {
         pstm.setString(9,pass);
         
         pstm.execute();
+        
+        pstm.close();
     }
     
     public List<Person> getPersonen() throws Exception
@@ -153,6 +167,9 @@ public class Database {
             persons.add(p);
         }
         
+        rs.close();
+        pstm.close();
+        
         return persons;
     }
     
@@ -172,6 +189,9 @@ public class Database {
             
             products.add(p);
         }
+        
+        rs.close();
+        pstm.close();
         
         return products;
     }
@@ -193,6 +213,9 @@ public class Database {
             warenkorb.add(new Warenkorb(rs.getInt("wk_id"),rs.getInt("quantity"),produkt,person));
         }
         
+        rs.close();
+        pstm.close();
+        
         return warenkorb;
     }
     
@@ -201,6 +224,8 @@ public class Database {
         PreparedStatement pstm = con.prepareCall(sql);
         pstm.setInt(1, id);
         pstm.execute();
+        
+        pstm.close();
     }
     
     public void deleteUser(int id) throws Exception
@@ -210,6 +235,8 @@ public class Database {
         PreparedStatement pstm = con.prepareStatement(sql);    
         pstm.setInt(1,id);
         pstm.execute();
+        
+        pstm.close();
     }
     
     public void newCategory(String name) throws Exception
@@ -219,6 +246,8 @@ public class Database {
         PreparedStatement pstm = con.prepareStatement(sql);    
         pstm.setString(1,name);
         pstm.execute();
+        
+        pstm.close();
     }
     
     public void deleteCategory(String name) throws Exception
@@ -228,6 +257,8 @@ public class Database {
         PreparedStatement pstm = con.prepareStatement(sql);    
         pstm.setString(1,name);
         pstm.execute();
+        
+        pstm.close();
     }
     
     public void newProduct(String bezeichnung,int preis,String kategorie,String beschreibung,int bestand,String imagePath) throws Exception
@@ -243,6 +274,8 @@ public class Database {
         pstm.setString(6,beschreibung);
         
         pstm.execute();
+        
+        pstm.close();
     }
     
     public void deleteProduct(int id) throws Exception
@@ -252,6 +285,8 @@ public class Database {
         PreparedStatement pstm = con.prepareStatement(sql);
         pstm.setInt(1,id);
         pstm.execute();
+        
+        pstm.close();
     }
     
     public ArrayList<Produkt> getProductsForCategory(String cat) throws Exception {
@@ -266,6 +301,9 @@ public class Database {
             products.add(new Produkt(rs.getInt("pr_id"),rs.getString("bezeichnung"),rs.getInt("preis"),rs.getString("kat"),
                     rs.getString("beschreibung"),rs.getInt("bestand"),rs.getString("bild")));
         }
+        
+        rs.close();
+        pstmt.close();
         
         return products;
     }
@@ -284,6 +322,8 @@ public class Database {
         pstm.setInt(7,p.getId());
         
         pstm.execute();
+        
+        pstm.close();
     }
     
     public void fillOrders(List<Warenkorb> waren, String knr, String cvc, String monat, String jahr,int pid) throws SQLException{
@@ -320,6 +360,8 @@ public class Database {
             
             this.cleanCart(w.getProdukt().getId());
         }
+        
+        pstm.close();
     }
     
     public void cleanCart(int id) throws SQLException
@@ -328,10 +370,8 @@ public class Database {
         PreparedStatement pstm = con.prepareStatement(sql);
         pstm.setInt(1,id);
         pstm.execute();
-    }
-    
-    public List getBestellungen(Person person) throws SQLException{
-      return null;
+
+        pstm.close();
     }
 
     public void updatePerson(int id, String vorname, String nachname, String strasse, String hausnr, String plz, String ort, String land, String email, String pass) throws SQLException {
@@ -350,6 +390,8 @@ public class Database {
         pstm.setInt(10, id);
         
         pstm.execute();
+        
+        pstm.close();
     }
 
 	public void addToCart(int amount, int pr_id, int p_id) throws Exception {
@@ -362,31 +404,9 @@ public class Database {
 		pstmt.setInt(3, p_id);
 		
 		pstmt.execute();
-		
-	}
 
-	public ArrayList<Rechnung> getRechnungenForCustomer(Person p) throws Exception {
-		ArrayList<Rechnung> rechnungen = new ArrayList<Rechnung>();
+        pstmt.close();
 		
-		String sql = "SELECT r.r_id, r.r_datum FROM rechnung r " +
-				"JOIN bestellung b ON (r.r_id = b.r_id) " +
-				"WHERE b.p_id=? " +
-				"GROUP BY r.r_id,r.r_datum";
-		
-		PreparedStatement pstmt = con.prepareStatement(sql);
-		pstmt.setInt(1, p.getId());
-		ResultSet rs = pstmt.executeQuery();
-		
-		while(rs.next()) {
-			rechnungen.add(
-						new Rechnung(
-									rs.getInt(1),
-									new java.util.Date(rs.getDate(2).getTime()) 
-								)
-					);
-		}
-		
-		return rechnungen;
 	}
 
 	public String getRechnungssumme(Bestellung b) throws Exception {
@@ -404,6 +424,9 @@ public class Database {
 			retVal = Integer.toString(rs.getInt(1));
 		}
 		
+		rs.close();
+        pstmt.close();
+		
 		return retVal;
 	}
 
@@ -420,6 +443,9 @@ public class Database {
 		if(rs.next()) {
 			retVal = Integer.toString(rs.getInt("menge"));
 		}
+		
+		rs.close();
+        pstmt.close();
 		
 		return retVal;
 	}
@@ -450,6 +476,9 @@ public class Database {
 			produkte.add(pr);
 		}
 		
+		rs.close();
+        pstmt.close();
+		
 		return produkte;
 	}
 
@@ -473,6 +502,9 @@ public class Database {
                         rs.getString("bild")
                     ));
         }
+		
+		rs.close();
+        pstmt.close();
 		
 		return products;
 	}
@@ -502,6 +534,9 @@ public class Database {
                     ));
         }
 		
+		rs.close();
+        pstmt.close();
+		
 		return products;
 	}
 
@@ -519,6 +554,9 @@ public class Database {
                 retVal = true;
             }
         }
+        
+        rs.close();
+        pstmt.close();
         
         return retVal;
     }
