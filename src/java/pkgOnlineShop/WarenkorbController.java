@@ -51,7 +51,7 @@ public class WarenkorbController {
             msg = ignore.toString();
         }
     }
-
+    
     public MainController getMainController() {
         return mainController;
     }
