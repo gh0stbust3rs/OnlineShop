@@ -20,7 +20,7 @@ public class ProductsController {
     private ArrayList<Produkt> products;
     private ArrayList<Produkt> randomProducts;
     private Produkt selectedProduct;
-    private int amount;
+    private int amount = 1;
     private String userNotLoggedIn;
     
     private Database db;
@@ -34,8 +34,13 @@ public class ProductsController {
     public String addToCart() {
     		String retVal = "";
         try {
+            if(db.isProductAvailable(selectedProduct, amount)) {
              db.addToCart(amount, selectedProduct.getId(), mainController.getUser().getId());
         		retVal = "cart";
+            }
+            else {
+                mainController.setMessage("Produkt in dieser Anzanhl nicht mehr vorhanden");
+            }
         }
         catch(Exception e) {
             System.out.println(e);

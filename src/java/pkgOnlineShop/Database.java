@@ -51,7 +51,29 @@ public class Database {
     
     public float getGesamtpreis(int id) throws Exception
     {
-        return 0;
+        float price=0;
+        float partial_price=0;
+        String sql="select * from orderproducts where bid=?";  
+        
+        PreparedStatement pstm = con.prepareStatement(sql);            
+        pstm.setInt(1,id);
+        
+        ResultSet rs = pstm.executeQuery();
+              
+        while(rs.next())
+        {
+          String sqlp="select * from produkt where pr_id=?";  
+        
+          PreparedStatement pstmp = con.prepareStatement(sqlp);      
+          pstmp.setInt(1,rs.getInt("pr_id"));
+          ResultSet rsp = pstmp.executeQuery();
+          rsp.next();
+          
+          partial_price = rs.getInt("menge") * rsp.getFloat("preis");
+          price+=partial_price;
+        }
+        
+        return price;
     }
     
     public List<Kategorie> getKategorien() throws Exception
@@ -385,17 +407,18 @@ public class Database {
 		return retVal;
 	}
 
-	public String getQuantityForProduct(Produkt p) throws Exception {
+	public String getQuantityForProduct(Produkt p,Bestellung b) throws Exception {
 		String retVal = "";
 		
-		String sql = "SELECT quantity FROM bestellung WHERE pr_id=?";
+		String sql = "SELECT menge FROM orderproducts WHERE pr_id=? and bid=?";
 		
 		PreparedStatement pstmt = con.prepareStatement(sql);
 		pstmt.setInt(1, p.getId());
+                pstmt.setInt(2, b.getId());
 		ResultSet rs = pstmt.executeQuery();
 		
 		if(rs.next()) {
-			retVal = Integer.toString(rs.getInt("quantity"));
+			retVal = Integer.toString(rs.getInt("menge"));
 		}
 		
 		return retVal;
@@ -404,9 +427,9 @@ public class Database {
 	public ArrayList<Produkt> getProductsForSelectedBestellung (Bestellung selectedBestellung) throws Exception {
 		ArrayList<Produkt> produkte = new ArrayList<Produkt>();
 		
-		String sql = "SELECT p.pr_id, p.bezeichnung, p.preis, p.beschreibung, p.bestand, p.bild, p.kat" +
-				"FROM produkt p" +
-				"JOIN orderproducts op ON (p.pr_id = op.pr_id)" +
+		String sql = "SELECT p.pr_id, p.bezeichnung, p.preis, p.beschreibung, p.bestand, p.bild, p.kat " +
+				"FROM produkt p " +
+				"JOIN orderproducts op ON (p.pr_id = op.pr_id) " +
 				"WHERE op.bid=?";
 		
 		PreparedStatement pstmt = con.prepareStatement(sql);
@@ -415,14 +438,15 @@ public class Database {
 		
 		while(rs.next()) {
 			Produkt pr = new Produkt(
-						rs.getInt(1),
-						rs.getString(2),
-						rs.getInt(3),
-						rs.getString(7),
-						rs.getString(4),
-						rs.getInt(5),
-						rs.getString(6)
+						rs.getInt("pr_id"),
+						rs.getString("bezeichnung"),
+						rs.getInt("preis"),
+						rs.getString("kat"),
+						rs.getString("beschreibung"),
+						rs.getInt("bestand"),
+						rs.getString("bild")
 					);
+                        System.out.println(pr.toString());
 			produkte.add(pr);
 		}
 		
@@ -480,4 +504,23 @@ public class Database {
 		
 		return products;
 	}
+
+    boolean isProductAvailable(Produkt selectedProduct, int amount) throws Exception {
+        boolean retVal = false;
+        
+        String sql = "SELECT bestand FROM produkt WHERE pr_id=?";
+        
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        pstmt.setInt(1, selectedProduct.getId());
+        ResultSet rs = pstmt.executeQuery();
+        
+        if(rs.next()) {
+            if(rs.getInt("bestand") >= amount) {
+                retVal = true;
+            }
+        }
+        
+        return retVal;
+    }
 }
+    

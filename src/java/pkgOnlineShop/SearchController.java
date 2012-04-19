@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class SearchController {
 	private ArrayList<Produkt> products;
     private Produkt selectedProduct;
-    private int amount;
+    private int amount = 1;
     
     private Database db;
     
@@ -19,8 +19,13 @@ public class SearchController {
     public String addToCart() {
     		String retVal = "";
         try {
+            if(db.isProductAvailable(selectedProduct, amount)) {
              db.addToCart(amount, selectedProduct.getId(), mainController.getUser().getId());
         		retVal = "cart";
+            }
+            else {
+                mainController.setMessage("Produkt in dieser Anzanhl nicht mehr vorhanden");
+            }
         }
         catch(Exception e) {
             System.out.println(e);

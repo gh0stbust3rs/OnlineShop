@@ -49,7 +49,8 @@
 								<h:outputText id="preis" value="#{searchController.selectedProduct.preis} €" />
 								
 								<h:inputText value="#{searchController.amount}">
-									
+                                                                    <f:validateLongRange minimum="1" />
+                                                                    <f:validateRequired />
 								</h:inputText>
 								<h:commandButton value="In den Warenkorb" action="#{searchController.addToCart}" disabled="#{ searchController.userNotLoggedIn }" />
 							</h:panelGrid>

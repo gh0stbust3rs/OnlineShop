@@ -14,7 +14,7 @@ public class Warenkorb {
     
     private Person person;
     private int quantity;
-    private int gesamtpreis;
+    private float gesamtpreis;
 
     public Warenkorb(int id, int quantity, Produkt produkt, Person person) {
         this.id = id;
@@ -24,11 +24,11 @@ public class Warenkorb {
         this.gesamtpreis = this.quantity * this.produkt.getPreis();
     }
     
-        public int getGesamtpreis() {
+        public float getGesamtpreis() {
         return gesamtpreis;
     }
 
-    public void setGesamtpreis(int gesamtpreis) {
+    public void setGesamtpreis(float gesamtpreis) {
         this.gesamtpreis = gesamtpreis;
     }
 

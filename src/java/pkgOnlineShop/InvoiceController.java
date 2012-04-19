@@ -42,7 +42,7 @@ public class InvoiceController {
 		String retVal = "";
 		
 		try {
-			retVal = db.getQuantityForProduct(p);
+			retVal = db.getQuantityForProduct(p,mainController.getSelectedBestellung());
 		}
 		catch(Exception e) {
 			e.printStackTrace();
@@ -55,8 +55,8 @@ public class InvoiceController {
 		String retVal = "";
 		
 		int menge = Integer.parseInt(getQuantityForProduct(p));
-		int preis = p.getPreis() * menge;
-		retVal = Integer.toString(preis);
+		float preis = p.getPreis() * menge;
+		retVal = Float.toString(preis);
 		
 		return retVal;
 	}
@@ -70,6 +70,7 @@ public class InvoiceController {
 			catch(Exception e) {
 				e.printStackTrace();
 			}
+                        
 		}
 		
 		return produkte;
@@ -79,9 +80,9 @@ public class InvoiceController {
 		String retVal = "";
 		
 		try {
-			int summe = Integer.parseInt(getRechnungssumme());
-			int summeNo = summe / 1;
-			retVal = Integer.toString(summeNo);
+			float summe = Integer.parseInt(getRechnungssumme());
+			double summeNo = summe / 1.2;
+			retVal = Double.toString(summeNo);
 		}
 		catch(Exception e) {
 			System.out.println(e);
@@ -95,9 +96,9 @@ public class InvoiceController {
 		String retVal = "";
 		
 		try {
-			int summe = Integer.parseInt(getRechnungssumme());
-			int summeNo = summe / 1;
-			retVal = Integer.toString(summe - summeNo);
+			float summe = Integer.parseInt(getRechnungssumme());
+			double summeNo = summe / 1.2;
+			retVal = Double.toString(summe - summeNo);
 		}
 		catch(Exception e) {
 			System.out.println(e);
@@ -105,6 +106,11 @@ public class InvoiceController {
 		
 		return retVal;
 	}
+        
+        public String back()
+        {
+            return "orders";
+        }
 
 	public Database getDb() {
 		return db;

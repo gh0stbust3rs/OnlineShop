@@ -13,6 +13,7 @@
             <ui:define name="content">
                 
                <h:form id="form">
+                   <h:outputText value="#{mainController.message}" />
 
 					<p:dataGrid var="product" value="#{productsController.products}" columns="3"
 						rows="12" paginator="true"
@@ -49,7 +50,8 @@
 								<h:outputText id="preis" value="#{productsController.selectedProduct.preis} €" />
 								
 								<h:inputText value="#{productsController.amount}">
-									
+                                                                    <f:validateLongRange minimum="1" />
+                                                                    <f:validateRequired />
 								</h:inputText>
 								<h:commandButton value="In den Warenkorb" action="#{productsController.addToCart}" disabled="#{ productsController.userNotLoggedIn }" />
 							</h:panelGrid>

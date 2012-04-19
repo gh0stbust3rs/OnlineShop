@@ -35,7 +35,11 @@ public class WarenkorbController {
     
     public int getWarenzanzahl(){
         if(warenkorb != null)
+        {
+            loadcart();
             return warenkorb.size();
+        }
+        
         return 0;
     }
     

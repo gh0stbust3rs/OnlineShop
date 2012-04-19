@@ -36,11 +36,6 @@ public class OrdersController {
         catch(Exception ex){msg = ex.toString();}
     }
     
-    public void orderDetails()
-    {
-        
-    }
-    
     public String generateInvoice()
     {
         mainController.setSelectedBestellung(this.getSOrder());

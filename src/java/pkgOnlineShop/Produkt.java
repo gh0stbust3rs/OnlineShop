@@ -11,7 +11,7 @@ package pkgOnlineShop;
 public class Produkt {
     private int id;
     private String bezeichnung;
-    private int preis;
+    private float preis;
     private String kategorie;
     private String beschreibung;
     private int bestand;
@@ -79,12 +79,17 @@ public class Produkt {
         this.kategorie = kategorie;
     }
     
-    public int getPreis() {
+    public float getPreis() {
         return preis;
     }
 
-    public void setPreis(int preis) {
+    public void setPreis(float preis) {
         this.preis = preis;
+    }
+
+    @Override
+    public String toString() {
+        return "Produkt{" + "id=" + id + ", bezeichnung=" + bezeichnung + ", preis=" + preis + ", kategorie=" + kategorie + ", beschreibung=" + beschreibung + ", bestand=" + bestand + ", bild=" + bild + '}';
     }
     
     

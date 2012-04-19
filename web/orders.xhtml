@@ -59,13 +59,6 @@
                                 <h:outputText style="font-family:arial" value="#{item.gesamtwert}"/> 
 
                             </h:column>
-
-                            <h:column>
-                                <h:commandButton value="Detail" action="#{ordersController.orderDetails}">
-                                    <f:setPropertyActionListener target="#{ordersController.selectedOrder}" value="#{item.id}" />
-                                </h:commandButton>
-
-                            </h:column>
                             
                             <h:column>
                                 <h:commandButton value="Rechnung" action="#{ordersController.generateInvoice}">

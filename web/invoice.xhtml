@@ -15,10 +15,10 @@
                     
                     <div id="rechnung">
                     <br />
-                    <h1>Rechnungsnummer: #{ mainController.selectedBestellung.id }</h1>
-                    <h2>Rechnungsdatum: #{ mainController.selectedBestellung.datum }</h2>
-                    <br />
-                    <h2>Produkte:</h2>
+                    <h3>Rechnungsnummer: #{ mainController.selectedBestellung.id }</h3>
+                    <h3>Rechnungsdatum: #{ mainController.selectedBestellung.datum }</h3>
+                        <br/>
+                    <h3>Produkte:</h3>
                     
                     		<h:dataTable border="1" style="border-collapse: collapse;border-style: solid;border-color: gray;border-width: 1px;" cellpadding="5" value="#{invoiceController.productsForSelectedBestellung}" var="item"> 
                             <h:column>
@@ -72,7 +72,12 @@
                     Summe Brutto: #{invoiceController.rechnungssumme}
                     
                     </p>
-                    
+                    <br/>
+                    <h:commandButton style="color:white;font-size: 15px;line-height: normal;
+                                            padding: 4px 14px 4px; -webkit-border-radius: 6px; -moz-border-radius: 6px; 
+                                            border-radius: 6px; background-color: #404040; background-repeat: repeat-x;
+                                            text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); border-color: rgba(0, 0, 0, 0.1) 
+                                            rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);" action="#{invoiceController.back}" value="Zur&uuml;ck"/>
          			</div>
                     </h:form>
             </ui:define>
