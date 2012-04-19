@@ -12,18 +12,6 @@ public class InvoiceController {
 		
 	}
 	
-	public ArrayList<Rechnung> getRechnungen() {
-		ArrayList<Rechnung> rechnungen = new ArrayList<Rechnung>();
-		
-		try {
-			rechnungen = db.getRechnungenForCustomer(mainController.getUser());
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-		return rechnungen;
-	}
 	
 	public String getRechnungssumme() {
 		String retVal = "";

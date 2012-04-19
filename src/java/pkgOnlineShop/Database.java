@@ -555,8 +555,6 @@ public class Database {
             }
         }
         
-        rs.close();
-        pstmt.close();
         
         return retVal;
     }
