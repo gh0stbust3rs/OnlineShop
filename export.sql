@@ -2,12 +2,6 @@
 --  Datei erstellt -Donnerstag-April-19-2012   
 --------------------------------------------------------
   DROP TABLE "USER"."BESTELLUNG" cascade constraints;
-  DROP TABLE "USER"."BIN$HnvcRCvfSz22jDlrADjaMQ==$0" cascade constraints;
-  DROP TABLE "USER"."BIN$KiqAvkEFTImOGXDZOamszQ==$0" cascade constraints;
-  DROP TABLE "USER"."BIN$LBqhRQRXQm6EBh853T6KWA==$0" cascade constraints;
-  DROP TABLE "USER"."BIN$mIpjAA4CSI6fjs0MX1IGtg==$0" cascade constraints;
-  DROP TABLE "USER"."BIN$W/g+ijy4QNejONWRwvt8vQ==$0" cascade constraints;
-  DROP TABLE "USER"."BIN$2SIBRLepT/iXtPtRpTJMjA==$0" cascade constraints;
   DROP TABLE "USER"."KATEGORIE" cascade constraints;
   DROP TABLE "USER"."ORDERPRODUCTS" cascade constraints;
   DROP TABLE "USER"."PERSON" cascade constraints;
@@ -67,12 +61,6 @@
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
   TABLESPACE "USERS" ;
-
-
-
-
-
-
 --------------------------------------------------------
 --  DDL for Table KATEGORIE
 --------------------------------------------------------
@@ -160,47 +148,6 @@
 REM INSERTING into "USER".BESTELLUNG
 SET DEFINE OFF;
 Insert into "USER".BESTELLUNG (BID,P_NR,ORDERDATE,SHIPPED,CREDITCARD,CVC,CMONTH,CYEAR) values ('4','47',to_date('19.04.12','DD.MM.RR'),to_date('19.04.12','DD.MM.RR'),'0123456789012345','012','12','14');
-REM INSERTING into "USER"."BIN$HnvcRCvfSz22jDlrADjaMQ==$0"
-SET DEFINE OFF;
-Insert into "USER"."BIN$HnvcRCvfSz22jDlrADjaMQ==$0" (WK_ID,QUANTITY,PR_ID,P_ID,ACTIVE) values ('6','1','33','47','1');
-Insert into "USER"."BIN$HnvcRCvfSz22jDlrADjaMQ==$0" (WK_ID,QUANTITY,PR_ID,P_ID,ACTIVE) values ('7','0','33','47','1');
-Insert into "USER"."BIN$HnvcRCvfSz22jDlrADjaMQ==$0" (WK_ID,QUANTITY,PR_ID,P_ID,ACTIVE) values ('8','5','1','47','0');
-Insert into "USER"."BIN$HnvcRCvfSz22jDlrADjaMQ==$0" (WK_ID,QUANTITY,PR_ID,P_ID,ACTIVE) values ('9','10','2','47','0');
-REM INSERTING into "USER"."BIN$KiqAvkEFTImOGXDZOamszQ==$0"
-SET DEFINE OFF;
-Insert into "USER"."BIN$KiqAvkEFTImOGXDZOamszQ==$0" (R_ID,R_DATUM) values ('0',to_date('14.04.12','DD.MM.RR'));
-REM INSERTING into "USER"."BIN$LBqhRQRXQm6EBh853T6KWA==$0"
-SET DEFINE OFF;
-Insert into "USER"."BIN$LBqhRQRXQm6EBh853T6KWA==$0" (KAT_ID,KAT_BEZEICHNUNG) values ('0','PC');
-Insert into "USER"."BIN$LBqhRQRXQm6EBh853T6KWA==$0" (KAT_ID,KAT_BEZEICHNUNG) values ('1','RAM');
-Insert into "USER"."BIN$LBqhRQRXQm6EBh853T6KWA==$0" (KAT_ID,KAT_BEZEICHNUNG) values ('2','Festplatten');
-Insert into "USER"."BIN$LBqhRQRXQm6EBh853T6KWA==$0" (KAT_ID,KAT_BEZEICHNUNG) values ('3','Prozessoren');
-Insert into "USER"."BIN$LBqhRQRXQm6EBh853T6KWA==$0" (KAT_ID,KAT_BEZEICHNUNG) values ('4','Smartphones');
-Insert into "USER"."BIN$LBqhRQRXQm6EBh853T6KWA==$0" (KAT_ID,KAT_BEZEICHNUNG) values ('5','Tablets');
-Insert into "USER"."BIN$LBqhRQRXQm6EBh853T6KWA==$0" (KAT_ID,KAT_BEZEICHNUNG) values ('6','Zubehör');
-REM INSERTING into "USER"."BIN$mIpjAA4CSI6fjs0MX1IGtg==$0"
-SET DEFINE OFF;
-Insert into "USER"."BIN$mIpjAA4CSI6fjs0MX1IGtg==$0" (B_ID,DATUM,KREDITKARTE,CVC,VALID_MONTH,VALID_YEAR,P_ID,PR_ID,SHIPPED,QUANTITY,WK_ID,R_ID) values ('2',to_date('14.04.12','DD.MM.RR'),'1234567890123456','123','10','13','47','1',null,'5','8','0');
-Insert into "USER"."BIN$mIpjAA4CSI6fjs0MX1IGtg==$0" (B_ID,DATUM,KREDITKARTE,CVC,VALID_MONTH,VALID_YEAR,P_ID,PR_ID,SHIPPED,QUANTITY,WK_ID,R_ID) values ('3',to_date('14.04.12','DD.MM.RR'),'1234567890123456','123','10','13','47','2',null,'10','9','0');
-REM INSERTING into "USER"."BIN$W/g+ijy4QNejONWRwvt8vQ==$0"
-SET DEFINE OFF;
-Insert into "USER"."BIN$W/g+ijy4QNejONWRwvt8vQ==$0" (PR_ID,BEZEICHNUNG,PREIS,BESTAND,BILD,KAT) values ('1','iPad 3rd Generation, 16gb, wifi+3g, white','599',null,null,null);
-Insert into "USER"."BIN$W/g+ijy4QNejONWRwvt8vQ==$0" (PR_ID,BEZEICHNUNG,PREIS,BESTAND,BILD,KAT) values ('2','Samsung Galaxy SII, 16gb, 4.3" screen','399',null,null,null);
-Insert into "USER"."BIN$W/g+ijy4QNejONWRwvt8vQ==$0" (PR_ID,BEZEICHNUNG,PREIS,BESTAND,BILD,KAT) values ('3','ortner pc ;)','5',null,null,null);
-Insert into "USER"."BIN$W/g+ijy4QNejONWRwvt8vQ==$0" (PR_ID,BEZEICHNUNG,PREIS,BESTAND,BILD,KAT) values ('4','Kingston 1234, 1gb, 766 mhz, ddr3','50',null,null,null);
-Insert into "USER"."BIN$W/g+ijy4QNejONWRwvt8vQ==$0" (PR_ID,BEZEICHNUNG,PREIS,BESTAND,BILD,KAT) values ('5','Western Digital 0998cf, 1tb, 2,5", intern','99',null,null,null);
-Insert into "USER"."BIN$W/g+ijy4QNejONWRwvt8vQ==$0" (PR_ID,BEZEICHNUNG,PREIS,BESTAND,BILD,KAT) values ('6','Intel Core i7, Quad-Core, 1,4ghz','249',null,null,null);
-Insert into "USER"."BIN$W/g+ijy4QNejONWRwvt8vQ==$0" (PR_ID,BEZEICHNUNG,PREIS,BESTAND,BILD,KAT) values ('7','SmartCover für iPad, schwarz','39',null,null,null);
-Insert into "USER"."BIN$W/g+ijy4QNejONWRwvt8vQ==$0" (PR_ID,BEZEICHNUNG,PREIS,BESTAND,BILD,KAT) values ('33','Produkt 1','235','45','27bf6db4-6aa9-4412-83e8-84ddc8e462fe.png','PC');
-Insert into "USER"."BIN$W/g+ijy4QNejONWRwvt8vQ==$0" (PR_ID,BEZEICHNUNG,PREIS,BESTAND,BILD,KAT) values ('34','Produkt 2','253','4','default.png','Tablets');
-Insert into "USER"."BIN$W/g+ijy4QNejONWRwvt8vQ==$0" (PR_ID,BEZEICHNUNG,PREIS,BESTAND,BILD,KAT) values ('40','Produkt 3','2345','32','e96f0717-c8c9-4a03-b2c5-559ca78dd79e.jpg','Prozessoren');
-REM INSERTING into "USER"."BIN$2SIBRLepT/iXtPtRpTJMjA==$0"
-SET DEFINE OFF;
-Insert into "USER"."BIN$2SIBRLepT/iXtPtRpTJMjA==$0" (P_ID,VORNAME,NACHNAME,STRASSE,HAUSNR,PLZ,ORT,LAND,EMAIL,PASS,ANBIETER) values ('0','Matthias','Webhofer','Dorfstraße','27','9905','Gaimberg','Österreich','webhofer.m@gmx.at','admin','1');
-Insert into "USER"."BIN$2SIBRLepT/iXtPtRpTJMjA==$0" (P_ID,VORNAME,NACHNAME,STRASSE,HAUSNR,PLZ,ORT,LAND,EMAIL,PASS,ANBIETER) values ('1','Andreas','Lackner','St. Peter','29','9863','Rennweg','Österreich','alackner@geomix.at','admin','1');
-Insert into "USER"."BIN$2SIBRLepT/iXtPtRpTJMjA==$0" (P_ID,VORNAME,NACHNAME,STRASSE,HAUSNR,PLZ,ORT,LAND,EMAIL,PASS,ANBIETER) values ('2','Milan','Kollmann','asdf','1','9999','asdf','Österreich','milan@kollmann.org','admin','1');
-Insert into "USER"."BIN$2SIBRLepT/iXtPtRpTJMjA==$0" (P_ID,VORNAME,NACHNAME,STRASSE,HAUSNR,PLZ,ORT,LAND,EMAIL,PASS,ANBIETER) values ('23','Testi','Testmann','Teststrasse','123','1337','Testort','Deutschland','testi.testmann@test.de','test','0');
-Insert into "USER"."BIN$2SIBRLepT/iXtPtRpTJMjA==$0" (P_ID,VORNAME,NACHNAME,STRASSE,HAUSNR,PLZ,ORT,LAND,EMAIL,PASS,ANBIETER) values ('47','Tom','Bremen','Koenigsstrase','1','214','Aachen','Deutschland','user','user','0');
 REM INSERTING into "USER".KATEGORIE
 SET DEFINE OFF;
 Insert into "USER".KATEGORIE (KAT_ID,KAT_BEZEICHNUNG) values ('0','PC');
@@ -238,14 +185,33 @@ Insert into "USER".RECHNUNG (R_ID,R_DATUM) values ('0',to_date('14.04.12','DD.MM
 REM INSERTING into "USER".WARENKORB
 SET DEFINE OFF;
 Insert into "USER".WARENKORB (WK_ID,QUANTITY,PR_ID,P_ID,ACTIVE) values ('10','1','40','47','1');
+--------------------------------------------------------
+--  DDL for Index SYS_C004195
+--------------------------------------------------------
 
+  CREATE UNIQUE INDEX "USER"."SYS_C004195" ON "USER"."BESTELLUNG" ("BID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index SYS_C004075
+--------------------------------------------------------
 
+  CREATE UNIQUE INDEX "USER"."SYS_C004075" ON "USER"."KATEGORIE" ("KAT_ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index UNIQUECONTRAINTKATEGORIE
+--------------------------------------------------------
 
-
-
-
-
-
+  CREATE UNIQUE INDEX "USER"."UNIQUECONTRAINTKATEGORIE" ON "USER"."KATEGORIE" ("KAT_BEZEICHNUNG") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+  TABLESPACE "USERS" ;
 --------------------------------------------------------
 --  DDL for Index MAILUNIQUE
 --------------------------------------------------------
@@ -274,10 +240,10 @@ Insert into "USER".WARENKORB (WK_ID,QUANTITY,PR_ID,P_ID,ACTIVE) values ('10','1'
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
   TABLESPACE "USERS" ;
 --------------------------------------------------------
---  DDL for Index SYS_C004075
+--  DDL for Index SYS_C004109
 --------------------------------------------------------
 
-  CREATE UNIQUE INDEX "USER"."SYS_C004075" ON "USER"."KATEGORIE" ("KAT_ID") 
+  CREATE UNIQUE INDEX "USER"."SYS_C004109" ON "USER"."RECHNUNG" ("R_ID") 
   PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
@@ -292,33 +258,6 @@ Insert into "USER".WARENKORB (WK_ID,QUANTITY,PR_ID,P_ID,ACTIVE) values ('10','1'
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
   TABLESPACE "USERS" ;
 --------------------------------------------------------
---  DDL for Index SYS_C004109
---------------------------------------------------------
-
-  CREATE UNIQUE INDEX "USER"."SYS_C004109" ON "USER"."RECHNUNG" ("R_ID") 
-  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "USERS" ;
---------------------------------------------------------
---  DDL for Index SYS_C004195
---------------------------------------------------------
-
-  CREATE UNIQUE INDEX "USER"."SYS_C004195" ON "USER"."BESTELLUNG" ("BID") 
-  PCTFREE 10 INITRANS 2 MAXTRANS 255 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "USERS" ;
---------------------------------------------------------
---  DDL for Index UNIQUECONTRAINTKATEGORIE
---------------------------------------------------------
-
-  CREATE UNIQUE INDEX "USER"."UNIQUECONTRAINTKATEGORIE" ON "USER"."KATEGORIE" ("KAT_BEZEICHNUNG") 
-  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "USERS" ;
---------------------------------------------------------
 --  Constraints for Table BESTELLUNG
 --------------------------------------------------------
 
@@ -327,12 +266,6 @@ Insert into "USER".WARENKORB (WK_ID,QUANTITY,PR_ID,P_ID,ACTIVE) values ('10','1'
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
   TABLESPACE "USERS"  ENABLE;
-
-
-
-
-
-
 --------------------------------------------------------
 --  Constraints for Table KATEGORIE
 --------------------------------------------------------
@@ -397,12 +330,6 @@ Insert into "USER".WARENKORB (WK_ID,QUANTITY,PR_ID,P_ID,ACTIVE) values ('10','1'
 
   ALTER TABLE "USER"."BESTELLUNG" ADD FOREIGN KEY ("P_NR")
 	  REFERENCES "USER"."PERSON" ("P_ID") ENABLE;
-
-
-
-
-
-
 
 --------------------------------------------------------
 --  Ref Constraints for Table ORDERPRODUCTS
