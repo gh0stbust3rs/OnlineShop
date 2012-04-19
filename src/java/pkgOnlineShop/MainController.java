@@ -26,6 +26,7 @@ public class MainController {
     private boolean signedin = false;
     private String search;
     private Bestellung selectedBestellung;
+    private int messageCount;
     
     private List kategorien;
     
@@ -34,6 +35,7 @@ public class MainController {
        try{
         db = new Database();
         kategorien = db.getKategorien();
+        messageCount = 0;
        }catch(Exception ex){
            message=ex.toString();
        }
@@ -105,9 +107,15 @@ public class MainController {
         signedin = false;
         FacesContext context = FacesContext.getCurrentInstance();
         Object remove = context.getExternalContext().getSessionMap().remove("#{OrderController}");
-        message = remove+" halllo";
         return "index";
     }
+    
+    public void changeMessage(String msg)
+    {
+        messageCount = 2;
+        message=msg;
+    }
+
     
     public boolean isadmin(){
         if(user != null){
@@ -162,6 +170,11 @@ public class MainController {
     }
 
     public String getMessage() {
+        messageCount--;
+        
+        if(messageCount<1)
+            message = "";
+        
         return message;
     }
 

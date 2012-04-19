@@ -13,7 +13,6 @@
             <ui:define name="content">
                 
                <h:form id="form">
-                   <h:outputText value="#{mainController.message}" />
 
 					<p:dataGrid var="product" value="#{productsController.products}" columns="3"
 						rows="12" paginator="true"
@@ -59,7 +58,10 @@
 					</p:dialog>
 				
 				</h:form>
+                
+                                <br/>
             
+                   <h:outputText value="#{mainController.message}" style="font-family:Trebuchet MS;font-size:12pt;color:red"/>
                 
            </ui:define>
             

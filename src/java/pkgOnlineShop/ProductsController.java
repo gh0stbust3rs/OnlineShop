@@ -39,7 +39,7 @@ public class ProductsController {
         		retVal = "cart";
             }
             else {
-                mainController.setMessage("Produkt in dieser Anzanhl nicht mehr vorhanden");
+                mainController.changeMessage("Produkt in dieser Anzanhl nicht mehr vorhanden");
             }
         }
         catch(Exception e) {

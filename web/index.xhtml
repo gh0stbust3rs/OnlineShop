@@ -23,6 +23,7 @@
                         <p>Hier finden Sie absolut geniale, meist Nutzlose Produkte, die nach der Bestellung und Bezahlung sowieso niemals ausgeliefert werdn.</p>
                         <br/><br/>
                         <h3>Zuf&auml;lliges Produkt</h3>
+                        <div style="width:600px">
                         <p:dataGrid var="product" value="#{productsController.randomProducts}" columns="1" 
 						rows="1">
 						
@@ -63,9 +64,9 @@
 							</h:panelGrid>
 						</p:outputPanel>
 					</p:dialog>
-				
+				        </div>
 				</h:form>
-                    
+                
                 </ui:define>
             </div>
         </ui:composition>      
