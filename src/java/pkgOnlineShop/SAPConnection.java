@@ -42,7 +42,7 @@ public class SAPConnection {
 		String userID = "BCUSER";
 		String password = "MINISAP";
 		String language = "EN";
-		String hostname = "192.168.0.10";
+		String hostname = "172.16.10.133";
 		String systemNumber = "00";
 
 		mConnection = JCO.createClient(mandant, userID, password, language,

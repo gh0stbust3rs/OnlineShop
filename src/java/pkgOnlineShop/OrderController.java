@@ -38,7 +38,7 @@ public class OrderController {
     private String message = "default wert";
     
     //private SAPConnection co;
-   //private JCO.Client mConnection = null;
+    //private JCO.Client mConnection = null;
     //private SAPFunctions sapFunc;
     
     private Database db = null;
@@ -49,7 +49,7 @@ public class OrderController {
             mConnection = co.connect();
             sapFunc = new SAPFunctions();
         }
-        catch(Exception ignore){}*/
+        catch(Exception ignore){ignore.printStackTrace();}*/
     }
     
     public String bestellen(){
@@ -67,7 +67,7 @@ public class OrderController {
             }
         }
         else
-            message = "EMail oder Passwort stimmen nicht Ã¼ber ein";
+            message = "EMail oder Passwort stimmen nicht Ÿber ein";
         return null;
     }
     
